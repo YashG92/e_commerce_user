@@ -1,7 +1,11 @@
+import 'package:e_commerce_user/features/onboarding/screens/widgets/onboarding_dot_navigation.dart';
+import 'package:e_commerce_user/features/onboarding/screens/widgets/onboarding_page.dart';
+import 'package:e_commerce_user/features/onboarding/screens/widgets/onboarding_skip.dart';
+import 'package:e_commerce_user/utils/constants/colors.dart';
 import 'package:e_commerce_user/utils/constants/image_strings.dart';
 import 'package:e_commerce_user/utils/constants/text_strings.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class Onboarding extends StatelessWidget {
   const Onboarding({super.key});
@@ -39,52 +43,18 @@ class Onboarding extends StatelessWidget {
           ),
           //Skip button
 
-          Positioned(
-              top: Get.height*.05,
-              left: Get.width *.8,
-              child: TextButton(onPressed: (){}, child: Text('Skip',style: TextStyle(color: Colors.black),))),
+          OnBoardingSkip(),
 
 
           //Next button
           //navigation indicator
+          OnBoardingDotNavigation()
         ],
       ),
     );
   }
 }
 
-class OnBoardingPage extends StatelessWidget {
-  const OnBoardingPage({
-    super.key,
-    required this.image,
-    required this.title,
-    required this.subTitle,
-  });
 
-  final String image, title, subTitle;
 
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Image(
-            height: Get.height * 0.6,
-            width: Get.width * 0.8,
-            image: AssetImage(image)),
-        Text(
-          title,
-          textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.headlineMedium,
-        ),
-        const SizedBox(
-          height: 32,
-        ),
-        Text(
-          subTitle,
-          textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.bodyMedium,
-        )
-      ],
-    );
-  }
-}
+
