@@ -1,6 +1,9 @@
 import 'dart:async';
 
 import 'package:e_commerce_user/app.dart';
+import 'package:e_commerce_user/features/onboarding/screens/onboarding.dart';
+import 'package:e_commerce_user/utils/constants/image_strings.dart';
+import 'package:e_commerce_user/utils/helper/helper_functions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,10 +21,10 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final dark = HelperFunctions.isDarkMode(context);
     return Scaffold(
-      backgroundColor: Colors.black,
       body: Center(
-        child: Lottie.asset('assets/logo/appLogo.json'),
+        child: dark ? Lottie.asset(ImageStrings.appLogoLight) : Lottie.asset(ImageStrings.appLogoDark),
       ),
     );
   }
@@ -29,6 +32,6 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 3),()=>Get.off(App()));
+    Timer(Duration(seconds: 3),()=>Get.off(Onboarding()));
   }
 }

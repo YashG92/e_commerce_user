@@ -1,4 +1,5 @@
 import 'package:e_commerce_user/splash_screen.dart';
+import 'package:e_commerce_user/utils/theme/theme.dart';
 import 'package:flutter/material.dart';
 
 import 'app.dart';
@@ -17,10 +18,10 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      themeMode: ThemeMode.system,
+
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
       home: SplashScreen(),
     );
   }
