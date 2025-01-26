@@ -32,7 +32,7 @@ class OnBoardingPage extends StatelessWidget {
           Text(
             subTitle,
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.bodyMedium,
+            style: Theme.of(context).textTheme.headlineSmall,
           )
         ],
       ),
