@@ -1,21 +1,25 @@
+import 'package:e_commerce_user/features/onboarding/controller/onboarding_controller.dart';
 import 'package:e_commerce_user/features/onboarding/screens/widgets/onboarding_dot_navigation.dart';
+import 'package:e_commerce_user/features/onboarding/screens/widgets/onboarding_next.dart';
 import 'package:e_commerce_user/features/onboarding/screens/widgets/onboarding_page.dart';
 import 'package:e_commerce_user/features/onboarding/screens/widgets/onboarding_skip.dart';
-import 'package:e_commerce_user/utils/constants/colors.dart';
 import 'package:e_commerce_user/utils/constants/image_strings.dart';
 import 'package:e_commerce_user/utils/constants/text_strings.dart';
 import 'package:flutter/material.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:get/get.dart';
 
 class Onboarding extends StatelessWidget {
   const Onboarding({super.key});
 
   @override
   Widget build(BuildContext context) {
+    OnBoardingController controller = Get.put(OnBoardingController());
     return Scaffold(
       body: Stack(
         children: [
           PageView(
+            controller: controller.pageController,
+            onPageChanged: controller.updatePageIndex,
             children: [
               //Scroll page
               OnBoardingPage(
@@ -47,6 +51,7 @@ class Onboarding extends StatelessWidget {
 
 
           //Next button
+          OnBoardingNextButton(),
           //navigation indicator
           OnBoardingDotNavigation()
         ],
@@ -54,6 +59,7 @@ class Onboarding extends StatelessWidget {
     );
   }
 }
+
 
 
 
