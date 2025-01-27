@@ -1,17 +1,17 @@
 import 'package:e_commerce_user/utils/theme/widgets_theme/text_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-class AppTheme{
-
+class AppTheme {
   static ThemeData lightTheme = ThemeData(
-    scaffoldBackgroundColor: Colors.white,
-    brightness: Brightness.light,
-    textTheme: TTextTheme.lightTextTheme,
-  );
-  static ThemeData darkTheme = ThemeData(
-    scaffoldBackgroundColor: Colors.black,
-    brightness: Brightness.dark,
-    textTheme: TTextTheme.darkTextTheme,
+      scaffoldBackgroundColor: Colors.white,
+      brightness: Brightness.light,
+      textTheme: TTextTheme.lightTextTheme,
+      fontFamily: GoogleFonts.poppins().fontFamily);
 
-  );
+  static ThemeData darkTheme = ThemeData(
+      scaffoldBackgroundColor: Colors.grey.shade900,
+      brightness: Brightness.dark,
+      textTheme: TTextTheme.darkTextTheme,
+      fontFamily: GoogleFonts.poppins().fontFamily);
 }

@@ -8,4 +8,5 @@ class ImageStrings {
   // Logo
   static const String appLogoLight = "assets/logo/appLogoLight.json";
   static const String appLogoDark = "assets/logo/appLogoDark.json";
+  static const String googleLogo = "assets/logo/google-icon.png";
 }
