@@ -18,39 +18,55 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.only(
-            top: kToolbarHeight,
-            left: 16,
-            right: 16,
+      body: Column(
+        children: [
+          // Scrollable content
+          Expanded(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  top: kToolbarHeight,
+                  left: 16,
+                  right: 16,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    /// Title & Subtitle
+                    const FormHeader(
+                      title: "Login to your account",
+                      subTitle: 'It’s great to see you again.',
+                    ),
+                    const SizedBox(height: 32),
+
+                    /// Form
+                    const LoginForm(),
+
+                    /// Divider
+                    const FormDivider(),
+
+                    /// Social Login Button
+                    const SocialButton(buttonTitle: 'Login with Google'),
+
+                    // Add some spacing before the scrollable content ends
+                    const SizedBox(height: 32),
+                  ],
+                ),
+              ),
+            ),
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              /// Title & Subtitle
-              FormHeader(title: "Login to your account", subTitle: 'It’s great to see you again.',),
-              const SizedBox(height: 32),
 
-              /// Form
-              LoginForm(),
-
-              ///Divider
-              FormDivider(),
-
-              ///Footer
-
-              SocialButton(buttonTitle: 'Login with Google',),
-              FormFooter(footerText: 'Don’t have an account?',onTap: ()=> Get.to(()=>SignupScreen()),buttonText: 'Join',),
-            ],
+          /// Fixed bottom footer
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: FormFooter(
+              footerText: 'Don’t have an account?',
+              onTap: () => Get.to(() => const SignupScreen()),
+              buttonText: 'Join',
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
 }
-
-
-
-
-

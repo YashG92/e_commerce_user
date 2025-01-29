@@ -15,37 +15,48 @@ class SignupScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final dark = HelperFunctions.isDarkMode(context);
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.only(
-            top: kToolbarHeight,
-            left: 16,
-            right: 16,
+      body: Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  top: kToolbarHeight,
+                  left: 16,
+                  right: 16,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    FormHeader(
+                      title: 'Create an account',
+                      subTitle: 'Let’s create your account.',
+                    ),
+                    const SizedBox(
+                      height: 32,
+                    ),
+                    SignUpForm(dark: dark),
+                    FormDivider(),
+                    SocialButton(
+                      buttonTitle: 'Sign Up with Google',
+                    ),
+
+                  ],
+                ),
+              ),
+            ),
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              FormHeader(
-                title: 'Create an account',
-                subTitle: 'Let’s create your account.',
-              ),
-              const SizedBox(
-                height: 32,
-              ),
-              SignUpForm(dark: dark),
-              FormDivider(),
-              SocialButton(
-                buttonTitle: 'Sign Up with Google',
-              ),
-              FormFooter(
-                footerText: 'Already have an account?',
-                onTap: () => Get.to(() => LoginScreen()),
-                buttonText: 'Log In',
-              ),
-            ],
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: FormFooter(
+              footerText: 'Already have an account?',
+              onTap: () => Get.to(() => LoginScreen()),
+              buttonText: 'Log In',
+            ),
           ),
-        ),
+        ],
       ),
+
     );
   }
 }
