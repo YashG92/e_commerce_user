@@ -1,20 +1,24 @@
+import 'package:e_commerce_user/features/authentication/screens/signup/verify_email.dart';
 import 'package:e_commerce_user/features/authentication/screens/signup/widgets/terms_and_conditions.dart';
+import 'package:e_commerce_user/utils/helper/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:get/get.dart';
 
 import '../../../../../utils/constants/colors.dart';
 
 class SignUpForm extends StatelessWidget {
   const SignUpForm({
     super.key,
-    required this.dark,
   });
 
-  final bool dark;
+
+
 
   @override
   Widget build(BuildContext context) {
+    final dark = HelperFunctions.isDarkMode(context);
     return Form(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -130,7 +134,7 @@ class SignUpForm extends StatelessWidget {
                           TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10))),
-                  onPressed: () {},
+                  onPressed: () =>Get.to(()=>VerifyEmailScreen()),
                   child: Text(
                     'Create an Account',
                   ))),

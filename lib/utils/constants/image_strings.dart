@@ -9,4 +9,6 @@ class ImageStrings {
   static const String appLogoLight = "assets/logo/appLogoLight.json";
   static const String appLogoDark = "assets/logo/appLogoDark.json";
   static const String googleLogo = "assets/logo/google-icon.png";
+  static const String verifyEmailGif = "assets/images/animations/verifyemailgif.json";
+  static const String successGif = "assets/images/animations/successgif.json";
 }

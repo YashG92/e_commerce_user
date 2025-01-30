@@ -6,14 +6,12 @@ import 'package:e_commerce_user/features/authentication/screens/signup/widgets/s
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../common/widgets/login_signup/form_header.dart';
-import '../../../../utils/helper/helper_functions.dart';
 
 class SignupScreen extends StatelessWidget {
   const SignupScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final dark = HelperFunctions.isDarkMode(context);
     return Scaffold(
       body: Column(
         children: [
@@ -35,7 +33,7 @@ class SignupScreen extends StatelessWidget {
                     const SizedBox(
                       height: 32,
                     ),
-                    SignUpForm(dark: dark),
+                    SignUpForm(),
                     FormDivider(),
                     SocialButton(
                       buttonTitle: 'Sign Up with Google',
