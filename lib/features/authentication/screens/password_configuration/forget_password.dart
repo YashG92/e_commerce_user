@@ -1,7 +1,10 @@
 import 'package:e_commerce_user/common/widgets/login_signup/form_header.dart';
+import 'package:e_commerce_user/features/authentication/screens/password_configuration/reset_password.dart';
 import 'package:e_commerce_user/utils/constants/sizes.dart';
 import 'package:e_commerce_user/utils/helper/helper_functions.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import '../../../../utils/constants/colors.dart';
 
@@ -70,7 +73,7 @@ class ForgetPassword extends StatelessWidget {
                             fontSize: 18, fontWeight: FontWeight.w600),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10))),
-                    onPressed: () {},
+                    onPressed: () => Get.to(()=>ResetPassword()),
                     child: Text(
                       'Send Code',
                     )))
