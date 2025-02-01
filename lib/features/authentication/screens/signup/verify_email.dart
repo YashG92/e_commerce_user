@@ -48,7 +48,7 @@ class VerifyEmailScreen extends StatelessWidget {
                               fontSize: 18, fontWeight: FontWeight.w600),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10))),
-                      onPressed: ()=> Get.to(()=> SuccessScreen(title: 'Your account is successfully created!',subTitle: 'congrats',onPressed: ()=> Get.to(()=> LoginScreen()), image: ImageStrings.successGif,)), child: Text('Continue')),),
+                      onPressed: ()=> Get.to(()=> SuccessScreen(title: 'Your account is successfully created!',subTitle: 'congrats',onPressed: ()=> Get.off(()=> LoginScreen()), image: ImageStrings.successGif,)), child: Text('Continue')),),
                 SizedBox(height: TSizes.spaceBtwItems,),
                 SizedBox(width: double.infinity,child: TextButton(onPressed: (){}, child: Text('Resend Email')),)
               ],
