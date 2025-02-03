@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
+import 'common/widgets/products/cart/cart_counter_icon.dart';
+
 class NavigationMenu extends StatelessWidget {
   const NavigationMenu({super.key});
 
@@ -30,28 +32,7 @@ class NavigationMenu extends StatelessWidget {
                   icon: Icon(Iconsax.search_normal), label: 'Search'),
               NavigationDestination(icon: Icon(Iconsax.heart), label: 'Saved'),
               NavigationDestination(
-                  icon: Stack(children: [
-                    Icon(Iconsax.shopping_cart),
-                    Positioned(
-                        right: 0,
-
-                        child: Container(
-                          height: 14,
-                          width: 14,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(14),
-                              color: AColors.black.withOpacity(0.5)),
-                          child: Center(
-
-                              child: Text(
-                            '2',
-                            style: Theme.of(context)
-                                .textTheme
-                                .labelLarge!
-                                .apply(color: AColors.white,fontSizeFactor: 0.8),
-                          )),
-                        ))
-                  ]),
+                  icon: CartCounterIcon(onPress: () {},),
                   label: 'Cart'),
               NavigationDestination(icon: Icon(Iconsax.user), label: 'Account'),
             ]),
@@ -60,6 +41,7 @@ class NavigationMenu extends StatelessWidget {
     );
   }
 }
+
 
 class NavigationController extends GetxController {
   final Rx<int> selectedIndex = 0.obs;
