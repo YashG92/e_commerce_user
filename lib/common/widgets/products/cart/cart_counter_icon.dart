@@ -15,7 +15,7 @@ class CartCounterIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(children: [
-      IconButton(icon : Icon(Iconsax.shopping_cart),color: iconColor, onPressed: onPress,),
+      Icon(Iconsax.shopping_cart,color: iconColor,),
       Positioned(
           right: 0,
 
