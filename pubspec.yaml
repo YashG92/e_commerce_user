@@ -68,6 +68,8 @@ flutter:
     - assets/images/
     - assets/images/on_boarding_images/
     - assets/images/animations/
+    - assets/icons/categories/
+    - assets/icons/brands/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
