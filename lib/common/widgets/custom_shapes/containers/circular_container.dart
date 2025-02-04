@@ -10,12 +10,13 @@ class ACircularContainer extends StatelessWidget {
     this.radius = 400,
     this.padding = 0,
     this.child,
-    this.backgroundColor = AColors.white,
+    this.backgroundColor = AColors.white,  this.margin,
   });
 
   final double? width;
   final double? height;
   final double radius;
+  final EdgeInsetsGeometry? margin;
   final double padding;
   final Widget? child;
   final Color backgroundColor;
@@ -23,6 +24,7 @@ class ACircularContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: margin,
       width: width,
       height: height,
       padding: EdgeInsets.all(padding),

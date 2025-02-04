@@ -39,6 +39,7 @@ dependencies:
   smooth_page_indicator: ^1.2.0+3
   iconsax: ^0.0.8
   google_fonts: ^6.2.1
+  carousel_slider: ^5.0.0
 
 dev_dependencies:
   flutter_test:
@@ -68,6 +69,7 @@ flutter:
     - assets/images/
     - assets/images/on_boarding_images/
     - assets/images/animations/
+    - assets/images/banners/
     - assets/icons/categories/
     - assets/icons/brands/
   #   - images/a_dot_ham.jpeg

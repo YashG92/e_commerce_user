@@ -1,10 +1,15 @@
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:e_commerce_user/common/widgets/custom_shapes/containers/circular_container.dart';
 import 'package:e_commerce_user/features/shop/screens/home/widgets/home_app_bar.dart';
 import 'package:e_commerce_user/features/shop/screens/home/widgets/home_categories.dart';
+import 'package:e_commerce_user/features/shop/screens/home/widgets/promo_slider.dart';
 import 'package:e_commerce_user/features/shop/screens/home/widgets/search_container.dart';
 import 'package:e_commerce_user/utils/constants/colors.dart';
+import 'package:e_commerce_user/utils/constants/image_strings.dart';
 import 'package:e_commerce_user/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
 import '../../../../common/widgets/custom_shapes/containers/primary_header_container.dart';
+import '../../../../common/widgets/images/rounded_image.dart';
 import '../../../../common/widgets/texts/section_heading.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -23,38 +28,49 @@ class HomeScreen extends StatelessWidget {
                   HomeAppBar(),
 
                   /// Searchbar
-                  SizedBox(height: TSizes.spaceBtwSections,),
-                  SearchContainer(text: "Search for Store",),
+                  SizedBox(
+                    height: TSizes.spaceBtwSections,
+                  ),
+                  SearchContainer(
+                    text: "Search for Store",
+                  ),
+
                   /// Categories
-                  SizedBox(height: TSizes.spaceBtwSections,),
+                  SizedBox(
+                    height: TSizes.spaceBtwSections,
+                  ),
                   Padding(
                     padding: const EdgeInsets.only(left: TSizes.defaultSpace),
                     child: Column(
                       children: [
                         ///Heading
-                        SectionHeading(title: 'Popular Categories', showActionButton: false,textColor: AColors.white,),
-                        SizedBox(height: TSizes.spaceBtwItems,),
+                        SectionHeading(
+                          title: 'Popular Categories',
+                          showActionButton: false,
+                          textColor: AColors.white,
+                        ),
+                        SizedBox(
+                          height: TSizes.spaceBtwItems,
+                        ),
 
                         ///Categories
                         HomeCategories(),
-
                       ],
                     ),
                   )
-
                 ],
               ),
             ),
+
+            ///Body
+            Padding(
+              padding: const EdgeInsets.all(TSizes.defaultSpace),
+              child: PromoSlider(banners: [ImageStrings.banner_4,ImageStrings.banner_5,ImageStrings.banner_6],),
+            )
           ],
         ),
       ),
     );
   }
 }
-
-
-
-
-
-
 

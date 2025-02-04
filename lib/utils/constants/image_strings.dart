@@ -34,4 +34,15 @@ class ImageStrings {
   static const String hermanMillerLogo = "assets/icons/brands/herman-miller-logo.png";
   static const String ikeaLogo = "assets/icons/brands/ikea_logo.png";
   static const String acerlogo = "assets/icons/brands/acer_logo.png";
+
+  //  Banners
+  static const String banner_1 = "assets/images/banners/banner_1.jpg";
+  static const String banner_2 = "assets/images/banners/banner_2.jpg";
+  static const String banner_3 = "assets/images/banners/banner_3.jpg";
+  static const String banner_4 = "assets/images/banners/banner_4.jpg";
+  static const String banner_5 = "assets/images/banners/banner_5.jpg";
+  static const String banner_6 = "assets/images/banners/banner_6.jpg";
+  static const String banner_7 = "assets/images/banners/banner_7.jpg";
+  static const String banner_8 = "assets/images/banners/banner_8.jpg";
+
 }
