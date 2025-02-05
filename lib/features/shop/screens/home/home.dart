@@ -11,6 +11,7 @@ import 'package:e_commerce_user/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
 import '../../../../common/widgets/custom_shapes/containers/primary_header_container.dart';
 import '../../../../common/widgets/images/rounded_image.dart';
+import '../../../../common/widgets/layouts/grid_layout.dart';
 import '../../../../common/widgets/products/product_card/product_card_vertical.dart';
 import '../../../../common/widgets/texts/section_heading.dart';
 
@@ -67,15 +68,30 @@ class HomeScreen extends StatelessWidget {
             ///Body
             Padding(
               padding: const EdgeInsets.all(TSizes.defaultSpace),
-              child: PromoSlider(banners: [ImageStrings.banner_4,ImageStrings.banner_5,ImageStrings.banner_6],),
+              child: Column(
+                children: [
+                  PromoSlider(
+                    banners: [
+                      ImageStrings.banner_4,
+                      ImageStrings.banner_5,
+                      ImageStrings.banner_6
+                    ],
+                  ),
+
+                  SizedBox(height: TSizes.spaceBtwSections,),
+                  ///popular product
+
+                  AGridLayout(itemCount: 6,itemBuilder: (_,index)=> ProductCardVertical(),),
+
+                ],
+              ),
             ),
-            ///popular product
-            ProductCardVertical(),
+
+
           ],
         ),
       ),
     );
   }
 }
-
 

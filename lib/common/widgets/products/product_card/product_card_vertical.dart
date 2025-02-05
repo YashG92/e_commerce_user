@@ -8,6 +8,7 @@ import 'package:iconsax/iconsax.dart';
 import '../../../../utils/constants/sizes.dart';
 import '../../custom_shapes/containers/rounded_container.dart';
 import '../../icons/circular_icon.dart';
+import '../../texts/product_price_text.dart';
 import '../../texts/product_title_text.dart';
 
 class ProductCardVertical extends StatelessWidget {
@@ -24,7 +25,7 @@ class ProductCardVertical extends StatelessWidget {
         width: 180,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(TSizes.productImageRadius),
-          color: dark ? AColors.darkerGrey : AColors.white,
+          color: dark ? Theme.of(context).scaffoldBackgroundColor : AColors.white,
         ),
         child: Column(
           children: [
@@ -32,7 +33,7 @@ class ProductCardVertical extends StatelessWidget {
             RoundedContainer(
               height: 180,
               padding: EdgeInsets.all(TSizes.sm),
-              backgroundColor: dark ? AColors.dark : AColors.light,
+              backgroundColor: dark ? Theme.of(context).scaffoldBackgroundColor : AColors.light,
               child: Stack(
                 children: [
                   ///Thumbnail Image
@@ -112,11 +113,11 @@ class ProductCardVertical extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
 
-                    Text('₹ 4999', maxLines: 1,overflow: TextOverflow.ellipsis,style: Theme.of(context).textTheme.headlineMedium,),
+                    ProductPriceText(price: '4999',isLarge: false,),
 
                     Container(
                       decoration: BoxDecoration(
-                          color: AColors.dark,
+                          color:dark ? Colors.blue:AColors.black,
                           borderRadius: BorderRadius.only(topLeft: Radius.circular(TSizes.cardRadiusMd),bottomRight: Radius.circular(TSizes.cardRadiusMd))
                       ),
                       child: SizedBox(
@@ -136,3 +137,4 @@ class ProductCardVertical extends StatelessWidget {
     );
   }
 }
+
