@@ -8,6 +8,7 @@ import 'package:iconsax/iconsax.dart';
 import '../../../../utils/constants/sizes.dart';
 import '../../custom_shapes/containers/rounded_container.dart';
 import '../../icons/circular_icon.dart';
+import '../../texts/brand_title_with_verified_icon.dart';
 import '../../texts/product_price_text.dart';
 import '../../texts/product_title_text.dart';
 
@@ -21,120 +22,113 @@ class ProductCardVertical extends StatelessWidget {
     final dark = HelperFunctions.isDarkMode(context);
     return GestureDetector(
       onTap: (){},
-      child: Container(
-        width: 180,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(TSizes.productImageRadius),
-          color: dark ? Theme.of(context).scaffoldBackgroundColor : AColors.white,
-        ),
-        child: Column(
-          children: [
-            ///Image favBtn DiscountTag
-            RoundedContainer(
-              height: 180,
-              padding: EdgeInsets.all(TSizes.sm),
-              backgroundColor: dark ? Theme.of(context).scaffoldBackgroundColor : AColors.light,
-              child: Stack(
-                children: [
-                  ///Thumbnail Image
-                  RoundedImage(
-                    imageUrl: ImageStrings.productImage1,
-                    applyImageRadius: true,
-                  ),
-
-                  ///Sale Tag
-                  Positioned(
-                    top: 10,
-                    child: RoundedContainer(
-                      radius: TSizes.sm,
-                      backgroundColor: Colors.red.withValues(alpha: 0.8),
-                      padding: EdgeInsets.symmetric(
-                          horizontal: TSizes.sm, vertical: TSizes.xs),
-                      child: Text(
-                        '25%',
-                        style: Theme.of(context)
-                            .textTheme
-                            .labelLarge
-                            ?.apply(color: AColors.black),
+      child: Card(
+        elevation: 2,
+        child: Container(
+          
+          width: 180,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(TSizes.productImageRadius),
+            color: dark ? Theme.of(context).scaffoldBackgroundColor : AColors.white,
+          ),
+          child: Column(
+            children: [
+              ///Image favBtn DiscountTag
+              RoundedContainer(
+                height: 172,
+                padding: EdgeInsets.all(TSizes.sm),
+                backgroundColor: dark ? Theme.of(context).scaffoldBackgroundColor : AColors.light,
+                child: Stack(
+                  children: [
+                    ///Thumbnail Image
+                    RoundedImage(
+                      imageUrl: ImageStrings.productImage1,
+                      applyImageRadius: true,
+                    ),
+        
+                    ///Sale Tag
+                    Positioned(
+                      top: 10,
+                      child: RoundedContainer(
+                        radius: TSizes.sm,
+                        backgroundColor: Colors.red.withValues(alpha: 0.8),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: TSizes.sm, vertical: TSizes.xs),
+                        child: Text(
+                          '25%',
+                          style: Theme.of(context)
+                              .textTheme
+                              .labelLarge
+                              ?.apply(color: AColors.black),
+                        ),
                       ),
                     ),
-                  ),
-
-                  ///Fav Icon Button
-                  Positioned(
-                    top: 0,
-                    right: 0,
-                    child: CircularIcon(),
-                  )
-                ],
+        
+                    ///Fav Icon Button
+                    Positioned(
+                      top: 0,
+                      right: 0,
+                      child: CircularIcon(),
+                    )
+                  ],
+                ),
               ),
-            ),
-
-            SizedBox(
-              height: TSizes.spaceBtwItems / 2,
-            ),
-
-            ///Details
-
-            Padding(
-              padding: const EdgeInsets.only(left: TSizes.sm),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ProductTitleText(
-                    title: 'Nike Air Shoes',
-                    smallSize: true,
-                  ),
-                  SizedBox(
-                    height: TSizes.spaceBtwItems / 2,
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        'Nike',
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
-                        style: Theme.of(context).textTheme.labelMedium,
-                      ),
-                      SizedBox(
-                        width: TSizes.xs,
-                      ),
-                      Icon(
-                        Iconsax.verify5,
-                        color: AColors.primary,
-                        size: TSizes.iconSm,
-                      )
-                    ],
-                  ),
-                  ///Spacer mayvbe
-
-
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-
-                    ProductPriceText(price: '4999',isLarge: false,),
-
-                    Container(
-                      decoration: BoxDecoration(
-                          color:dark ? Colors.blue:AColors.black,
-                          borderRadius: BorderRadius.only(topLeft: Radius.circular(TSizes.cardRadiusMd),bottomRight: Radius.circular(TSizes.cardRadiusMd))
-                      ),
-                      child: SizedBox(
-                          height: TSizes.iconLg,
-                          width: TSizes.iconLg,
-                          child: Icon(Iconsax.add, color: AColors.white,)),
+        
+              SizedBox(
+                height: TSizes.spaceBtwItems / 2,
+              ),
+        
+              ///Details
+        
+              Padding(
+                padding: const EdgeInsets.only(left: TSizes.sm),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ProductTitleText(
+                      title: 'Nike Air Shoes',
+                      smallSize: true,
                     ),
+                    SizedBox(
+                      height: TSizes.spaceBtwItems / 2,
+                    ),
+                    BrandTitleWithVerifiedIcon(title: 'Nike',),
+                    ///Spacer mayvbe
 
-                  ],),
-
-                ],
+        
+                  ],
+                ),
               ),
-            )
-          ],
+              Spacer(),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+
+
+                  Padding(
+                    padding: const EdgeInsets.only(left: TSizes.sm),
+                    child: ProductPriceText(price: '4999',isLarge: false,),
+                  ),
+
+                  Container(
+                    decoration: BoxDecoration(
+                        color:dark ? Colors.blue:AColors.black,
+                        borderRadius: BorderRadius.only(topLeft: Radius.circular(TSizes.cardRadiusMd),bottomRight: Radius.circular(TSizes.cardRadiusMd))
+                    ),
+                    child: SizedBox(
+                        height: TSizes.iconLg,
+                        width: TSizes.iconLg,
+                        child: Icon(Iconsax.add, color: AColors.white,)),
+                  ),
+
+                ],),
+            ],
+          ),
         ),
       ),
     );
   }
 }
+
 

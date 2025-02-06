@@ -81,6 +81,9 @@ class HomeScreen extends StatelessWidget {
                   SizedBox(height: TSizes.spaceBtwSections,),
                   ///popular product
 
+
+                  SectionHeading(title: 'Popular Products',onPressed: (){},),
+                  SizedBox(height: TSizes.spaceBtwItems,),
                   AGridLayout(itemCount: 6,itemBuilder: (_,index)=> ProductCardVertical(),),
 
                 ],
