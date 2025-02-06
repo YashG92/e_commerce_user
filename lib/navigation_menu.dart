@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 import 'common/widgets/products/cart/cart_counter_icon.dart';
+import 'features/shop/screens/shop/store.dart';
 
 class NavigationMenu extends StatelessWidget {
   const NavigationMenu({super.key});
@@ -29,7 +30,7 @@ class NavigationMenu extends StatelessWidget {
             destinations: [
               NavigationDestination(icon: Icon(Iconsax.home), label: 'Home'),
               NavigationDestination(
-                  icon: Icon(Iconsax.search_normal), label: 'Search'),
+                  icon: Icon(Iconsax.shop), label: 'Store'),
               NavigationDestination(icon: Icon(Iconsax.heart), label: 'Saved'),
               NavigationDestination(
                   icon: CartCounterIcon(onPress: () {},),
@@ -48,9 +49,7 @@ class NavigationController extends GetxController {
 
   final screens = [
     HomeScreen(),
-    Container(
-      color: Colors.teal,
-    ),
+    Store(),
     Container(
       color: Colors.blue,
     ),
