@@ -5,6 +5,7 @@ import 'package:e_commerce_user/common/widgets/texts/brand_title_with_verified_i
 import 'package:e_commerce_user/common/widgets/texts/section_heading.dart';
 import 'package:e_commerce_user/features/shop/screens/home/widgets/search_container.dart';
 import 'package:e_commerce_user/utils/constants/image_strings.dart';
+import 'package:e_commerce_user/common/widgets/appbar/appbar.dart';
 import 'package:e_commerce_user/utils/constants/sizes.dart';
 import 'package:e_commerce_user/utils/helper/helper_functions.dart';
 import 'package:flutter/material.dart';
@@ -19,13 +20,8 @@ class Store extends StatelessWidget {
   Widget build(BuildContext context) {
     final dark = HelperFunctions.isDarkMode(context);
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Store',
-          style: Theme.of(context).textTheme.headlineMedium,
-        ),
-        automaticallyImplyLeading: false,
-        //actions: [CartCounterIcon(onPress: () {})],
+      appBar: CustomAppbar(
+        title: Text('Store',style:  Theme.of(context).textTheme.headlineMedium,),
       ),
       body: NestedScrollView(
           headerSliverBuilder: (_, innerBoxIsScrolled) {

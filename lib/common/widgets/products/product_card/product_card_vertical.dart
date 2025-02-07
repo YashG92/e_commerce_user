@@ -23,7 +23,7 @@ class ProductCardVertical extends StatelessWidget {
     return GestureDetector(
       onTap: (){},
       child: Card(
-        elevation: 2,
+        elevation: 5,
         child: Container(
 
           width: 180,
@@ -41,9 +41,11 @@ class ProductCardVertical extends StatelessWidget {
                 child: Stack(
                   children: [
                     ///Thumbnail Image
-                    RoundedImage(
-                      imageUrl: ImageStrings.productImage1,
-                      applyImageRadius: true,
+                    Center(
+                      child: RoundedImage(
+                        imageUrl: ImageStrings.productImage9,
+                        applyImageRadius: true,
+                      ),
                     ),
 
                     ///Sale Tag
