@@ -9,6 +9,7 @@ import 'package:e_commerce_user/utils/constants/sizes.dart';
 import 'package:e_commerce_user/utils/helper/helper_functions.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../common/widgets/brands/brand_card.dart';
 import '../../../../common/widgets/images/circular_image.dart';
 
 class Store extends StatelessWidget {
@@ -33,7 +34,7 @@ class Store extends StatelessWidget {
                 automaticallyImplyLeading: false,
                 pinned: true,
                 floating: true,
-                backgroundColor: dark ? Colors.black : Colors.white,
+                backgroundColor: dark ? Theme.of(context).scaffoldBackgroundColor : Colors.white,
                 expandedHeight: 400,
                 flexibleSpace: Padding(
                   padding: EdgeInsets.all(TSizes.defaultSpace),
@@ -68,49 +69,7 @@ class Store extends StatelessWidget {
                         mainAxisExtent: 80,
                           itemCount: 4,
                           itemBuilder: (_, index) {
-                            return GestureDetector(
-                              child: RoundedContainer(
-                                padding: EdgeInsets.all(
-                                  TSizes.sm,
-                                ),
-                                showBorder: true,
-                                backgroundColor: Colors.transparent,
-                                child: Row(
-                                  children: [
-                                    Flexible(
-                                      child: CircularImage(
-                                        image: ImageStrings.nikeLogo,
-                                        isNetworkImage: false,
-                                        backgroundColor: Colors.transparent,
-                                        overlayColor:
-                                            dark ? Colors.white : Colors.black,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: TSizes.spaceBtwItems / 2,
-                                    ),
-                                    Expanded(
-                                      child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          BrandTitleWithVerifiedIcon(
-                                              title: 'Nike'),
-                                          Text(
-                                            '465 Products ',
-                                            overflow: TextOverflow.ellipsis,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .labelMedium,
-                                          )
-                                        ],
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            );
+                            return BrandCard(showBorder: true,);
                           }),
                     ],
                   ),
@@ -122,3 +81,4 @@ class Store extends StatelessWidget {
     );
   }
 }
+
