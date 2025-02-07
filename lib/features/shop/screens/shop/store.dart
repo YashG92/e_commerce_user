@@ -4,13 +4,17 @@ import 'package:e_commerce_user/common/widgets/products/cart/cart_counter_icon.d
 import 'package:e_commerce_user/common/widgets/texts/brand_title_with_verified_icon.dart';
 import 'package:e_commerce_user/common/widgets/texts/section_heading.dart';
 import 'package:e_commerce_user/features/shop/screens/home/widgets/search_container.dart';
+import 'package:e_commerce_user/features/shop/screens/shop/widgets/category_tab.dart';
+import 'package:e_commerce_user/utils/constants/colors.dart';
 import 'package:e_commerce_user/utils/constants/image_strings.dart';
 import 'package:e_commerce_user/common/widgets/appbar/appbar.dart';
 import 'package:e_commerce_user/utils/constants/sizes.dart';
 import 'package:e_commerce_user/utils/helper/helper_functions.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../common/widgets/appbar/tabbar.dart';
 import '../../../../common/widgets/brands/brand_card.dart';
+import '../../../../common/widgets/brands/brand_show_case.dart';
 import '../../../../common/widgets/images/circular_image.dart';
 
 class Store extends StatelessWidget {
@@ -19,19 +23,26 @@ class Store extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dark = HelperFunctions.isDarkMode(context);
-    return Scaffold(
-      appBar: CustomAppbar(
-        title: Text('Store',style:  Theme.of(context).textTheme.headlineMedium,),
-      ),
-      body: NestedScrollView(
+    return DefaultTabController(
+      length: 5,
+      child: Scaffold(
+        appBar: CustomAppbar(
+          title: Text(
+            'Store',
+            style: Theme.of(context).textTheme.headlineMedium,
+          ),
+        ),
+        body: NestedScrollView(
           headerSliverBuilder: (_, innerBoxIsScrolled) {
             return [
               SliverAppBar(
                 automaticallyImplyLeading: false,
                 pinned: true,
                 floating: true,
-                backgroundColor: dark ? Theme.of(context).scaffoldBackgroundColor : Colors.white,
-                expandedHeight: 400,
+                backgroundColor: dark
+                    ? Theme.of(context).scaffoldBackgroundColor
+                    : Colors.white,
+                expandedHeight: 420,
                 flexibleSpace: Padding(
                   padding: EdgeInsets.all(TSizes.defaultSpace),
                   child: ListView(
@@ -58,22 +69,52 @@ class Store extends StatelessWidget {
                       ),
 
                       SizedBox(
-                        height: TSizes.spaceBtwItems,
+                        height: TSizes.spaceBtwItems / 1.5,
                       ),
 
                       AGridLayout(
-                        mainAxisExtent: 80,
+                          mainAxisExtent: 80,
                           itemCount: 4,
                           itemBuilder: (_, index) {
-                            return BrandCard(showBorder: true,);
+                            return BrandCard(
+                              showBorder: true,
+                            );
                           }),
                     ],
                   ),
                 ),
-              )
+                bottom: CustomTabBar(
+                  tabs: [
+                    Tab(
+                      child: Text('Sports'),
+                    ),
+                    Tab(
+                      child: Text('Clothing'),
+                    ),
+                    Tab(
+                      child: Text('Electronics'),
+                    ),
+                    Tab(
+                      child: Text('Home'),
+                    ),
+                    Tab(
+                      child: Text('Sports'),
+                    ),
+                  ],
+                ),
+              ),
             ];
           },
-          body: Container()),
+          body: TabBarView(children: [
+            CategoryTab(),
+            CategoryTab(),
+            CategoryTab(),
+            CategoryTab(),
+            CategoryTab(),
+
+          ]),
+        ),
+      ),
     );
   }
 }
