@@ -1,12 +1,7 @@
-import 'package:e_commerce_user/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:e_commerce_user/common/widgets/layouts/grid_layout.dart';
-import 'package:e_commerce_user/common/widgets/products/cart/cart_counter_icon.dart';
-import 'package:e_commerce_user/common/widgets/texts/brand_title_with_verified_icon.dart';
 import 'package:e_commerce_user/common/widgets/texts/section_heading.dart';
 import 'package:e_commerce_user/features/shop/screens/home/widgets/search_container.dart';
 import 'package:e_commerce_user/features/shop/screens/shop/widgets/category_tab.dart';
-import 'package:e_commerce_user/utils/constants/colors.dart';
-import 'package:e_commerce_user/utils/constants/image_strings.dart';
 import 'package:e_commerce_user/common/widgets/appbar/appbar.dart';
 import 'package:e_commerce_user/utils/constants/sizes.dart';
 import 'package:e_commerce_user/utils/helper/helper_functions.dart';
@@ -14,8 +9,6 @@ import 'package:flutter/material.dart';
 
 import '../../../../common/widgets/appbar/tabbar.dart';
 import '../../../../common/widgets/brands/brand_card.dart';
-import '../../../../common/widgets/brands/brand_show_case.dart';
-import '../../../../common/widgets/images/circular_image.dart';
 
 class Store extends StatelessWidget {
   const Store({super.key});

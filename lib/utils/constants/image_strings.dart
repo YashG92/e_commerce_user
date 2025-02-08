@@ -124,4 +124,13 @@ class ImageStrings {
   static const String productImage76 = "assets/images/products/slipper-product-3.png";
   static const String productImage77= "assets/images/products/slipper-product.png";
 
+
+
+  ///user
+  static const String user= "assets/images/user/img.png";
+
+
+
+
+
 }

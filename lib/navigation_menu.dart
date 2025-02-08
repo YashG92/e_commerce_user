@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 import 'common/widgets/products/cart/cart_counter_icon.dart';
+import 'features/personaliztion/screens/settings/settings.dart';
 import 'features/shop/screens/shop/store.dart';
 
 class NavigationMenu extends StatelessWidget {
@@ -55,8 +56,6 @@ class NavigationController extends GetxController {
     Container(
       color: Colors.lightGreenAccent,
     ),
-    Container(
-      color: Colors.pinkAccent,
-    ),
+    Settings(),
   ];
 }
