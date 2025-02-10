@@ -2,12 +2,15 @@ import 'package:e_commerce_user/common/widgets/appbar/appbar.dart';
 import 'package:e_commerce_user/common/widgets/custom_shapes/containers/primary_header_container.dart';
 import 'package:e_commerce_user/common/widgets/images/circular_image.dart';
 import 'package:e_commerce_user/common/widgets/texts/section_heading.dart';
+import 'package:e_commerce_user/features/personaliztion/screens/address/address.dart';
 import 'package:e_commerce_user/features/personaliztion/screens/settings/widgets/setting_menu_tile.dart';
 import 'package:e_commerce_user/features/personaliztion/screens/settings/widgets/user_profile.dart';
 import 'package:e_commerce_user/utils/constants/image_strings.dart';
 import 'package:e_commerce_user/utils/constants/sizes.dart';
 import 'package:e_commerce_user/utils/helper/helper_functions.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart%20%20';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../../utils/constants/colors.dart';
@@ -46,7 +49,7 @@ class Settings extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: TSizes.spaceBtwItems/2,
+                  height: TSizes.spaceBtwItems / 2,
                 ),
 
                 SettingMenuTile(
@@ -62,6 +65,7 @@ class Settings extends StatelessWidget {
                 SettingMenuTile(
                   title: 'Address Book',
                   icon: Iconsax.home,
+                  onTap: () => Get.to(() => AddressScreen()),
                 ),
                 SettingMenuTile(
                   title: 'Payment Methods',
@@ -83,7 +87,6 @@ class Settings extends StatelessWidget {
                 SettingMenuTile(
                   title: 'FAQs',
                   icon: Iconsax.discount_shape,
-
                 ),
                 SettingMenuTile(
                   title: 'Help Center',
