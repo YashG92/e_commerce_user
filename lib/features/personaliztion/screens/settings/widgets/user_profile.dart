@@ -1,5 +1,7 @@
+import 'package:e_commerce_user/features/personaliztion/screens/profile/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:get/get.dart';
 
 import '../../../../../common/widgets/images/circular_image.dart';
 import '../../../../../utils/constants/colors.dart';
@@ -24,7 +26,7 @@ class UserProfile extends StatelessWidget {
       ),
       title: Text('Varis Kadri', style: Theme.of(context).textTheme.headlineSmall!.apply(color:dark? AColors.white : AColors.black ),),
       subtitle: Text('xyz@gmail.com', style: Theme.of(context).textTheme.bodyMedium!.apply(color:dark? AColors.white : AColors.black ),),
-      trailing: IconButton(onPressed: (){}, icon:  Icon(Iconsax.edit, color: dark? AColors.white : AColors.black ,)),
+      trailing: IconButton(onPressed: ()=>Get.to(const Profile()), icon:  Icon(Iconsax.edit, color: dark? AColors.white : AColors.black ,)),
     );
   }
 }
