@@ -1,5 +1,6 @@
 import 'package:e_commerce_user/common/widgets/appbar/appbar.dart';
 import 'package:e_commerce_user/features/shop/screens/product_reviews/widgets/progress_indicator_and_rating.dart';
+import 'package:e_commerce_user/features/shop/screens/product_reviews/widgets/rating_process_indicator.dart';
 import 'package:e_commerce_user/features/shop/screens/product_reviews/widgets/rating_progress_indicator.dart';
 import 'package:e_commerce_user/features/shop/screens/product_reviews/widgets/user_review_card.dart';
 import 'package:e_commerce_user/utils/constants/colors.dart';
@@ -28,24 +29,20 @@ class ProductReviewScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                  'vafhsbjdjs sjskjkjskjs skskskkskskksks ks sksssssssssksjffjjfj jsjsjsjjsjsjsjfkfkks'),
+                  'Ratings and review are verified and are from people who use the same type of device that you use.'),
               SizedBox(
                 height: TSizes.spaceBtwItems,
               ),
 
               ///overall product rating
               OverallProductRating(),
-              RatingBarIndicator(
-                rating: 4.5,
-                  itemSize: 20,
-                  unratedColor: AColors.grey,
-                  itemBuilder: (_, __) => Icon(
-                        Iconsax.star1,
-                        color: AColors.primary,
-                      )),
-              Text('1200',style: Theme.of(context).textTheme.bodySmall,),
+              ARatingBarIndicator(rating: 4.6,),
+              Text('1,200',style: Theme.of(context).textTheme.bodySmall,),
               SizedBox(height: TSizes.spaceBtwSections,),
               ///user review list
+              UserReviewCard(),
+              UserReviewCard(),
+              UserReviewCard(),
               UserReviewCard(),
             ],
           ),
@@ -54,3 +51,4 @@ class ProductReviewScreen extends StatelessWidget {
     );
   }
 }
+
