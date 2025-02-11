@@ -15,7 +15,7 @@ class Profile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppbar(
-        title: Text('Profile'),
+        title: Text('Profile', style: Theme.of(context).textTheme.headlineMedium,),
         showBackArrow: true,
       ),
       body: SingleChildScrollView(
@@ -59,7 +59,7 @@ class Profile extends StatelessWidget {
               Divider(),
 
 
-              ///Delete Account
+              ///Delete Accountf
               TextButton(onPressed: (){}, child: Text('Delete Account',style: TextStyle(color: Colors.red),))
             ],
           ),
