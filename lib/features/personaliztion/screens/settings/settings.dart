@@ -20,6 +20,8 @@ class Settings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final dark = HelperFunctions.isDarkMode(context);
+
     return Scaffold(
       appBar: CustomAppbar(
         title: Text(
@@ -59,7 +61,7 @@ class Settings extends StatelessWidget {
                 ),
                 Divider(
                   thickness: 10,
-                  color: AColors.grey,
+                  color: dark? AColors.darkerGrey : AColors.grey,
                 ),
 
                 SettingMenuTile(
@@ -82,7 +84,7 @@ class Settings extends StatelessWidget {
                 ),
                 Divider(
                   thickness: 10,
-                  color: AColors.grey,
+                  color: dark? AColors.darkerGrey : AColors.grey,
                 ),
                 SettingMenuTile(
                   title: 'FAQs',
@@ -95,7 +97,7 @@ class Settings extends StatelessWidget {
                 ),
                 Divider(
                   thickness: 10,
-                  color: AColors.grey,
+                  color: dark? AColors.darkerGrey : AColors.grey,
                 ),
                 SettingMenuTile(
                   title: 'Logout',
