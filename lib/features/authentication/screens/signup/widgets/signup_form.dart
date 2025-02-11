@@ -126,14 +126,7 @@ class SignUpForm extends StatelessWidget {
               height: 60,
               width: double.infinity,
               child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      elevation: 0,
-                      backgroundColor: dark ? Colors.white : Colors.black,
-                      foregroundColor: dark ? AColors.dark : Colors.white,
-                      textStyle:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10))),
+
                   onPressed: () =>Get.to(()=>VerifyEmailScreen()),
                   child: Text(
                     'Create an Account',
