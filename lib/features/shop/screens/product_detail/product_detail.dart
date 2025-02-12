@@ -1,6 +1,7 @@
 import 'package:e_commerce_user/common/widgets/appbar/appbar.dart';
 import 'package:e_commerce_user/common/widgets/custom_shapes/curved_edges/curved_edges_widget.dart';
 import 'package:e_commerce_user/common/widgets/images/rounded_image.dart';
+import 'package:e_commerce_user/features/shop/screens/product_detail/widgets/product_attributes.dart';
 import 'package:e_commerce_user/features/shop/screens/product_detail/widgets/product_detail_image_slider.dart';
 import 'package:e_commerce_user/features/shop/screens/product_detail/widgets/product_meta_data.dart';
 import 'package:e_commerce_user/features/shop/screens/product_detail/widgets/rating_share_widget.dart';
@@ -28,7 +29,10 @@ class ProductDetail extends StatelessWidget {
         ],
         title: Text(
           'Details',
-          style: Theme.of(context).textTheme.headlineMedium,
+          style: Theme
+              .of(context)
+              .textTheme
+              .headlineMedium,
         ),
       ),
       body: SingleChildScrollView(
@@ -36,6 +40,7 @@ class ProductDetail extends StatelessWidget {
           padding: const EdgeInsets.all(TSizes.defaultSpace),
           child: Column(
             children: [
+
               ///Product Image
               ProductImageSlider(),
               SizedBox(height: TSizes.spaceBtwItems,),
@@ -43,15 +48,20 @@ class ProductDetail extends StatelessWidget {
               ///Product Detail
               Column(
                 children: [
+
                   ///Rating & Share
-                  
+
                   RatingAndShare(),
-                  
+
                   ///Price Title Stock & Description
 
-ProductMetaData(),
+                  ProductMetaData(),
 
                   ///Attributes
+
+                  SizedBox(height: TSizes.spaceBtwItems,),
+                  ProductAttributes(),
+
                   ///Checkout Button
                   ///Reviews
                 ],
