@@ -43,7 +43,7 @@ class CartItem extends StatelessWidget {
                   children: [
                     TextSpan(text: 'Color ',style: Theme.of(context).textTheme.bodySmall),
                     TextSpan(text: 'Green',style: Theme.of(context).textTheme.bodyLarge),
-                    TextSpan(text: 'Size ',style: Theme.of(context).textTheme.bodySmall),
+                    TextSpan(text: ' Size ',style: Theme.of(context).textTheme.bodySmall),
                     TextSpan(text: 'Uk 8',style: Theme.of(context).textTheme.bodyLarge),
                   ]
               ))

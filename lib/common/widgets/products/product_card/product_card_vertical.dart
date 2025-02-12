@@ -1,4 +1,5 @@
 import 'package:e_commerce_user/common/widgets/images/rounded_image.dart';
+import 'package:e_commerce_user/features/shop/screens/product_detail/product_detail.dart';
 import 'package:e_commerce_user/features/shop/screens/product_reviews/product_review.dart';
 import 'package:e_commerce_user/utils/constants/colors.dart';
 import 'package:e_commerce_user/utils/constants/image_strings.dart';
@@ -23,7 +24,7 @@ class ProductCardVertical extends StatelessWidget {
   Widget build(BuildContext context) {
     final dark = HelperFunctions.isDarkMode(context);
     return GestureDetector(
-      onTap: ()=>Get.to(()=>ProductReviewScreen()),
+      onTap: ()=>Get.to(()=>ProductDetail()),
       child: Card(
         elevation: 5,
         child: Container(

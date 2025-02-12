@@ -12,13 +12,15 @@ class BrandTitleWithVerifiedIcon extends StatelessWidget {
     this.maxLine = 1,
     this.textColor,
     this.iconColor = AColors.primary,
-    this.textAlign = TextAlign.center,
+    this.textAlign = TextAlign.center,  this.isLarge = false,
   });
 
   final String title;
   final int maxLine;
   final Color? textColor, iconColor;
   final TextAlign? textAlign;
+  final bool isLarge;
+
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +30,7 @@ class BrandTitleWithVerifiedIcon extends StatelessWidget {
           title: title,
           textColor: textColor,
           iconColor: iconColor,
+          isLarge: isLarge,
           maxLine: maxLine,
           textAlign: textAlign,
         ),
