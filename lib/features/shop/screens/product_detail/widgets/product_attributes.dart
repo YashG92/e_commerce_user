@@ -91,16 +91,12 @@ class ProductAttributes extends StatelessWidget {
           height: TSizes.spaceBtwItems,
         ),
 
-        ///Variation description
-        ProductTitleText(
-          title:
-              'The name says it all, the right size slightly snugs the body leaving enough room for comfort inthe sleeves and waist',
-          maxLines: 4,
-        ),
-        SizedBox(
-          height: TSizes.spaceBtwItems,
-        ),
+
+
+
+        ///Attributes
         Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SectionHeading(
               title: 'Colors',
@@ -109,9 +105,37 @@ class ProductAttributes extends StatelessWidget {
             SizedBox(
               height: TSizes.spaceBtwItems,
             ),
-            AChoiceChip(text: 'Green',selected: true,),
+            Wrap(
+              spacing: 8,
+              children: [
+                AChoiceChip(text: 'Green',selected: true,onSelected: (value){},),
+                AChoiceChip(text: 'Red',selected: false,onSelected: (value){},),
+                AChoiceChip(text: 'Yellow',selected: false,onSelected: (value){},),
+              ],
+            )
           ],
-        )
+        ),
+        SizedBox(height: TSizes.spaceBtwItems,),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SectionHeading(
+              title: 'Size',
+              showActionButton: false,
+            ),
+            SizedBox(
+              height: TSizes.spaceBtwItems,
+            ),
+            Wrap(
+              spacing: 8,
+              children: [
+                AChoiceChip(text: 'UK 09',selected: true,onSelected: (value){},),
+                AChoiceChip(text: 'UK 10',selected: false,onSelected: (value){},),
+                AChoiceChip(text: 'UK 11',selected: false,onSelected: (value){},),
+              ],
+            )
+          ],
+        ),
       ],
     );
   }

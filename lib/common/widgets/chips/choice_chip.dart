@@ -16,8 +16,8 @@ class AChoiceChip extends StatelessWidget {
   Widget build(BuildContext context) {
     final isColor = HelperFunctions.getColor(text) != null;
     return ChoiceChip(
-      label:  isColor ? SizedBox() : Text(''),
-      avatar: isColor ? ACircularContainer(height: 50,width: 50,backgroundColor: Colors.green,) : null,
+      label:  isColor ? SizedBox() : Text(text),
+      avatar: isColor ? ACircularContainer(height: 50,width: 50,backgroundColor:HelperFunctions.getColor(text)!,) : null,
       shape: isColor? CircleBorder() : null,
       backgroundColor: isColor? HelperFunctions.getColor(text)! :null,
       labelPadding: isColor ? EdgeInsets.all(0) : null,

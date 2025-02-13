@@ -27,6 +27,7 @@ class ProductCardVertical extends StatelessWidget {
       onTap: ()=>Get.to(()=>ProductDetail()),
       child: Card(
         elevation: 5,
+        shadowColor: dark ? AColors.darkerGrey : Colors.black,
         child: Container(
 
           width: 180,

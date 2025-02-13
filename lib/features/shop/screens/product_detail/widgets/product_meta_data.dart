@@ -52,7 +52,17 @@ class ProductMetaData extends StatelessWidget {
             ProductPriceText(price: '1,375',isLarge: true,),
           ],
         ),
-
+        SizedBox(
+          height: TSizes.spaceBtwItems,
+        ),
+        ProductTitleText(
+          title:
+          'The name says it all, the right size slightly snugs the body leaving enough room for comfort inthe sleeves and waist',
+          maxLines: 4,
+        ),
+        SizedBox(
+          height: TSizes.spaceBtwItems,
+        ),
         ///Stock Status
         ///Brand
       ],
