@@ -1,8 +1,11 @@
 import 'package:e_commerce_user/common/widgets/appbar/appbar.dart';
 import 'package:e_commerce_user/common/widgets/texts/product_price_text.dart';
+import 'package:e_commerce_user/features/shop/screens/cart/widgets/cart_items.dart';
+import 'package:e_commerce_user/features/shop/screens/checkout/checkout_screen.dart';
 
 import 'package:e_commerce_user/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../common/widgets/products/cart/add_remove_button.dart';
 import '../../../../common/widgets/products/cart/cart_item.dart';
@@ -25,35 +28,7 @@ class CartScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(TSizes.defaultSpace),
-          child: ListView.separated(
-            shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              itemBuilder: (_, index) => Column(
-                    children: [
-                      CartItem(),
-                      SizedBox(height: TSizes.spaceBtwItems,),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-
-                          Row(
-                            children: [
-                              SizedBox(width: 70,),
-                              ProductQuantityWithAddRemoveButton(),
-
-                            ],
-                          ),
-                          ///Add remove buttons
-
-                          ProductPriceText(price: '2,500'),
-                        ],
-                      ),
-                    ],
-                  ),
-              separatorBuilder: (_, __) => SizedBox(
-                    height: TSizes.spaceBtwSections,
-                  ),
-              itemCount: 10),
+          child: CartItems(showAddRemoveButton: true,),
         ),
       ),
       bottomNavigationBar: Padding(
@@ -61,7 +36,7 @@ class CartScreen extends StatelessWidget {
         child: SizedBox(height: 50,
           child: ElevatedButton(
 
-              onPressed: (){}, child: Text('Checkout ₹25,000')),
+              onPressed: ()=>Get.to(()=>CheckoutScreen()), child: Text('Checkout ₹25,000')),
         ),
       ),
     );
