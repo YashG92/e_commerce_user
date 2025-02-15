@@ -5,6 +5,7 @@ import 'package:e_commerce_user/common/widgets/texts/section_heading.dart';
 import 'package:e_commerce_user/features/personaliztion/screens/address/address.dart';
 import 'package:e_commerce_user/features/personaliztion/screens/settings/widgets/setting_menu_tile.dart';
 import 'package:e_commerce_user/features/personaliztion/screens/settings/widgets/user_profile.dart';
+import 'package:e_commerce_user/features/shop/screens/order/order.dart';
 import 'package:e_commerce_user/utils/constants/image_strings.dart';
 import 'package:e_commerce_user/utils/constants/sizes.dart';
 import 'package:e_commerce_user/utils/helper/helper_functions.dart';
@@ -58,6 +59,7 @@ class Settings extends StatelessWidget {
                   title: 'My Orders',
                   icon: Iconsax.box,
                   showDivider: false,
+                  onTap: ()=> Get.to(()=> OrderListScreen()),
                 ),
                 Divider(
                   thickness: 10,
