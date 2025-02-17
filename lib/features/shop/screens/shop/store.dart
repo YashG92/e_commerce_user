@@ -1,11 +1,14 @@
 import 'package:e_commerce_user/common/widgets/layouts/grid_layout.dart';
 import 'package:e_commerce_user/common/widgets/texts/section_heading.dart';
+import 'package:e_commerce_user/features/shop/screens/brand/all_brands.dart';
+import 'package:e_commerce_user/features/shop/screens/brand/brand_products.dart';
 import 'package:e_commerce_user/features/shop/screens/home/widgets/search_container.dart';
 import 'package:e_commerce_user/features/shop/screens/shop/widgets/category_tab.dart';
 import 'package:e_commerce_user/common/widgets/appbar/appbar.dart';
 import 'package:e_commerce_user/utils/constants/sizes.dart';
 import 'package:e_commerce_user/utils/helper/helper_functions.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../common/widgets/appbar/tabbar.dart';
 import '../../../../common/widgets/brands/brand_card.dart';
@@ -58,7 +61,7 @@ class Store extends StatelessWidget {
                       ///Feature Brands
                       SectionHeading(
                         title: 'Featured Brands',
-                        onPressed: () {},
+                        onPressed: ()=> Get.to(()=> AllBrandsScreen()),
                       ),
 
                       SizedBox(
@@ -71,6 +74,7 @@ class Store extends StatelessWidget {
                           itemBuilder: (_, index) {
                             return BrandCard(
                               showBorder: true,
+                              onTap:()=> Get.to(()=> BrandProducts()),
                             );
                           }),
                     ],
