@@ -9,11 +9,13 @@ import 'package:e_commerce_user/utils/constants/colors.dart';
 import 'package:e_commerce_user/utils/constants/image_strings.dart';
 import 'package:e_commerce_user/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../../../common/widgets/custom_shapes/containers/primary_header_container.dart';
 import '../../../../common/widgets/images/rounded_image.dart';
 import '../../../../common/widgets/layouts/grid_layout.dart';
 import '../../../../common/widgets/products/product_card/product_card_vertical.dart';
 import '../../../../common/widgets/texts/section_heading.dart';
+import '../all_products/all_products.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -82,7 +84,7 @@ class HomeScreen extends StatelessWidget {
                   ///popular product
 
 
-                  SectionHeading(title: 'Popular Products',onPressed: (){},),
+                  SectionHeading(title: 'Popular Products',onPressed: ()=>Get.to(()=>AllProducts()),),
                   SizedBox(height: TSizes.spaceBtwItems,),
                   AGridLayout(itemCount: 6,itemBuilder: (_,index)=> ProductCardVertical(),),
 
