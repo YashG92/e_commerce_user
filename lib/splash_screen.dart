@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:e_commerce_user/data/repositories/authentication/authentication_repository.dart';
 import 'package:e_commerce_user/utils/constants/image_strings.dart';
 import 'package:e_commerce_user/utils/helper/helper_functions.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +31,6 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 3),()=>Get.offAll(()=>Onboarding()));
+    Timer(Duration(seconds: 3), () =>AuthenticationRepository.instance.screenRedirect());
   }
 }

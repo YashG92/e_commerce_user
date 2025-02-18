@@ -9,8 +9,8 @@ import 'package:get/get.dart';
 
 import '../../controller/onboarding/onboarding_controller.dart';
 
-class Onboarding extends StatelessWidget {
-  const Onboarding({super.key});
+class OnBoardingScreen extends StatelessWidget {
+  const OnBoardingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
