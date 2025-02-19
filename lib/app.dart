@@ -1,3 +1,4 @@
+import 'package:e_commerce_user/bindings/general_bindings.dart';
 import 'package:e_commerce_user/splash_screen.dart';
 import 'package:e_commerce_user/utils/theme/theme.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      initialBinding: GeneralBindings(),
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       themeMode: ThemeMode.system,

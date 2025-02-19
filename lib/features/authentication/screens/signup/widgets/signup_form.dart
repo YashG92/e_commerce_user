@@ -7,6 +7,8 @@ import 'package:iconsax/iconsax.dart';
 import 'package:get/get.dart';
 
 import '../../../../../utils/constants/colors.dart';
+import '../../../../../utils/validator/validators.dart';
+import '../../../controller/signup/signup_controller.dart';
 
 class SignUpForm extends StatelessWidget {
   const SignUpForm({
@@ -18,8 +20,9 @@ class SignUpForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dark = HelperFunctions.isDarkMode(context);
+    final controller = Get.put(SignUpController());
     return Form(
+      key: controller.formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -34,6 +37,8 @@ class SignUpForm extends StatelessWidget {
               const SizedBox(height: 6),
               // Add spacing manually
               TextFormField(
+                controller: controller.fullName,
+                validator: (value) =>Validator.validateEmptyText('Full Name',value),
                 decoration: InputDecoration(
                   hintText: 'Enter your full name',
                   labelStyle: const TextStyle()
@@ -54,6 +59,8 @@ class SignUpForm extends StatelessWidget {
               const SizedBox(height: 6),
               // Add spacing manually
               TextFormField(
+                controller: controller.email,
+                validator: (value) => Validator.validateEmail(value),
                 decoration: InputDecoration(
                   hintText: 'Enter your email address',
                   labelStyle: const TextStyle()
@@ -74,6 +81,8 @@ class SignUpForm extends StatelessWidget {
               const SizedBox(height: 6),
               // Add spacing manually
               TextFormField(
+                controller: controller.phoneNumber,
+                validator: (value) => Validator.validatePhoneNumber(value),
                 keyboardType: TextInputType.number,
                 inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 decoration: InputDecoration(
@@ -99,16 +108,20 @@ class SignUpForm extends StatelessWidget {
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               const SizedBox(height: 6), // Add spacing manually
-              TextFormField(
-                obscureText: true,
-                decoration: InputDecoration(
-                  suffixIcon: const Icon(Iconsax.eye_slash),
-                  hintText: 'Enter your password',
-                  labelStyle: const TextStyle()
-                      .copyWith(fontSize: 24, color: AColors.black),
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(color: AColors.grey),
-                    borderRadius: BorderRadius.circular(10),
+              Obx(
+                ()=> TextFormField(
+                  controller: controller.password,
+                  validator: (value) => Validator.validatePassword(value),
+                  obscureText: controller.hidePassword.value,
+                  decoration: InputDecoration(
+                    suffixIcon: IconButton(onPressed: ()=> controller.hidePassword.value = !controller.hidePassword.value, icon: controller.hidePassword.value ? Icon(Iconsax.eye_slash): Icon(Iconsax.eye)),
+                    hintText: 'Enter your password',
+                    labelStyle: const TextStyle()
+                        .copyWith(fontSize: 24, color: AColors.black),
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(color: AColors.grey),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                   ),
                 ),
               ),
@@ -127,7 +140,7 @@ class SignUpForm extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
 
-                  onPressed: () =>Get.to(()=>VerifyEmailScreen()),
+                  onPressed: () =>controller.signup(),
                   child: Text(
                     'Create an Account',
                   ))),

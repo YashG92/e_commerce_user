@@ -9,8 +9,12 @@ class ImageStrings {
   static const String appLogoLight = "assets/logo/appLogoLight.json";
   static const String appLogoDark = "assets/logo/appLogoDark.json";
   static const String googleLogo = "assets/logo/google-icon.png";
+
+
+  //Animations
   static const String verifyEmailGif = "assets/images/animations/verifyemailgif.json";
   static const String successGif = "assets/images/animations/successgif.json";
+  static const String loadingAnimation = "assets/images/animations/loadinganimation.json";
 
   // -- Category Icons
   static const String sportIcon = "assets/icons/categories/icons8-bowling-64.png";
