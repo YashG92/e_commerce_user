@@ -1,5 +1,7 @@
+import 'package:e_commerce_user/features/authentication/controller/login/login_controller.dart';
 import 'package:e_commerce_user/features/authentication/screens/password_configuration/forget_password.dart';
 import 'package:e_commerce_user/navigation_menu.dart';
+import 'package:e_commerce_user/utils/validator/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
@@ -15,9 +17,11 @@ class LoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+  final controller = Get.put(LoginController());
     final dark = HelperFunctions.isDarkMode(context);
 
     return Form(
+      key: controller.formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -31,6 +35,8 @@ class LoginForm extends StatelessWidget {
               ),
               const SizedBox(height: 6), // Add spacing manually
               TextFormField(
+                controller: controller.email,
+                validator: (value)=> Validator.validateEmail(value),
                 decoration: InputDecoration(
                   hintText: 'Enter your email address',
                   labelStyle: const TextStyle()
@@ -54,16 +60,20 @@ class LoginForm extends StatelessWidget {
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               const SizedBox(height: 6), // Add spacing manually
-              TextFormField(
-                obscureText: true,
-                decoration: InputDecoration(
-                  suffixIcon: const Icon(Iconsax.eye_slash),
-                  hintText: 'Enter your password',
-                  labelStyle: const TextStyle()
-                      .copyWith(fontSize: 24, color: AColors.black),
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(color: AColors.grey),
-                    borderRadius: BorderRadius.circular(10),
+              Obx(
+                ()=> TextFormField(
+                  controller: controller.password,
+                  validator: (value)=>Validator.validatePassword(value),
+                  obscureText: controller.hidePassword.value,
+                  decoration: InputDecoration(
+                    suffixIcon: IconButton(onPressed: ()=>controller.hidePassword.value = !controller.hidePassword.value, icon: controller.hidePassword.value? Icon(Iconsax.eye_slash) :Icon(Iconsax.eye)),
+                    hintText: 'Enter your password',
+                    labelStyle: const TextStyle()
+                        .copyWith(fontSize: 24, color: AColors.black),
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(color: AColors.grey),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                   ),
                 ),
               ),
@@ -77,10 +87,14 @@ class LoginForm extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Checkbox(
-                    value: true,
-                    onChanged: (value) {},
-                    visualDensity: VisualDensity.compact,
+                  Obx(
+                    ()=> Checkbox(
+                      value: controller.rememberMe.value,
+                      onChanged: (value) {
+                        controller.rememberMe.value = !controller.rememberMe.value;
+                      },
+                      visualDensity: VisualDensity.compact,
+                    ),
                   ),
                   const Text('Remember Me'),
                 ],
@@ -101,7 +115,7 @@ class LoginForm extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
 
-                  onPressed: ()=>Get.to(()=>NavigationMenu()),
+                  onPressed: ()=>controller.signInWithEmailPassword(),
                   child: Text(
                     'Login',
                   )))
