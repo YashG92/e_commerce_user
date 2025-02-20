@@ -45,6 +45,8 @@ class SignUpController extends GetxController {
 
       //Privacy Policy Check
       if (!checkTerms.value) {
+        FullScreenLoader.stopLoading();
+
         Loaders.warningSnackBar(title: 'Accept Privacy Policy',
             message: 'Please accept the privacy policy to continue');
         return;
@@ -71,10 +73,11 @@ class SignUpController extends GetxController {
       Loaders.successSnackBar(title: 'Congratulations!',message: 'Your account has been created successfully.');
 
       //Move to verify email screen
-      Get.to(()=> const VerifyEmailScreen());
+      Get.to(()=>  VerifyEmailScreen(email:email.text.trim()));
 
 
     } catch (e) {
+      FullScreenLoader.stopLoading();
       Loaders.errorSnackBar(title: 'Oh Bad!', message: e.toString());
     }
   }
