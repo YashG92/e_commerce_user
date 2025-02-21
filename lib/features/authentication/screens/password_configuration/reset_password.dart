@@ -1,4 +1,5 @@
 import 'package:e_commerce_user/common/widgets/success_screen/success_screen.dart';
+import 'package:e_commerce_user/features/authentication/controller/forget_password/forget_password_controller.dart';
 import 'package:e_commerce_user/features/authentication/screens/login/login.dart';
 import 'package:e_commerce_user/utils/constants/image_strings.dart';
 import 'package:e_commerce_user/utils/helper/helper_functions.dart';
@@ -11,10 +12,13 @@ import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sizes.dart';
 
 class ResetPassword extends StatelessWidget {
-  const ResetPassword({super.key});
+  const ResetPassword({super.key, required this.email});
+  final String email;
 
   @override
   Widget build(BuildContext context) {
+    final controller = ForgetPasswordController.instance;
+
     final dark = HelperFunctions.isDarkMode(context);
     return 
         Scaffold(
@@ -32,9 +36,9 @@ class ResetPassword extends StatelessWidget {
                   ///Image
                   Lottie.asset(ImageStrings.verifyEmailGif),
                   ///Title & SubTitle
-                  Text('Password Reset Email Sent', style: Theme.of(context).textTheme.headlineMedium,textAlign: TextAlign.center,),
+                  Text(email, style: Theme.of(context).textTheme.headlineMedium,textAlign: TextAlign.center,),
                   SizedBox(height: TSizes.spaceBtwItems,),
-                  Text('Ykahflfiah ahfhad afhlahf  alijjf lif lifsl lsijglihsglihsil islhgl lishg ',style: Theme.of(context).textTheme.labelLarge,textAlign: TextAlign.center,),
+                  Text('Password Reset Email Sent',style: Theme.of(context).textTheme.labelLarge,textAlign: TextAlign.center,),
                   SizedBox(height: TSizes.spaceBtwSections,),
                   ///Buttons
 
@@ -52,9 +56,9 @@ class ResetPassword extends StatelessWidget {
                                 fontSize: 18, fontWeight: FontWeight.w600),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10))),
-                        onPressed: (){}, child: Text('Done')),),
+                        onPressed: ()=>Get.offAll(()=> LoginScreen()), child: Text('Done')),),
                   SizedBox(height: TSizes.spaceBtwItems,),
-                  SizedBox(width: double.infinity,child: TextButton(onPressed: (){}, child: Text('Resend Email')),)
+                  Obx(()=> SizedBox(width: double.infinity,child: TextButton(onPressed: ()=> controller.isResendButtonOn.value ? controller.resendPasswordResetEmail() : null, child:controller.isResendButtonOn.value? Text('Resend Email') : Text('Wait for ${controller.countdown.value} s')),))
 
                 ],
               ),
