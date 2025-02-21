@@ -1,4 +1,6 @@
+import 'package:e_commerce_user/features/authentication/controller/login/login_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/image_strings.dart';
@@ -13,6 +15,7 @@ class SocialButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(LoginController());
     final dark = HelperFunctions.isDarkMode(context);
 
     return Column(
@@ -26,7 +29,7 @@ class SocialButton extends StatelessWidget {
                     fontSize: 18, fontWeight: FontWeight.w600),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10))),
-            onPressed: () {},
+            onPressed: ()=>controller.googleSignIn(),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(

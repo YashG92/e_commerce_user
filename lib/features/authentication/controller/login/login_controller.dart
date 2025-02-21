@@ -1,3 +1,4 @@
+import 'package:e_commerce_user/features/personaliztion/controller/user_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart%20%20';
 import 'package:get_storage/get_storage.dart';
@@ -16,6 +17,7 @@ class LoginController extends GetxController{
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final hidePassword = true.obs;
   final rememberMe = false.obs;
+  final userController = Get.put(UserController());
 
   final localStorage = GetStorage();
 
@@ -72,4 +74,40 @@ class LoginController extends GetxController{
       Loaders.errorSnackBar(title: 'Oh Bad!', message: e.toString());
     }
   }
+
+
+  Future<void>googleSignIn() async {
+    try {
+      //Start Loading
+      FullScreenLoader.openLoadingDialog(
+          'Logging into your account', ImageStrings.loadingAnimation);
+
+
+      //Check Internet Connectivity
+      final isConnected = await NetworkManager.instance.isConnected();
+      if (!isConnected) {
+        FullScreenLoader.stopLoading();
+        return;
+      }
+
+      //Google authentication
+      final userCredentials = await AuthenticationRepository.instance.googleSignIn();
+      //save user record
+      await userController.saveUserData(userCredentials);
+
+      FullScreenLoader.stopLoading();
+
+      //Show success message
+      Loaders.successSnackBar(title: 'Congratulations!',message: 'You have been Logged in successfully.');
+
+      //Move to Screen
+      AuthenticationRepository.instance.screenRedirect();
+
+
+    } catch (e) {
+      FullScreenLoader.stopLoading();
+      Loaders.errorSnackBar(title: 'Oh Bad!', message: e.toString());
+    }
+  }
+
 }
