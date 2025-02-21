@@ -145,6 +145,7 @@ class AuthenticationRepository extends GetxController {
 
  Future<void> logoutUser()async{
    try{
+     //added
      await GoogleSignIn().signOut();
      await _auth.signOut();
      Get.offAll(()=> LoginScreen());
