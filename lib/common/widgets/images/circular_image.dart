@@ -1,3 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:e_commerce_user/common/widgets/shimmer/shimmer.dart';
 import 'package:e_commerce_user/utils/helper/helper_functions.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +15,7 @@ class CircularImage extends StatelessWidget {
     this.backgroundColor,
     this.height = 56,
     this.width = 56,
-     this.padding =   TSizes.sm,
+    this.padding = TSizes.sm,
     this.fit = BoxFit.cover,
   });
 
@@ -28,15 +30,33 @@ class CircularImage extends StatelessWidget {
     final dark = HelperFunctions.isDarkMode(context);
     return Container(
       height: height,
-      width:width,
+      width: width,
       padding: EdgeInsets.all(padding),
       decoration: BoxDecoration(
           color: backgroundColor ?? (dark ? Colors.black : Colors.white),
           borderRadius: BorderRadius.circular(100)),
-      child: Image(
-        fit: fit,
-        image: isNetworkImage ? NetworkImage(image): AssetImage(image) as ImageProvider,
-        color: overlayColor,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(100),
+        child: Center(
+          child: 
+            isNetworkImage
+                ? CachedNetworkImage(
+                    imageUrl: image,
+                    fit: fit,
+                    color: overlayColor,
+                    progressIndicatorBuilder: (context, url, downloadProgress) =>
+                        ShimmerEffect(width: 55, height: 55),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
+                  )
+                : Image(
+                    fit: fit,
+                    image: isNetworkImage
+                        ? NetworkImage(image)
+                        : AssetImage(image) as ImageProvider,
+                    color: overlayColor,
+                  ),
+          
+        ),
       ),
     );
   }

@@ -10,6 +10,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart%20%20';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../utils/helper/network_manager.dart';
 import '../../../utils/popups/loaders.dart';
@@ -17,10 +18,12 @@ import '../../../utils/popups/loaders.dart';
 class UserController extends GetxController {
   static UserController get instance => Get.find();
   final userRepository = Get.put(UserRepository());
-  Rx<UserModel> user = UserModel.empty().obs;
+  Rx<UserModel> user = UserModel
+      .empty()
+      .obs;
   final profileLoading = false.obs;
   final hidePassword = false.obs;
-
+  final imageUploading = false.obs;
   final verifyEmail = TextEditingController();
   final verifyPassword = TextEditingController();
   GlobalKey<FormState> reAuthFormKey = GlobalKey<FormState>();
@@ -48,22 +51,27 @@ class UserController extends GetxController {
 
   Future<void> saveUserData(UserCredential? userCredentials) async {
     try {
-      if (userCredentials != null) {
-        final user = UserModel(
-            id: userCredentials.user!.uid,
-            fullName: userCredentials.user!.displayName ?? '',
-            email: userCredentials.user!.email ?? '',
-            phoneNumber: userCredentials.user!.phoneNumber ?? '',
-            profilePicture: userCredentials.user!.photoURL ?? '');
+      //Refresh user record
+      await fetchUserRecord();
 
-        //Save user data
-        await userRepository.saveUserData(user);
+      if (user.value.id.isNotEmpty) {
+        if (userCredentials != null) {
+          final user = UserModel(
+              id: userCredentials.user!.uid,
+              fullName: userCredentials.user!.displayName ?? '',
+              email: userCredentials.user!.email ?? '',
+              phoneNumber: userCredentials.user!.phoneNumber ?? '',
+              profilePicture: userCredentials.user!.photoURL ?? '');
+
+          //Save user data
+          await userRepository.saveUserData(user);
+        }
       }
     } catch (e) {
       Loaders.warningSnackBar(
           title: 'Data not saved',
           message:
-              'Something went wrong while saving your information. You can re-save your data in your Profile');
+          'Something went wrong while saving your information. You can re-save your data in your Profile');
     }
   }
 
@@ -73,24 +81,27 @@ class UserController extends GetxController {
         contentPadding: EdgeInsets.all(TSizes.md),
         title: 'Delete Account',
         middleText:
-            'Are you sure you want to delete your account permanently? This action is not reversible and all of your data will be removed permanently.',
+        'Are you sure you want to delete your account permanently? This action is not reversible and all of your data will be removed permanently.',
         confirm: ElevatedButton(
-          style: ElevatedButton.styleFrom(backgroundColor: Colors.red,side: BorderSide(color: Colors.red)),
+            style: ElevatedButton.styleFrom(backgroundColor: Colors.red,
+                side: BorderSide(color: Colors.red)),
             onPressed: () async => deleteUserAccount(),
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: TSizes.lg),
               child: Text('Delete'),
             )
         ),
-        cancel: OutlinedButton(onPressed: ()=>Navigator.of(Get.overlayContext!).pop(), child:Text('Cancel') ,)
+        cancel: OutlinedButton(
+          onPressed: () => Navigator.of(Get.overlayContext!).pop(),
+          child: Text('Cancel'),)
     );
-
   }
 
   /// Re auth before deleting
-  Future<void> reAuthenticateEmailAndPasswordUser()async{
-    try{
-      FullScreenLoader.openLoadingDialog('Processing', ImageStrings.loadingAnimation);
+  Future<void> reAuthenticateEmailAndPasswordUser() async {
+    try {
+      FullScreenLoader.openLoadingDialog(
+          'Processing', ImageStrings.loadingAnimation);
 
       //Check Internet Connectivity
       final isConnected = await NetworkManager.instance.isConnected();
@@ -105,41 +116,80 @@ class UserController extends GetxController {
 
         return;
       }
-      await AuthenticationRepository.instance.reAuthenticateWithEmailAndPassword(verifyEmail.text.trim(), verifyPassword.text.trim());
+      await AuthenticationRepository.instance
+          .reAuthenticateWithEmailAndPassword(
+          verifyEmail.text.trim(), verifyPassword.text.trim());
       await AuthenticationRepository.instance.deleteAccount();
       FullScreenLoader.stopLoading();
-      Get.offAll(()=> const LoginScreen());
-
-    }catch(e){
+      Get.offAll(() => const LoginScreen());
+    } catch (e) {
       FullScreenLoader.stopLoading();
       Loaders.warningSnackBar(title: 'Oh Bad!', message: e.toString());
-    } }
+    }
+  }
 
   ///Delete user account
- void deleteUserAccount()async{
-    try{
-      FullScreenLoader.openLoadingDialog('Processing...', ImageStrings.loadingAnimation);
+  void deleteUserAccount() async {
+    try {
+      FullScreenLoader.openLoadingDialog(
+          'Processing...', ImageStrings.loadingAnimation);
 
       //First re auth user
       final auth = AuthenticationRepository.instance;
-      final provider = auth.authUser!.providerData.map((e)=>e.providerId).first;
+      final provider = auth.authUser!
+          .providerData
+          .map((e) => e.providerId)
+          .first;
 
-      if(provider.isNotEmpty){
+      if (provider.isNotEmpty) {
         //Re verify email
-        if(provider == 'google.com'){
+        if (provider == 'google.com') {
           await auth.googleSignIn();
           await auth.deleteAccount();
           FullScreenLoader.stopLoading();
-          Get.offAll(()=> LoginScreen());
-        }else if(provider == 'password'){
+          Get.offAll(() => LoginScreen());
+        } else if (provider == 'password') {
           FullScreenLoader.stopLoading();
-          Get.to(()=> ReAuthenticateUserLoginForm());
+          Get.to(() => ReAuthenticateUserLoginForm());
         }
       }
-    }catch(e){
+    } catch (e) {
       FullScreenLoader.stopLoading();
       Loaders.warningSnackBar(title: 'Oh Bad!', message: e.toString());
     }
+  }
+
+
+  ///Upload profile picture
+  uploadUserProfilePicture() async {
+    try {
+      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+      imageUploading.value = true;
+
+      if (image != null) {
+        final imageUrl = await userRepository.uploadImage(
+            'Users/Images/Profile', image);
+
+        //Update user image in json model
+        Map<String, dynamic> json = {"ProfilePicture": imageUrl};
+        await userRepository.updateSingleFieldUserData(json);
+
+        user.value.profilePicture = imageUrl;
+        user.refresh();
+        Loaders.successSnackBar(title: 'Done', message: "Your profile has been updated");
+
+      }
+    }catch (e) {
+      Loaders.errorSnackBar(title: 'Oh Bad!', message: e.toString());
+
+    }finally{}
+    imageUploading.value = false;
+  }
+
     }
- }
+
+
+
+
+
 
