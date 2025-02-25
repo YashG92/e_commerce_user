@@ -2,6 +2,7 @@ import 'package:e_commerce_user/features/personaliztion/controller/user_controll
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart%20%20';
 import 'package:get_storage/get_storage.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import '../../../../common/widgets/loaders/full_screen_loader.dart';
 import '../../../../data/repositories/authentication/authentication_repository.dart';
@@ -78,6 +79,7 @@ class LoginController extends GetxController{
 
   Future<void>googleSignIn() async {
     try {
+
       //Start Loading
       FullScreenLoader.openLoadingDialog(
           'Logging into your account', ImageStrings.loadingAnimation);
@@ -93,7 +95,12 @@ class LoginController extends GetxController{
       //Google authentication
       final userCredentials = await AuthenticationRepository.instance.googleSignIn();
       //save user record
+      print('=====================user save starting ==============================');
+
       await userController.saveUserData(userCredentials);
+      print(userCredentials);
+      print('=====================user done ==============================');
+
 
       FullScreenLoader.stopLoading();
 

@@ -10,6 +10,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart%20%20';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../../utils/helper/network_manager.dart';
@@ -54,24 +55,25 @@ class UserController extends GetxController {
       //Refresh user record
       await fetchUserRecord();
 
-      if (user.value.id.isNotEmpty) {
-        if (userCredentials != null) {
-          final user = UserModel(
-              id: userCredentials.user!.uid,
-              fullName: userCredentials.user!.displayName ?? '',
-              email: userCredentials.user!.email ?? '',
-              phoneNumber: userCredentials.user!.phoneNumber ?? '',
-              profilePicture: userCredentials.user!.photoURL ?? '');
+      // Save user data if not already present
+      if (userCredentials != null) {
+        final user = UserModel(
+            id: userCredentials.user!.uid,
+            fullName: userCredentials.user!.displayName ?? '',
+            email: userCredentials.user!.email ?? '',
+            phoneNumber: userCredentials.user!.phoneNumber ?? '',
+            profilePicture: userCredentials.user!.photoURL ?? ''
+        );
 
-          //Save user data
-          await userRepository.saveUserData(user);
-        }
+        // Save user data to Firestore
+        await userRepository.saveUserData(user);
+        this.user(user); // Update the observable user model
+        print('User data saved successfully.');
       }
     } catch (e) {
       Loaders.warningSnackBar(
           title: 'Data not saved',
-          message:
-          'Something went wrong while saving your information. You can re-save your data in your Profile');
+          message: 'Something went wrong while saving your information. You can re-save your data in your Profile');
     }
   }
 
@@ -144,7 +146,7 @@ class UserController extends GetxController {
       if (provider.isNotEmpty) {
         //Re verify email
         if (provider == 'google.com') {
-          await auth.googleSignIn();
+          await GoogleSignIn().signOut();
           await auth.deleteAccount();
           FullScreenLoader.stopLoading();
           Get.offAll(() => LoginScreen());
