@@ -45,8 +45,8 @@ class CircularImage extends StatelessWidget {
                     fit: fit,
                     color: overlayColor,
                     progressIndicatorBuilder: (context, url, downloadProgress) =>
-                        ShimmerEffect(width: 55, height: 55),
-                    errorWidget: (context, url, error) => Icon(Icons.error),
+                        const ShimmerEffect(width: 55, height: 55),
+                    errorWidget: (context, url, error) => const Icon(Icons.error),
                   )
                 : Image(
                     fit: fit,

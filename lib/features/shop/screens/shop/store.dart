@@ -1,5 +1,6 @@
 import 'package:e_commerce_user/common/widgets/layouts/grid_layout.dart';
 import 'package:e_commerce_user/common/widgets/texts/section_heading.dart';
+import 'package:e_commerce_user/features/shop/controllers/category_controller.dart';
 import 'package:e_commerce_user/features/shop/screens/brand/all_brands.dart';
 import 'package:e_commerce_user/features/shop/screens/brand/brand_products.dart';
 import 'package:e_commerce_user/features/shop/screens/home/widgets/search_container.dart';
@@ -18,9 +19,10 @@ class Store extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final categories = CategoryController.instance.featuredCategories;
     final dark = HelperFunctions.isDarkMode(context);
     return DefaultTabController(
-      length: 5,
+      length: categories.length,
       child: Scaffold(
         appBar: CustomAppbar(
           title: Text(
@@ -40,12 +42,12 @@ class Store extends StatelessWidget {
                     : Colors.white,
                 expandedHeight: 420,
                 flexibleSpace: Padding(
-                  padding: EdgeInsets.all(TSizes.defaultSpace),
+                  padding: const EdgeInsets.all(TSizes.defaultSpace),
                   child: ListView(
                     shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         height: TSizes.spaceBtwItems,
                       ),
                       SearchContainer(
@@ -61,7 +63,7 @@ class Store extends StatelessWidget {
                       ///Feature Brands
                       SectionHeading(
                         title: 'Featured Brands',
-                        onPressed: ()=> Get.to(()=> AllBrandsScreen()),
+                        onPressed: () => Get.to(() => AllBrandsScreen()),
                       ),
 
                       SizedBox(
@@ -74,45 +76,28 @@ class Store extends StatelessWidget {
                           itemBuilder: (_, index) {
                             return BrandCard(
                               showBorder: true,
-                              onTap:()=> Get.to(()=> BrandProducts()),
+                              onTap: () => Get.to(() => BrandProducts()),
                             );
                           }),
                     ],
                   ),
                 ),
                 bottom: CustomTabBar(
-                  tabs: [
-                    Tab(
-                      child: Text('Sports'),
-                    ),
-                    Tab(
-                      child: Text('Clothing'),
-                    ),
-                    Tab(
-                      child: Text('Electronics'),
-                    ),
-                    Tab(
-                      child: Text('Home'),
-                    ),
-                    Tab(
-                      child: Text('Sports'),
-                    ),
-                  ],
+                  tabs: categories
+                      .map((category) => Tab(
+                            child: Text(category.name),
+                          ))
+                      .toList(),
                 ),
               ),
             ];
           },
-          body: TabBarView(children: [
-            CategoryTab(),
-            CategoryTab(),
-            CategoryTab(),
-            CategoryTab(),
-            CategoryTab(),
-
-          ]),
+          body: TabBarView(
+              children: categories
+                  .map((category) => CategoryTab(category: category))
+                  .toList()),
         ),
       ),
     );
   }
 }
-
