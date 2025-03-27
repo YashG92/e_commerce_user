@@ -38,7 +38,7 @@ class UserProfile extends StatelessWidget {
           
             title: Text(controller.user.value.fullName, style: Theme.of(context).textTheme.headlineSmall!.apply(color:dark? AColors.white : AColors.black ),),
             subtitle: Text(controller.user.value.email, style: Theme.of(context).textTheme.bodyMedium!.apply(color:dark? AColors.white : AColors.black ),),
-            trailing: IconButton(onPressed: ()=>Get.to(()=>const Profile()), icon:  Icon(Iconsax.edit, color: dark? AColors.white : AColors.black ,)),
+            trailing: IconButton(onPressed: ()=>Get.to(()=>const ProfileScreen()), icon:  Icon(Iconsax.edit, color: dark? AColors.white : AColors.black ,)),
           ),
         ),
       ],

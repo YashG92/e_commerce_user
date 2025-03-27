@@ -72,31 +72,31 @@ class HomeScreen extends StatelessWidget {
               padding: const EdgeInsets.all(TSizes.defaultSpace),
               child: Column(
                 children: [
-                  PromoSlider(
-                    banners: [
-                      ImageStrings.banner_4,
-                      ImageStrings.banner_5,
-                      ImageStrings.banner_6
-                    ],
+                  PromoSlider(),
+
+                  const SizedBox(
+                    height: TSizes.spaceBtwSections,
                   ),
 
-                  SizedBox(height: TSizes.spaceBtwSections,),
                   ///popular product
 
-
-                  SectionHeading(title: 'Popular Products',onPressed: ()=>Get.to(()=>AllProducts()),),
-                  SizedBox(height: TSizes.spaceBtwItems,),
-                  AGridLayout(itemCount: 6,itemBuilder: (_,index)=> ProductCardVertical(),),
-
+                  SectionHeading(
+                    title: 'Popular Products',
+                    onPressed: () => Get.to(() => AllProducts()),
+                  ),
+                  SizedBox(
+                    height: TSizes.spaceBtwItems,
+                  ),
+                  AGridLayout(
+                    itemCount: 6,
+                    itemBuilder: (_, index) => ProductCardVertical(),
+                  ),
                 ],
               ),
             ),
-
-
           ],
         ),
       ),
     );
   }
 }
-

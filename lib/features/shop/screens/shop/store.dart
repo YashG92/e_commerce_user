@@ -14,8 +14,8 @@ import 'package:get/get.dart';
 import '../../../../common/widgets/appbar/tabbar.dart';
 import '../../../../common/widgets/brands/brand_card.dart';
 
-class Store extends StatelessWidget {
-  const Store({super.key});
+class StoreScreen extends StatelessWidget {
+  const StoreScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

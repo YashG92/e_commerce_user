@@ -9,8 +9,8 @@ import 'package:iconsax/iconsax.dart';
 
 import 'add_new_address.dart';
 
-class AddressScreen extends StatelessWidget {
-  const AddressScreen({super.key});
+class UserAddressScreen extends StatelessWidget {
+  const UserAddressScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

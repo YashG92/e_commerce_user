@@ -17,8 +17,8 @@ import 'package:iconsax/iconsax.dart';
 
 import '../../../../utils/constants/colors.dart';
 
-class Settings extends StatelessWidget {
-  const Settings({super.key});
+class SettingsScreen extends StatelessWidget {
+  const SettingsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +70,7 @@ class Settings extends StatelessWidget {
                 SettingMenuTile(
                   title: 'Address Book',
                   icon: Iconsax.home,
-                  onTap: () => Get.to(() => AddressScreen()),
+                  onTap: () => Get.to(() => UserAddressScreen()),
                 ),
                 SettingMenuTile(
                   title: 'Payment Methods',

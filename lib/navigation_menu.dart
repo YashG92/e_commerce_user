@@ -52,9 +52,9 @@ class NavigationController extends GetxController {
 
   final screens = [
     HomeScreen(),
-    Store(),
+    StoreScreen(),
     WishlistScreen(),
     CartScreen(),
-    Settings(),
+    SettingsScreen(),
   ];
 }
