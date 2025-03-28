@@ -7,7 +7,7 @@ class AGridLayout extends StatelessWidget {
   const AGridLayout({
     super.key,
     required this.itemCount,
-    this.mainAxisExtent = 261,
+    this.mainAxisExtent = 278,
     required this.itemBuilder,
   });
 

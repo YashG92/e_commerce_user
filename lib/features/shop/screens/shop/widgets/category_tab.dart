@@ -1,6 +1,7 @@
 import 'package:e_commerce_user/common/widgets/layouts/grid_layout.dart';
 import 'package:e_commerce_user/common/widgets/texts/section_heading.dart';
 import 'package:e_commerce_user/features/shop/models/category_model.dart';
+import 'package:e_commerce_user/features/shop/models/product_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../common/widgets/brands/brand_show_case.dart';
@@ -42,7 +43,7 @@ class CategoryTab extends StatelessWidget {
             ///Products
             SectionHeading(title: 'You might like', onPressed: (){},),
             SizedBox(height: TSizes.spaceBtwItems,),
-            AGridLayout(itemCount: 4, itemBuilder: (_,index)=> ProductCardVertical()),
+            AGridLayout(itemCount: 4, itemBuilder: (_,index)=> ProductCardVertical(product: ProductModel.empty(),)),
             SizedBox(height: TSizes.spaceBtwSections,)
           ],
         ),

@@ -17,9 +17,13 @@ import 'package:iconsax/iconsax.dart';
 import '../../../../common/widgets/custom_shapes/containers/rounded_container.dart';
 import '../../../../common/widgets/icons/circular_icon.dart';
 import '../../../../utils/helper/helper_functions.dart';
+import '../../models/product_model.dart';
 
-class ProductDetail extends StatelessWidget {
-  const ProductDetail({super.key});
+class ProductDetailScreen extends StatelessWidget {
+  const ProductDetailScreen({super.key, required this.product});
+
+  final ProductModel product;
+
 
   @override
   Widget build(BuildContext context) {
