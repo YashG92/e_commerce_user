@@ -8,6 +8,7 @@ import 'package:e_commerce_user/features/shop/screens/product_detail/widgets/pro
 import 'package:e_commerce_user/features/shop/screens/product_detail/widgets/rating_share_widget.dart';
 import 'package:e_commerce_user/features/shop/screens/product_reviews/product_review.dart';
 import 'package:e_commerce_user/utils/constants/colors.dart';
+import 'package:e_commerce_user/utils/constants/enums.dart';
 import 'package:e_commerce_user/utils/constants/image_strings.dart';
 import 'package:e_commerce_user/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
@@ -44,7 +45,9 @@ class ProductDetailScreen extends StatelessWidget {
           child: Column(
             children: [
               ///Product Image
-              ProductImageSlider(product: product,),
+              ProductImageSlider(
+                product: product,
+              ),
               const SizedBox(
                 height: TSizes.spaceBtwItems,
               ),
@@ -58,14 +61,18 @@ class ProductDetailScreen extends StatelessWidget {
 
                   ///Price Title Stock & Description
 
-                  ProductMetaData(product: product,),
+                  ProductMetaData(
+                    product: product,
+                  ),
 
                   ///Attributes
 
                   const SizedBox(
                     height: TSizes.spaceBtwItems,
                   ),
-                  ProductAttributes(),
+
+                  if (product.productType == ProductType.variable.toString())
+                    ProductAttributes(product: product,),
 
                   ///Reviews
                   const Divider(),

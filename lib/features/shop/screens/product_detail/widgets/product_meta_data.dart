@@ -41,6 +41,7 @@ class ProductMetaData extends StatelessWidget {
               image: product.brand != null ? product.brand!.image : '',
               isNetworkImage: true,
             ),
+            const SizedBox(width: TSizes.spaceBtwItems,),
             BrandTitleWithVerifiedIcon(
               title: product.brand != null ? product.brand!.name : '',
               isLarge: true,
@@ -122,7 +123,7 @@ class ProductMetaData extends StatelessWidget {
         ///Stock Status
         Row(
           children: [
-            ProductTitleText(
+            const ProductTitleText(
               title: 'Status : ',
             ),
             Text(
