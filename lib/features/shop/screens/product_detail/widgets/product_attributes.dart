@@ -18,7 +18,7 @@ class ProductAttributes extends StatelessWidget {
     return Column(
       children: [
         RoundedContainer(
-          padding: EdgeInsets.all(TSizes.md),
+          padding: const EdgeInsets.all(TSizes.md),
           backgroundColor: dark ? AColors.darkerGrey : AColors.grey,
           child: Column(
             children: [
@@ -27,11 +27,11 @@ class ProductAttributes extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      SectionHeading(
+                      const SectionHeading(
                         title: 'Variations',
                         showActionButton: false,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: TSizes.spaceBtwItems,
                       ),
                       Column(

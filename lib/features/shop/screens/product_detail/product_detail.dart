@@ -45,7 +45,7 @@ class ProductDetailScreen extends StatelessWidget {
             children: [
               ///Product Image
               ProductImageSlider(product: product,),
-              SizedBox(
+              const SizedBox(
                 height: TSizes.spaceBtwItems,
               ),
 
@@ -58,11 +58,11 @@ class ProductDetailScreen extends StatelessWidget {
 
                   ///Price Title Stock & Description
 
-                  ProductMetaData(),
+                  ProductMetaData(product: product,),
 
                   ///Attributes
 
-                  SizedBox(
+                  const SizedBox(
                     height: TSizes.spaceBtwItems,
                   ),
                   ProductAttributes(),

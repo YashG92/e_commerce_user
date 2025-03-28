@@ -73,7 +73,7 @@ class ProductCardVertical extends StatelessWidget {
                       child: RoundedContainer(
                         radius: TSizes.sm,
                         backgroundColor: Colors.red.withValues(alpha: 0.8),
-                        padding: EdgeInsets.symmetric(
+                        padding: const EdgeInsets.symmetric(
                             horizontal: TSizes.sm, vertical: TSizes.xs),
                         child: Text(
                           '$salePercentage%',
@@ -98,7 +98,7 @@ class ProductCardVertical extends StatelessWidget {
                 ),
               ),
 
-              SizedBox(
+              const SizedBox(
                 height: TSizes.spaceBtwItems / 2,
               ),
 
@@ -113,7 +113,7 @@ class ProductCardVertical extends StatelessWidget {
                       title: product.title,
                       smallSize: true,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: TSizes.spaceBtwItems / 2,
                     ),
                     BrandTitleWithVerifiedIcon(

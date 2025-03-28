@@ -27,7 +27,7 @@ class ProductController extends GetxController {
       featuredProducts.assignAll(products);
 
     } catch (e) {
-      Loaders.errorSnackBar(title: 'Oh Sanp!',message: e.toString());
+      Loaders.errorSnackBar(title: 'Oh Snap!',message: e.toString());
     } finally {
       isLoading.value = false;
     }
