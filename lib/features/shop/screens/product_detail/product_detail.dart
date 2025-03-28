@@ -68,8 +68,8 @@ class ProductDetailScreen extends StatelessWidget {
                   ProductAttributes(),
 
                   ///Reviews
-                  Divider(),
-                  SizedBox(
+                  const Divider(),
+                  const SizedBox(
                     height: TSizes.spaceBtwItems,
                   ),
                   Row(

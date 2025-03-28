@@ -2,8 +2,10 @@ import 'package:e_commerce_user/common/widgets/images/circular_image.dart';
 import 'package:e_commerce_user/common/widgets/texts/brand_title_text.dart';
 import 'package:e_commerce_user/common/widgets/texts/product_price_text.dart';
 import 'package:e_commerce_user/common/widgets/texts/product_title_text.dart';
+import 'package:e_commerce_user/common/widgets/texts/section_heading.dart';
 import 'package:e_commerce_user/features/shop/models/product_model.dart';
 import 'package:flutter/material.dart';
+import 'package:readmore/readmore.dart';
 
 import '../../../../../common/widgets/custom_shapes/containers/rounded_container.dart';
 import '../../../../../common/widgets/texts/brand_title_with_verified_icon.dart';
@@ -95,9 +97,23 @@ class ProductMetaData extends StatelessWidget {
         const SizedBox(
           height: TSizes.spaceBtwItems,
         ),
-        ProductTitleText(
-          title: product.description.toString(),
-          maxLines: 4,
+
+        /// Description
+        const SectionHeading(
+          title: 'Description',
+          showActionButton: false,
+        ),
+        const SizedBox(
+          height: TSizes.spaceBtwItems,
+        ),
+        ReadMoreText(
+          product.description ?? '',
+          trimLines: 2,
+          trimMode: TrimMode.Line,
+          trimCollapsedText: ' Show more',
+          trimExpandedText: ' Show less',
+          moreStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
+          lessStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
         ),
         const SizedBox(
           height: TSizes.spaceBtwItems,
