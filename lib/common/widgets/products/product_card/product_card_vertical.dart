@@ -1,5 +1,5 @@
 import 'package:e_commerce_user/common/widgets/images/rounded_image.dart';
-import 'package:e_commerce_user/features/shop/controllers/product_controller.dart';
+import 'package:e_commerce_user/features/shop/controllers/product/product_controller.dart';
 import 'package:e_commerce_user/features/shop/models/product_model.dart';
 import 'package:e_commerce_user/features/shop/screens/product_detail/product_detail.dart';
 import 'package:e_commerce_user/features/shop/screens/product_reviews/product_review.dart';

@@ -24,7 +24,6 @@ class ProductDetailScreen extends StatelessWidget {
 
   final ProductModel product;
 
-
   @override
   Widget build(BuildContext context) {
     final dark = HelperFunctions.isDarkMode(context);
@@ -32,7 +31,7 @@ class ProductDetailScreen extends StatelessWidget {
       appBar: CustomAppbar(
         showBackArrow: true,
         actions: [
-          IconButton(onPressed: () {}, icon: Icon(Iconsax.notification))
+          IconButton(onPressed: () {}, icon: const Icon(Iconsax.notification))
         ],
         title: Text(
           'Details',
@@ -45,7 +44,7 @@ class ProductDetailScreen extends StatelessWidget {
           child: Column(
             children: [
               ///Product Image
-              ProductImageSlider(),
+              ProductImageSlider(product: product,),
               SizedBox(
                 height: TSizes.spaceBtwItems,
               ),
@@ -68,18 +67,27 @@ class ProductDetailScreen extends StatelessWidget {
                   ),
                   ProductAttributes(),
 
-
                   ///Reviews
                   Divider(),
-                  SizedBox(height: TSizes.spaceBtwItems,),
+                  SizedBox(
+                    height: TSizes.spaceBtwItems,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      SectionHeading(title: 'Reviews (12,200)',onPressed: (){},showActionButton: false,),
-                      IconButton(onPressed: ()=> Get.to(ProductReviewScreen()), icon: Icon(Iconsax.arrow_right_3)),
+                      SectionHeading(
+                        title: 'Reviews (12,200)',
+                        onPressed: () {},
+                        showActionButton: false,
+                      ),
+                      IconButton(
+                          onPressed: () => Get.to(ProductReviewScreen()),
+                          icon: Icon(Iconsax.arrow_right_3)),
                     ],
                   ),
-                  SizedBox(height: TSizes.spaceBtwItems,),
+                  SizedBox(
+                    height: TSizes.spaceBtwItems,
+                  ),
                 ],
               )
             ],
@@ -97,7 +105,8 @@ class ProductDetailScreen extends StatelessWidget {
                         style: ElevatedButton.styleFrom(
                             foregroundColor:
                                 dark ? AColors.light : AColors.dark,
-                            backgroundColor:dark? AColors.darkerGrey:AColors.grey),
+                            backgroundColor:
+                                dark ? AColors.darkerGrey : AColors.grey),
                         onPressed: () {},
                         child: Text('Add to cart')))),
             SizedBox(

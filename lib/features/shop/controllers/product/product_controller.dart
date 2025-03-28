@@ -2,8 +2,8 @@ import 'package:e_commerce_user/features/shop/models/product_model.dart';
 import 'package:e_commerce_user/utils/popups/loaders.dart';
 import 'package:get/get.dart';
 
-import '../../../data/repositories/product/product_repository.dart';
-import '../../../utils/constants/enums.dart';
+import '../../../../data/repositories/product/product_repository.dart';
+import '../../../../utils/constants/enums.dart';
 
 class ProductController extends GetxController {
   static ProductController get instance => Get.find();

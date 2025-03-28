@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 class ProductVariationModel {
   final String id;
   String sku;
-  Rx<String> image;
+  String image;
   String? description;
   double price;
   double salePrice;
@@ -13,13 +13,13 @@ class ProductVariationModel {
   ProductVariationModel({
     required this.id,
     this.sku = '',
-    String image = '',
+    this.image = '',
     this.description = '',
     this.price = 0.0,
     this.salePrice = 0.0,
     this.stock = 0,
     required this.attributeValues,
-  }) : image = image.obs;
+  });
 
   static ProductVariationModel empty() =>
       ProductVariationModel(id: '', attributeValues: {});
@@ -27,7 +27,7 @@ class ProductVariationModel {
   toJson() {
     return {
       'id': id,
-      'image': image.value,
+      'image': image,
       'description': description,
       'price': price,
       'salePrice': salePrice,
