@@ -23,7 +23,10 @@ class SortableProducts extends StatelessWidget {
     return Column(
       children: [
         DropdownButtonFormField(
+            dropdownColor: Colors.white,
             decoration: InputDecoration(
+              filled: true,
+              fillColor: Colors.white,
               border:
                   OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
               prefixIcon: const Icon(Iconsax.sort),
@@ -52,11 +55,10 @@ class SortableProducts extends StatelessWidget {
 
         /// Products
         Obx(
-          ()=> AGridLayout(
+          () => AGridLayout(
               itemCount: controller.products.length,
-              itemBuilder: (_, index) => ProductCardVertical(
-                    product: controller.products[index]
-                  )),
+              itemBuilder: (_, index) =>
+                  ProductCardVertical(product: controller.products[index])),
         )
       ],
     );
