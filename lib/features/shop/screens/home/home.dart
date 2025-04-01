@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_commerce_user/common/widgets/custom_shapes/containers/circular_container.dart';
 import 'package:e_commerce_user/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:e_commerce_user/common/widgets/shimmer/vertical_product_shimmer.dart';
@@ -85,9 +86,13 @@ class HomeScreen extends StatelessWidget {
 
                   SectionHeading(
                     title: 'Popular Products',
-                    onPressed: () => Get.to(() => AllProducts()),
+                    onPressed: () => Get.to(() => AllProducts(
+                          title: 'Popular Products',
+                          futureMethod:
+                              productController.fetchAllFeaturedProducts(),
+                        )),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: TSizes.spaceBtwItems,
                   ),
                   Obx(

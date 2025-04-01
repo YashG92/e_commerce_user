@@ -22,7 +22,7 @@ class BrandProducts extends StatelessWidget {
             children: [
               BrandCard(showBorder: true),
               SizedBox(height: TSizes.spaceBtwSections,),
-              SortableProducts(),
+              //SortableProducts(),
             ],
           ),
         ),

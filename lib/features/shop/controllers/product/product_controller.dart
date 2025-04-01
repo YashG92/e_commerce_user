@@ -18,18 +18,27 @@ class ProductController extends GetxController {
     super.onInit();
   }
 
-  void fetchFeaturedProducts() async{
+  void fetchFeaturedProducts() async {
     try {
       isLoading.value = true;
 
       final products = await productRepository.getFeaturedProducts();
 
       featuredProducts.assignAll(products);
-
     } catch (e) {
-      Loaders.errorSnackBar(title: 'Oh Snap!',message: e.toString());
+      Loaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
     } finally {
       isLoading.value = false;
+    }
+  }
+
+  Future<List<ProductModel>> fetchAllFeaturedProducts() async {
+    try {
+      final products = await productRepository.getAllFeaturedProducts();
+      return products;
+    } catch (e) {
+      Loaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
+      return [];
     }
   }
 
@@ -43,13 +52,11 @@ class ProductController extends GetxController {
       return (product.salePrice > 0.0 ? product.salePrice : product.price)
           .toString();
     } else {
-
-
       //Calculate the smallest and largest prices among variations
       for (var variation in product.productVariations!) {
         //Determine the price to consider (sale price if available, otherwise regular price)
         double priceToConsider =
-        variation.salePrice > 0.0 ? variation.salePrice : variation.price;
+            variation.salePrice > 0.0 ? variation.salePrice : variation.price;
 
         //Update smallest and largest prices
         if (priceToConsider < smallestPrice) {
