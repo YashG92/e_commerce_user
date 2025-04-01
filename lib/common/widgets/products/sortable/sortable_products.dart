@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart%20%20';
 import 'package:iconsax/iconsax.dart';
 
-import '../../../../features/shop/controllers/product/all_products_controller.dart';
+import '../../../../features/shop/controllers/all_products_controller.dart';
 import '../../../../utils/constants/sizes.dart';
 import '../../layouts/grid_layout.dart';
 import '../product_card/product_card_vertical.dart';

@@ -7,7 +7,7 @@ class BrandModel {
   String id;
   String name;
   String image;
-  bool isFeatured;
+  bool? isFeatured;
   int? productsCount;
 
   //Not mapped

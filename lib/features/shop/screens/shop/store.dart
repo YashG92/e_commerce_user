@@ -1,5 +1,6 @@
 import 'package:e_commerce_user/common/widgets/layouts/grid_layout.dart';
 import 'package:e_commerce_user/common/widgets/texts/section_heading.dart';
+import 'package:e_commerce_user/features/shop/controllers/brand_controller.dart';
 import 'package:e_commerce_user/features/shop/controllers/category_controller.dart';
 import 'package:e_commerce_user/features/shop/screens/brand/all_brands.dart';
 import 'package:e_commerce_user/features/shop/screens/brand/brand_products.dart';
@@ -19,6 +20,7 @@ class StoreScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final brandController = Get.put(BrandController());
     final categories = CategoryController.instance.featuredCategories;
     final dark = HelperFunctions.isDarkMode(context);
     return DefaultTabController(
@@ -48,7 +50,7 @@ class StoreScreen extends StatelessWidget {
                     physics: const NeverScrollableScrollPhysics(),
                     children: [
                       const SizedBox(
-                        height: TSizes.spaceBtwItems,
+                        height: TSizes.spaceBtwItems / 2,
                       ),
                       SearchContainer(
                         text: 'Search',
@@ -66,19 +68,23 @@ class StoreScreen extends StatelessWidget {
                         onPressed: () => Get.to(() => AllBrandsScreen()),
                       ),
 
-                      SizedBox(
+                      const SizedBox(
                         height: TSizes.spaceBtwItems / 1.5,
                       ),
 
-                      AGridLayout(
-                          mainAxisExtent: 80,
-                          itemCount: 4,
-                          itemBuilder: (_, index) {
-                            return BrandCard(
-                              showBorder: true,
-                              onTap: () => Get.to(() => BrandProducts()),
-                            );
-                          }),
+                      Obx(
+                        () {
+                          return AGridLayout(
+                              mainAxisExtent: 80,
+                              itemCount: 4,
+                              itemBuilder: (_, index) {
+                                return BrandCard(
+                                  showBorder: true,
+                                  onTap: () => Get.to(() => BrandProducts()),
+                                );
+                              });
+                        },
+                      ),
                     ],
                   ),
                 ),

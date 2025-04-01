@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../common/widgets/products/sortable/sortable_products.dart';
 import '../../../../utils/constants/sizes.dart';
-import '../../controllers/product/all_products_controller.dart';
+import '../../controllers/all_products_controller.dart';
 
 class AllProducts extends StatelessWidget {
   const AllProducts({
