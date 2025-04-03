@@ -60,7 +60,7 @@ class AllBrandsScreen extends StatelessWidget {
                         return BrandCard(
                           brand: brand,
                           showBorder: true,
-                          onTap: () => Get.to(() => BrandProducts()),
+                          onTap: () => Get.to(() => BrandProducts(brand: brand,)),
                         );
                       });
                 },

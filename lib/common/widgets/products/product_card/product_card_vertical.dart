@@ -68,22 +68,23 @@ class ProductCardVertical extends StatelessWidget {
                     ),
 
                     ///Sale Tag
-                    Positioned(
-                      top: 10,
-                      child: RoundedContainer(
-                        radius: TSizes.sm,
-                        backgroundColor: Colors.red.withValues(alpha: 0.8),
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: TSizes.sm, vertical: TSizes.xs),
-                        child: Text(
-                          '$salePercentage%',
-                          style: Theme.of(context)
-                              .textTheme
-                              .labelLarge
-                              ?.apply(color: AColors.black),
+                    if (salePercentage != null)
+                      Positioned(
+                        top: 10,
+                        child: RoundedContainer(
+                          radius: TSizes.sm,
+                          backgroundColor: Colors.red.withValues(alpha: 0.8),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: TSizes.sm, vertical: TSizes.xs),
+                          child: Text(
+                            '$salePercentage%',
+                            style: Theme.of(context)
+                                .textTheme
+                                .labelLarge
+                                ?.apply(color: AColors.black),
+                          ),
                         ),
                       ),
-                    ),
 
                     ///Fav Icon Button
                     Positioned(
@@ -124,7 +125,7 @@ class ProductCardVertical extends StatelessWidget {
                   ],
                 ),
               ),
-Spacer(),
+              Spacer(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

@@ -1,4 +1,6 @@
 import 'package:e_commerce_user/data/repositories/brands/brand_repository.dart';
+import 'package:e_commerce_user/data/repositories/product/product_repository.dart';
+import 'package:e_commerce_user/features/shop/models/product_model.dart';
 import 'package:e_commerce_user/utils/popups/loaders.dart';
 import 'package:get/get.dart';
 
@@ -38,4 +40,13 @@ class BrandController extends GetxController {
 
   ///Get Brands for category
   ///Get Brand Specific Products
+  Future<List<ProductModel>> getBrandProducts(String brandId) async{
+    try{
+      final products = await ProductRepository.instance.getProductsForBrand( brandId: brandId);
+      return products;
+    }catch(e){
+      Loaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
+      return [];
+    }
+  }
 }
