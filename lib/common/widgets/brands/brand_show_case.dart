@@ -1,6 +1,7 @@
 import 'package:e_commerce_user/utils/helper/helper_functions.dart';
 import 'package:flutter/material.dart';
 
+import '../../../features/shop/models/brand_model.dart';
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/image_strings.dart';
 import '../../../utils/constants/sizes.dart';
@@ -26,7 +27,7 @@ class BrandShowCase extends StatelessWidget {
         children: [
           ///Brand Card
 
-          BrandCard(showBorder: false),
+          BrandCard(showBorder: false,brand: BrandModel.empty(),),
 
           ///Top product
 

@@ -1,4 +1,5 @@
 import 'package:e_commerce_user/common/widgets/layouts/grid_layout.dart';
+import 'package:e_commerce_user/common/widgets/shimmer/brands_shimmer.dart';
 import 'package:e_commerce_user/common/widgets/texts/section_heading.dart';
 import 'package:e_commerce_user/features/shop/controllers/brand_controller.dart';
 import 'package:e_commerce_user/features/shop/controllers/category_controller.dart';
@@ -58,7 +59,7 @@ class StoreScreen extends StatelessWidget {
                         showBackground: false,
                         padding: EdgeInsets.zero,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: TSizes.spaceBtwSections,
                       ),
 
@@ -74,11 +75,26 @@ class StoreScreen extends StatelessWidget {
 
                       Obx(
                         () {
+                          if (brandController.isLoading.value) {
+                            return const BrandsShimmer();
+                          }
+                          if (brandController.featuredBrands.isEmpty) {
+                            return Center(
+                              child: Text('No Brands Found',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .apply(color: Colors.white)),
+                            );
+                          }
+
                           return AGridLayout(
                               mainAxisExtent: 80,
-                              itemCount: 4,
+                              itemCount: brandController.featuredBrands.length,
                               itemBuilder: (_, index) {
+                                final brand = brandController.featuredBrands[index];
                                 return BrandCard(
+                                  brand: brand,
                                   showBorder: true,
                                   onTap: () => Get.to(() => BrandProducts()),
                                 );

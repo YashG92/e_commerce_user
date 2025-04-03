@@ -23,7 +23,7 @@ class BrandTitleText extends StatelessWidget {
       title,
       overflow: TextOverflow.ellipsis,
       maxLines: maxLine,
-      style: isLarge ? Theme.of(context).textTheme.headlineSmall : Theme.of(context).textTheme.labelMedium,
+      style: isLarge ? Theme.of(context).textTheme.titleSmall : Theme.of(context).textTheme.labelMedium,
     );
   }
 }
