@@ -115,8 +115,8 @@ class ProductDetailScreen extends StatelessWidget {
                             backgroundColor:
                                 dark ? AColors.darkerGrey : AColors.grey),
                         onPressed: () {},
-                        child: Text('Add to cart')))),
-            SizedBox(
+                        child: const Text('Add to cart')))),
+            const SizedBox(
               width: TSizes.spaceBtwItems,
             ),
             Expanded(

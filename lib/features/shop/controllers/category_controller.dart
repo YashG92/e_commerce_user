@@ -1,3 +1,5 @@
+import 'package:e_commerce_user/data/repositories/product/product_repository.dart';
+import 'package:e_commerce_user/features/shop/models/product_model.dart';
 import 'package:e_commerce_user/utils/popups/loaders.dart';
 import 'package:get/get.dart';
 
@@ -32,5 +34,11 @@ class CategoryController extends GetxController {
     }finally{
       isLoading.value = false;
     }
+  }
+
+  ///Get Category or Sub Categories Products
+  Future<List<ProductModel>> getCategoryProducts({required String categoryId,int limit = 4}) async{
+    final products = await ProductRepository.instance.getProductsForCategory(categoryId: categoryId,limit: limit);
+    return products;
   }
 }

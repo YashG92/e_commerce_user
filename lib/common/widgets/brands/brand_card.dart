@@ -1,6 +1,9 @@
+import 'package:e_commerce_user/common/widgets/texts/brand_title_text.dart';
 import 'package:e_commerce_user/features/shop/models/brand_model.dart';
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
 
+import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/image_strings.dart';
 import '../../../utils/constants/sizes.dart';
 import '../../../utils/helper/helper_functions.dart';
@@ -50,9 +53,18 @@ class BrandCard extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  BrandTitleWithVerifiedIcon(
-                    title: brand.name,
-                    isLarge: true,
+                  Row(
+                    children: [
+                      Flexible(child: Text(brand.name,overflow: TextOverflow.ellipsis,)),
+                      const SizedBox(
+                        width: TSizes.xs,
+                      ),
+                      const Icon(
+                        Iconsax.verify5,
+                        color: AColors.primary,
+                        size: TSizes.iconSm,
+                      ),
+                    ],
                   ),
                   Text(
                     '${brand.productsCount ?? 0} products',
