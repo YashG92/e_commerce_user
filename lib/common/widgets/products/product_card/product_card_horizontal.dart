@@ -51,10 +51,12 @@ class ProductCardHorizontal extends StatelessWidget {
                     SizedBox(
                       height: 120,
                       width: 120,
-                      child: RoundedImage(
-                        isNetworkImage: true,
-                        imageUrl: product.thumbnail,
-                        applyImageRadius: true,
+                      child: Center(
+                        child: RoundedImage(
+                          isNetworkImage: true,
+                          imageUrl: product.thumbnail,
+                          applyImageRadius: true,
+                        ),
                       ),
                     ),
 
