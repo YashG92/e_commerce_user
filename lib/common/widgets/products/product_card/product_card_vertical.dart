@@ -53,7 +53,7 @@ class ProductCardVertical extends StatelessWidget {
               ///Image favBtn DiscountTag
               RoundedContainer(
                 height: 172,
-                padding: EdgeInsets.all(TSizes.sm),
+                padding: const EdgeInsets.all(TSizes.sm),
                 backgroundColor: dark
                     ? Theme.of(context).scaffoldBackgroundColor
                     : AColors.light,

@@ -35,10 +35,25 @@ class CategoryController extends GetxController {
       isLoading.value = false;
     }
   }
+  ///Load selected category data
+  Future<List<CategoryModel>> getSubCategory(String categoryId)async{
+    try {
+      final categories = await _categoryRepository.getSubCategories(categoryId);
+      return categories;
+    } catch (e) {
+      Loaders.errorSnackBar(title: 'Oh Snap!',message: e.toString());
+      return [];
+    }
+  }
 
   ///Get Category or Sub Categories Products
   Future<List<ProductModel>> getCategoryProducts({required String categoryId,int limit = 4}) async{
-    final products = await ProductRepository.instance.getProductsForCategory(categoryId: categoryId,limit: limit);
-    return products;
+    try {
+      final products = await ProductRepository.instance.getProductsForCategory(categoryId: categoryId,limit: limit);
+      return products;
+    } catch (e) {
+      Loaders.errorSnackBar(title: 'Oh Snap!',message: e.toString());
+      return [];
+    }
   }
 }
