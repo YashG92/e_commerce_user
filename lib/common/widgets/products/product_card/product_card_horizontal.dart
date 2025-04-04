@@ -1,3 +1,5 @@
+import 'package:e_commerce_user/common/widgets/products/favorite_icon/favorite_icon.dart';
+import 'package:e_commerce_user/features/shop/models/product_model.dart';
 import 'package:e_commerce_user/utils/constants/image_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
@@ -13,7 +15,9 @@ import '../../texts/product_price_text.dart';
 import '../../texts/product_title_text.dart';
 
 class ProductCardHorizontal extends StatelessWidget {
-  const ProductCardHorizontal({super.key});
+  const ProductCardHorizontal({super.key, required this.product});
+
+  final ProductModel product;
 
   @override
   Widget build(BuildContext context) {
@@ -65,13 +69,7 @@ class ProductCardHorizontal extends StatelessWidget {
 
                   /// Favorite Icon Button
 
-                  Positioned(
-                      top: 0,
-                      right: 0,
-                      child: CircularIcon(
-                        icon: Iconsax.heart5,
-                        color: Colors.red,
-                      )),
+                   Positioned(top: 0, right: 0, child: FavoriteIcon(productId: product.id,)),
                 ],
               ),
             ),
@@ -96,9 +94,7 @@ class ProductCardHorizontal extends StatelessWidget {
                         BrandTitleWithVerifiedIcon(title: 'Nike'),
                       ],
                     ),
-
                     Spacer(),
-
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -111,13 +107,18 @@ class ProductCardHorizontal extends StatelessWidget {
                             color: AColors.dark,
                             borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(TSizes.cardRadiusMd),
-                              bottomRight: Radius.circular(TSizes.productImageRadius),
+                              bottomRight:
+                                  Radius.circular(TSizes.productImageRadius),
                             ),
                           ),
                           child: SizedBox(
-                              width: TSizes.iconLg *1.2,
-                              height: TSizes.iconLg*1.2,
-                              child: Center(child: Icon(Iconsax.add, color: AColors.white,))),
+                              width: TSizes.iconLg * 1.2,
+                              height: TSizes.iconLg * 1.2,
+                              child: Center(
+                                  child: Icon(
+                                Iconsax.add,
+                                color: AColors.white,
+                              ))),
                         ),
                       ],
                     ),

@@ -1,6 +1,7 @@
 import 'package:e_commerce_user/common/widgets/appbar/appbar.dart';
 import 'package:e_commerce_user/common/widgets/products/product_card/product_card_horizontal.dart';
 import 'package:e_commerce_user/common/widgets/products/product_card/product_card_vertical.dart';
+import 'package:e_commerce_user/features/shop/models/product_model.dart';
 import 'package:e_commerce_user/utils/constants/image_strings.dart';
 import 'package:flutter/material.dart';
 
@@ -50,7 +51,7 @@ class SubCategoriesScreen extends StatelessWidget {
                       separatorBuilder: (context,index) => SizedBox(width: TSizes.spaceBtwItems,),
                       itemCount: 5,
                       scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) => ProductCardHorizontal(),
+                      itemBuilder: (context, index) => ProductCardHorizontal(product: ProductModel.empty(),),
 
                     ),
                   ),

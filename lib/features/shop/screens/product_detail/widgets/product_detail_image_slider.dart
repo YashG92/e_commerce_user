@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:e_commerce_user/common/widgets/products/favorite_icon/favorite_icon.dart';
 import 'package:e_commerce_user/features/shop/controllers/product/images_controller.dart';
 import 'package:e_commerce_user/features/shop/models/product_model.dart';
 import 'package:flutter/material.dart';
@@ -60,11 +61,7 @@ class ProductImageSlider extends StatelessWidget {
             Positioned(
               top: 10,
               right: 10,
-              child: CircularIcon(
-                icon: Iconsax.heart5,
-                color: Colors.red,
-                size: 26,
-              ),
+              child: FavoriteIcon(productId: product.id,),
             ),
           ],
         ),

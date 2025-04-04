@@ -6,6 +6,7 @@ import 'package:e_commerce_user/utils/exceptions/firebase_auth_exceptions.dart';
 import 'package:e_commerce_user/utils/exceptions/firebase_exceptions.dart';
 import 'package:e_commerce_user/utils/exceptions/format_exceptions.dart';
 import 'package:e_commerce_user/utils/exceptions/platform_exceptions.dart';
+import 'package:e_commerce_user/utils/local_storage/storage_utility.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -32,7 +33,11 @@ class AuthenticationRepository extends GetxController {
     final user = _auth.currentUser;
     if(user!=null){
       if(user.emailVerified){
-        Get.offAll(()=>NavigationMenu());
+
+        //Initialize User Specific Storage
+        await TLocalStorage.init(user.uid);
+
+        Get.offAll(()=>const NavigationMenu());
       } else{Get.offAll(()=>VerifyEmailScreen(email: _auth.currentUser?.email));}
     }else{
       deviceStorage.writeIfNull('isFirstTime', true);
@@ -122,8 +127,6 @@ class AuthenticationRepository extends GetxController {
      catch(e){
        throw 'Something went wrong. Please try again';
      }
-     return null;
-
    }
 
   ///Delete User - Remove user Auth and Firestore Account

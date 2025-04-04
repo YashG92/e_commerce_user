@@ -1,4 +1,5 @@
 import 'package:e_commerce_user/common/widgets/images/rounded_image.dart';
+import 'package:e_commerce_user/common/widgets/products/favorite_icon/favorite_icon.dart';
 import 'package:e_commerce_user/features/shop/controllers/product/product_controller.dart';
 import 'package:e_commerce_user/features/shop/models/product_model.dart';
 import 'package:e_commerce_user/features/shop/screens/product_detail/product_detail.dart';
@@ -87,13 +88,10 @@ class ProductCardVertical extends StatelessWidget {
                       ),
 
                     ///Fav Icon Button
-                    Positioned(
+                     Positioned(
                       top: 0,
                       right: 0,
-                      child: CircularIcon(
-                        icon: Iconsax.heart5,
-                        color: Colors.red,
-                      ),
+                      child: FavoriteIcon(productId: product.id,),
                     )
                   ],
                 ),
