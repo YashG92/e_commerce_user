@@ -1,45 +1,71 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart%20%20';
 
 import '../../../../../common/widgets/products/cart/add_remove_button.dart';
 import '../../../../../common/widgets/products/cart/cart_item.dart';
 import '../../../../../common/widgets/texts/product_price_text.dart';
 import '../../../../../utils/constants/sizes.dart';
+import '../../../controllers/product/cart_controller.dart';
 
 class CartItems extends StatelessWidget {
-  const CartItems({super.key, required this.showAddRemoveButton});
+  const CartItems({
+    super.key,
+    this.showAddRemoveButton = true,
+  });
+
   final bool showAddRemoveButton;
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
+    final controller = CartController.instance;
+
+    return Obx(
+      () => ListView.separated(
+        itemCount: controller.cartItems.length,
         shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
-        itemBuilder: (_, index) => Column(
-          children: [
-            CartItem(),
-            if(showAddRemoveButton)SizedBox(height: TSizes.spaceBtwItems,),
-            if(showAddRemoveButton)
-              Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        physics: const NeverScrollableScrollPhysics(),
+        itemBuilder: (_, index) => Obx(
+          () {
+            final item = controller.cartItems[index];
+            return Column(
               children: [
-
-                Row(
-                  children: [
-                    SizedBox(width: 70,),
-                    ProductQuantityWithAddRemoveButton(),
-
-                  ],
+                CartItem(
+                  cartItem: item,
                 ),
-                ///Add remove buttons
+                if (showAddRemoveButton)
+                  const SizedBox(
+                    height: TSizes.spaceBtwItems,
+                  ),
+                if (showAddRemoveButton)
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: 70,
+                          ),
+                          ProductQuantityWithAddRemoveButton(
+                            quantity: item.quantity,
+                            add: () => controller.addOneToCart(item),
+                            remove: () => controller.removeOneFromCart(item),
+                          ),
+                        ],
+                      ),
 
-                ProductPriceText(price: '2,500'),
+                      ///Add remove buttons
+
+                      ProductPriceText(price: (item.price * item.quantity).toStringAsFixed(1)),
+                    ],
+                  ),
               ],
-            ),
-          ],
+            );
+          },
         ),
         separatorBuilder: (_, __) => SizedBox(
           height: TSizes.spaceBtwSections,
         ),
-        itemCount: 4);
+      ),
+    );
   }
 }

@@ -8,9 +8,11 @@ import '../../icons/circular_icon.dart';
 
 class ProductQuantityWithAddRemoveButton extends StatelessWidget {
   const ProductQuantityWithAddRemoveButton({
-    super.key,
+    super.key, required this.quantity, this.add, this.remove,
   });
 
+  final int quantity;
+  final VoidCallback? add, remove;
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +26,11 @@ class ProductQuantityWithAddRemoveButton extends StatelessWidget {
           size: TSizes.md,
           color: dark ? AColors.white : AColors.black,
           backgroundColor: dark ? AColors.darkerGrey : AColors.light,
+          onPressed: remove,
         ),
 
         SizedBox(width: TSizes.spaceBtwItems,),
-        Text('1',style: Theme.of(context).textTheme.titleSmall,),
+        Text(quantity.toString(),style: Theme.of(context).textTheme.titleSmall,),
         SizedBox(width: TSizes.spaceBtwItems,),
         CircularIcon(icon: Iconsax.add,
           width: 32,
@@ -35,6 +38,7 @@ class ProductQuantityWithAddRemoveButton extends StatelessWidget {
           size: TSizes.md,
           color: AColors.white,
           backgroundColor:AColors.primary,
+          onPressed: add,
         ),
 
       ],

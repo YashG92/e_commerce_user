@@ -2,6 +2,7 @@ import 'package:e_commerce_user/features/shop/controllers/product/product_variat
 import 'package:e_commerce_user/features/shop/models/product_model.dart';
 import 'package:e_commerce_user/utils/constants/enums.dart';
 import 'package:e_commerce_user/utils/popups/loaders.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../utils/local_storage/storage_utility.dart';
@@ -85,11 +86,11 @@ class CartController extends GetxController {
     if (index >= 0) {
       if (cartItems[index].quantity > 1) {
         cartItems[index].quantity -= 1;
+      } else {
+        cartItems[index].quantity == 1
+            ? removeFromCartDialog(index)
+            : cartItems.removeAt(index);
       }
-    } else {
-      cartItems[index].quantity == 1
-          ? removeFromCartDialog(index)
-          : cartItems.removeAt(index);
     }
     updateCart();
   }
@@ -178,6 +179,7 @@ class CartController extends GetxController {
 
   void removeFromCartDialog(int index) {
     Get.defaultDialog(
+      backgroundColor: Colors.white,
       title: 'Remove Item',
       middleText: 'Are you sure you want to remove this item from cart?',
       onConfirm: () {
