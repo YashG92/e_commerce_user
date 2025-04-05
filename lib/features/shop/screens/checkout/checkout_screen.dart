@@ -10,6 +10,7 @@ import 'package:e_commerce_user/utils/constants/colors.dart';
 import 'package:e_commerce_user/utils/constants/image_strings.dart';
 import 'package:e_commerce_user/utils/constants/sizes.dart';
 import 'package:e_commerce_user/utils/helper/helper_functions.dart';
+import 'package:e_commerce_user/utils/helper/pricing_calculator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -21,7 +22,10 @@ class CheckoutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
+    final cartController = CartController.instance;
+    final subTotal = cartController.totalCartSalePrice.value;
+    final total = cartController.totalCartPrice.value;
+    final totalAmount = TPricingCalculator.calculateTotalPrice(subTotal, 'India');
     final dark = HelperFunctions.isDarkMode(context);
     return Scaffold(
       appBar: CustomAppbar(
@@ -69,7 +73,7 @@ class CheckoutScreen extends StatelessWidget {
                     ///payment methods
                     BillingPaymentSection(),
                     SizedBox(
-                      height: TSizes.spaceBtwItems/2,
+                      height: TSizes.spaceBtwItems / 2,
                     ),
 
                     ///address
@@ -82,14 +86,19 @@ class CheckoutScreen extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all( TSizes.defaultSpace/2.5),
-        child: SizedBox(height: 60,
+        padding: const EdgeInsets.all(TSizes.defaultSpace / 2.5),
+        child: SizedBox(
+          height: 60,
           child: ElevatedButton(
-
-              onPressed: ()=>Get.to(()=>SuccessScreen(image: ImageStrings.successGif, title: 'Payment Success!', subTitle: 'Your order will be placed soon!',onPressed: ()=> Get.offAll(()=> NavigationMenu()),)), child: Text('Checkout ₹25,000')),
+              onPressed: () => Get.to(() => SuccessScreen(
+                    image: ImageStrings.successGif,
+                    title: 'Payment Success!',
+                    subTitle: 'Your order will be placed soon!',
+                    onPressed: () => Get.offAll(() => NavigationMenu()),
+                  )),
+              child: Text('Checkout ₹$totalAmount')),
         ),
       ),
-
     );
   }
 }
