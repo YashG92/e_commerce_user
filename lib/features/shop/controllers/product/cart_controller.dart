@@ -135,4 +135,10 @@ class CartController extends GetxController {
         orElse: () => CartItemModel.empty());
     return foundItem.quantity;
   }
+
+  void clearCart() {
+    productQuantityInCart.value = 0;
+    cartItems.clear();
+    updateCart();
+  }
 }
