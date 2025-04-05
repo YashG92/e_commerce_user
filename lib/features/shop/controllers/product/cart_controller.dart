@@ -5,6 +5,7 @@ import 'package:e_commerce_user/utils/popups/loaders.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../utils/helper/pricing_calculator.dart';
 import '../../../../utils/local_storage/storage_utility.dart';
 import '../../models/cart_item_model.dart';
 
@@ -14,6 +15,7 @@ class CartController extends GetxController {
   //Variables
   RxInt noOfCartItems = 0.obs;
   RxDouble totalCartPrice = 0.0.obs;
+  RxDouble totalCartSalePrice = 0.0.obs;
   RxInt productQuantityInCart = 0.obs;
   RxList<CartItemModel> cartItems = <CartItemModel>[].obs;
   final variationController = ProductVariationsController.instance;
@@ -103,6 +105,10 @@ class CartController extends GetxController {
     final variation = variationController.selectedVariation.value;
     final isVariation = variation.id.isNotEmpty;
     final price = isVariation
+        ?  variation.price
+        :  product.price;
+
+    final salePrice = isVariation
         ? variation.salePrice > 0.0
             ? variation.salePrice
             : variation.price
@@ -114,6 +120,7 @@ class CartController extends GetxController {
       productId: product.id,
       title: product.title,
       price: price,
+      salePrice: salePrice,
       quantity: quantity,
       variationId: variation.id,
       image: isVariation ? variation.image : product.thumbnail,
@@ -130,13 +137,16 @@ class CartController extends GetxController {
 
   void updateCartTotals() {
     double calculatedTotalPrice = 0.0;
+    double calculatedTotalSalePrice = 0.0;
     int calculatedNoOfItems = 0;
 
     for (var item in cartItems) {
       calculatedTotalPrice += (item.price) * item.quantity.toDouble();
+      calculatedTotalSalePrice += (item.salePrice) * item.quantity.toDouble();
       calculatedNoOfItems += item.quantity;
     }
 
+    totalCartSalePrice.value = calculatedTotalSalePrice;
     totalCartPrice.value = calculatedTotalPrice;
     noOfCartItems.value = calculatedNoOfItems;
   }
@@ -204,4 +214,5 @@ class CartController extends GetxController {
       }
     }
   }
+
 }

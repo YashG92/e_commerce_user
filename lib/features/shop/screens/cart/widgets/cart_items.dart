@@ -42,7 +42,7 @@ class CartItems extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             width: 70,
                           ),
                           ProductQuantityWithAddRemoveButton(
@@ -55,7 +55,13 @@ class CartItems extends StatelessWidget {
 
                       ///Add remove buttons
 
-                      ProductPriceText(price: (item.price * item.quantity).toStringAsFixed(1)),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ProductPriceText(price: (item.price * item.quantity).toStringAsFixed(1),lineThrough: true,),
+                          ProductPriceText(price: (item.salePrice * item.quantity).toStringAsFixed(1)),
+                        ],
+                      ),
                     ],
                   ),
               ],

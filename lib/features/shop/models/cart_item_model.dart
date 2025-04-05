@@ -2,6 +2,7 @@ class CartItemModel {
   String productId;
   String title;
   double price;
+  double salePrice;
   String? image;
   int quantity;
   String variationId;
@@ -14,6 +15,7 @@ class CartItemModel {
     this.variationId = '',
     this.image,
     this.price = 0.0,
+    this.salePrice = 0.0,
     this.title = '',
     this.brandName,
     this.selectedVariation,
@@ -31,6 +33,7 @@ class CartItemModel {
       'productId': productId,
       'title': title,
       'price': price,
+      'salePrice': salePrice,
       'image': image,
       'quantity': quantity,
       'variationId': variationId,
@@ -45,6 +48,7 @@ class CartItemModel {
       productId: json['productId'],
       title: json['title'],
       price: json['price'],
+      salePrice: json['salePrice'],
       image: json['image'],
       quantity: json['quantity'],
       variationId: json['variationId'],

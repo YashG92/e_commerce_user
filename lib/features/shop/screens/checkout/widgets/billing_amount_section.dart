@@ -1,12 +1,18 @@
 import 'package:e_commerce_user/common/widgets/texts/product_price_text.dart';
 import 'package:e_commerce_user/utils/constants/sizes.dart';
+import 'package:e_commerce_user/utils/helper/pricing_calculator.dart';
 import 'package:flutter/material.dart';
+
+import '../../../controllers/product/cart_controller.dart';
 
 class BillingAmountSection extends StatelessWidget {
   const BillingAmountSection({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final cartController = CartController.instance;
+    final subTotal = cartController.totalCartSalePrice.value;
+    final total = cartController.totalCartPrice.value;
     return Column(
       children: [
         ///subtotal
@@ -17,10 +23,10 @@ class BillingAmountSection extends StatelessWidget {
               'SubTotal',
               style: Theme.of(context).textTheme.bodyMedium,
             ),
-            ProductPriceText(price: '4200'),
+            ProductPriceText(price: '$total'),
           ],
         ),
-        SizedBox(
+        const SizedBox(
           height: TSizes.spaceBtwItems * 0.5,
         ),
         Row(
@@ -31,12 +37,12 @@ class BillingAmountSection extends StatelessWidget {
               style: Theme.of(context).textTheme.bodyMedium,
             ),
             ProductPriceText(
-              price: '640',
+              price: '${TPricingCalculator.calculateDiscountAmount(total, subTotal)}',
               isDiscount: true,
             ),
           ],
         ),
-        SizedBox(
+        const SizedBox(
           height: TSizes.spaceBtwItems * 0.5,
         ),
         Row(
@@ -46,10 +52,10 @@ class BillingAmountSection extends StatelessWidget {
               'Delivery Charges',
               style: Theme.of(context).textTheme.bodyMedium,
             ),
-            ProductPriceText(price: '40'),
+            ProductPriceText(price: TPricingCalculator.calculateShippingCost(subTotal, 'India')),
           ],
         ),
-        SizedBox(
+        const SizedBox(
           height: TSizes.spaceBtwItems * 0.5,
         ),
         Row(
@@ -59,7 +65,7 @@ class BillingAmountSection extends StatelessWidget {
               'Order Total',
               style: Theme.of(context).textTheme.bodyMedium,
             ),
-            ProductPriceText(price: '3500'),
+            ProductPriceText(price: '${TPricingCalculator.calculateTotalPrice(subTotal, 'India')}'),
           ],
         ),
       ],

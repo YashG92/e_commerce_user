@@ -51,7 +51,7 @@ class CartScreen extends StatelessWidget {
         },
       ),
       bottomNavigationBar: controller.cartItems.isEmpty
-          ? SizedBox()
+          ? const SizedBox()
           : Padding(
               padding: const EdgeInsets.only(
                 left: TSizes.defaultSpace,
@@ -63,7 +63,7 @@ class CartScreen extends StatelessWidget {
                 child: ElevatedButton(
                     onPressed: () => Get.to(() => CheckoutScreen()),
                     child: Obx(() =>
-                        Text('Checkout ₹${controller.totalCartPrice.value}'))),
+                        Text('Checkout ₹${controller.totalCartSalePrice.value}'))),
               ),
             ),
     );

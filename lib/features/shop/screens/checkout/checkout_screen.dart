@@ -1,5 +1,6 @@
 import 'package:e_commerce_user/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:e_commerce_user/common/widgets/success_screen/success_screen.dart';
+import 'package:e_commerce_user/features/shop/controllers/product/cart_controller.dart';
 import 'package:e_commerce_user/features/shop/screens/cart/widgets/cart_items.dart';
 import 'package:e_commerce_user/features/shop/screens/checkout/widgets/billing_address_section.dart';
 import 'package:e_commerce_user/features/shop/screens/checkout/widgets/billing_amount_section.dart';
@@ -20,6 +21,7 @@ class CheckoutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     final dark = HelperFunctions.isDarkMode(context);
     return Scaffold(
       appBar: CustomAppbar(
@@ -35,22 +37,22 @@ class CheckoutScreen extends StatelessWidget {
           child: Column(
             children: [
               CartItems(showAddRemoveButton: false),
-              SizedBox(
+              const SizedBox(
                 height: TSizes.spaceBtwSections,
               ),
 
               ///coupons
               CouponCode(),
-              SizedBox(
+              const SizedBox(
                 height: TSizes.spaceBtwSections,
               ),
 
               ///Billing Section
               RoundedContainer(
-                padding: EdgeInsets.all(TSizes.sm * 1.5),
+                padding: const EdgeInsets.all(TSizes.sm * 1.5),
                 showBorder: true,
                 backgroundColor: dark ? Colors.black : Colors.white,
-                child: Column(
+                child: const Column(
                   children: [
                     ///pricing
                     BillingAmountSection(),
