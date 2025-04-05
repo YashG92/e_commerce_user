@@ -118,6 +118,10 @@ class CartController extends GetxController {
       cartItems.assignAll(cartItemStrings.map((item) => CartItemModel.fromJson(item as Map<String, dynamic>)));
       updateCartTotals();
     }
-
+  }
+  
+  int getProductsQuantityInCart(String productId) {
+    final foundItem = cartItems.where((item)=> item.productId == productId).fold(0, (previousValue, element)=> previousValue + element.quantity);
+    return foundItem;
   }
 }
