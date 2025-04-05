@@ -1,6 +1,7 @@
 import 'package:e_commerce_user/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:e_commerce_user/common/widgets/success_screen/success_screen.dart';
 import 'package:e_commerce_user/features/shop/controllers/product/cart_controller.dart';
+import 'package:e_commerce_user/features/shop/controllers/product/order_controller.dart';
 import 'package:e_commerce_user/features/shop/screens/cart/widgets/cart_items.dart';
 import 'package:e_commerce_user/features/shop/screens/checkout/widgets/billing_address_section.dart';
 import 'package:e_commerce_user/features/shop/screens/checkout/widgets/billing_amount_section.dart';
@@ -11,6 +12,7 @@ import 'package:e_commerce_user/utils/constants/image_strings.dart';
 import 'package:e_commerce_user/utils/constants/sizes.dart';
 import 'package:e_commerce_user/utils/helper/helper_functions.dart';
 import 'package:e_commerce_user/utils/helper/pricing_calculator.dart';
+import 'package:e_commerce_user/utils/popups/loaders.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -25,7 +27,9 @@ class CheckoutScreen extends StatelessWidget {
     final cartController = CartController.instance;
     final subTotal = cartController.totalCartSalePrice.value;
     final total = cartController.totalCartPrice.value;
-    final totalAmount = TPricingCalculator.calculateTotalPrice(subTotal, 'India');
+    final orderController = Get.put(OrderController());
+    final totalAmount =
+        TPricingCalculator.calculateTotalPrice(subTotal, 'India');
     final dark = HelperFunctions.isDarkMode(context);
     return Scaffold(
       appBar: CustomAppbar(
@@ -90,12 +94,10 @@ class CheckoutScreen extends StatelessWidget {
         child: SizedBox(
           height: 60,
           child: ElevatedButton(
-              onPressed: () => Get.to(() => SuccessScreen(
-                    image: ImageStrings.successGif,
-                    title: 'Payment Success!',
-                    subTitle: 'Your order will be placed soon!',
-                    onPressed: () => Get.offAll(() => NavigationMenu()),
-                  )),
+              onPressed: subTotal > 0
+                  ? () => orderController.processOrder(totalAmount)
+                  : () => Loaders.warningSnackBar(
+                      title: 'Empty Cart', message: 'Your cart is empty'),
               child: Text('Checkout ₹$totalAmount')),
         ),
       ),

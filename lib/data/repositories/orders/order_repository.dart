@@ -1,0 +1,32 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:e_commerce_user/data/repositories/authentication/authentication_repository.dart';
+import 'package:get/get.dart';
+
+import '../../../features/shop/models/order_model.dart';
+
+class OrderRepository extends GetxController {
+  static OrderRepository get instance => Get.find();
+
+  final _db = FirebaseFirestore.instance;
+
+  Future<List<OrderModel>> fetchUserOrders() async {
+    try {
+      final userId = AuthenticationRepository.instance.authUser!.uid;
+      if(userId.isEmpty){
+        throw 'User not found';
+      }
+      final result = await _db.collection('Users').doc(userId).collection('Order').get();
+      return result.docs.map((documentSnapshot) => OrderModel.fromSnapshot(documentSnapshot)).toList();
+    } catch (e) {
+      throw 'Something went wrong while fetching orders.Try again later.';
+    }
+  }
+
+  Future<void> placeOrder(OrderModel order,String userId) async {
+    try {
+      await _db.collection('Users').doc(userId).collection('Order').add(order.toJson());
+    } catch (e) {
+      throw 'Something went wrong while placing order.Try again later.';
+    }
+  }
+}
