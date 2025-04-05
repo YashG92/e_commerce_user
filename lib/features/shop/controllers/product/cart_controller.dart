@@ -191,4 +191,17 @@ class CartController extends GetxController {
       onCancel: () => () => Get.back(),
     );
   }
+
+  void updateAlreadyAddedProductCount(ProductModel product){
+    if(product.productType == ProductType.single.toString()){
+      productQuantityInCart.value = getProductsQuantityInCart(product.id);
+    }else{
+      final variationId = variationController.selectedVariation.value.id;
+      if (variationId.isNotEmpty) {
+        productQuantityInCart.value = getVariationQuantityInCart(product.id, variationId);
+      }else{
+        productQuantityInCart.value = 0;
+      }
+    }
+  }
 }

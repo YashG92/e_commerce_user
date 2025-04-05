@@ -2,6 +2,8 @@ import 'package:e_commerce_user/common/widgets/appbar/appbar.dart';
 import 'package:e_commerce_user/common/widgets/custom_shapes/curved_edges/curved_edges_widget.dart';
 import 'package:e_commerce_user/common/widgets/images/rounded_image.dart';
 import 'package:e_commerce_user/common/widgets/texts/section_heading.dart';
+import 'package:e_commerce_user/features/shop/controllers/product/cart_controller.dart';
+import 'package:e_commerce_user/features/shop/screens/product_detail/widgets/bottom_add_to_cart.dart';
 import 'package:e_commerce_user/features/shop/screens/product_detail/widgets/product_attributes.dart';
 import 'package:e_commerce_user/features/shop/screens/product_detail/widgets/product_detail_image_slider.dart';
 import 'package:e_commerce_user/features/shop/screens/product_detail/widgets/product_meta_data.dart';
@@ -27,6 +29,7 @@ class ProductDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cartController = CartController.instance;
     final dark = HelperFunctions.isDarkMode(context);
     return Scaffold(
       appBar: CustomAppbar(
@@ -72,7 +75,9 @@ class ProductDetailScreen extends StatelessWidget {
                   ),
 
                   if (product.productType == ProductType.variable.toString())
-                    ProductAttributes(product: product,),
+                    ProductAttributes(
+                      product: product,
+                    ),
 
                   ///Reviews
                   const Divider(),
@@ -101,38 +106,7 @@ class ProductDetailScreen extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(TSizes.defaultSpace / 2.5),
-        child: Row(
-          children: [
-            Expanded(
-                child: SizedBox(
-                    height: 60,
-                    child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            foregroundColor:
-                                dark ? AColors.light : AColors.dark,
-                            backgroundColor:
-                                dark ? AColors.darkerGrey : AColors.grey),
-                        onPressed: () {},
-                        child: const Text('Add to cart')))),
-            const SizedBox(
-              width: TSizes.spaceBtwItems,
-            ),
-            Expanded(
-                child: SizedBox(
-                    height: 60,
-                    child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            foregroundColor:
-                                dark ? AColors.dark : AColors.light,
-                            backgroundColor:
-                                dark ? AColors.light : AColors.dark),
-                        onPressed: () {},
-                        child: Text('Buy now')))),
-          ],
-        ),
-      ),
+      bottomNavigationBar: BottomAddToCart(product: product),
     );
   }
 }
