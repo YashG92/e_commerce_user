@@ -1,5 +1,7 @@
 import 'package:e_commerce_user/common/widgets/texts/section_heading.dart';
+import 'package:e_commerce_user/features/personaliztion/controller/address_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart%20%20';
 
 import '../../../../../utils/constants/sizes.dart';
 
@@ -8,41 +10,43 @@ class BillingAddressSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = AddressController.instance;
     return Column(
       children: [
         SectionHeading(
           title: 'Shipping Address',
           buttonTitle: 'Change',
-          onPressed: () {},
+          onPressed: () =>controller.selectNewAddressPopup(context),
         ),
-        Column(
-
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Yash G',
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-            SizedBox(
-              height: TSizes.sm / 2,
-            ),
-            Text(
-              '+91 7698409883',
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-            SizedBox(
-              height: TSizes.sm / 2,
-            ),
-            Text(
-              '404 flat apartment society area city pincode india',
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-            //  style: Theme.of(context).textTheme.titleLarge,
-            ),
-          ],
+        Obx(
+          ()=> controller.selectedAddress.value.id.isNotEmpty? Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                controller.selectedAddress.value.name,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+              const SizedBox(
+                height: TSizes.sm / 2,
+              ),
+              Text(
+                controller.selectedAddress.value.phoneNumber,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+              const SizedBox(
+                height: TSizes.sm / 2,
+              ),
+              Text(
+                controller.selectedAddress.toString(),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              //  style: Theme.of(context).textTheme.titleLarge,
+              ),
+            ],
+          ) : const Text('Select Address'),
         ),
       ],
     );
