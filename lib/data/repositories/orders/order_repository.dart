@@ -15,7 +15,7 @@ class OrderRepository extends GetxController {
       if(userId.isEmpty){
         throw 'User not found';
       }
-      final result = await _db.collection('Users').doc(userId).collection('Order').get();
+      final result = await _db.collection('Users').doc(userId).collection('Orders').get();
       return result.docs.map((documentSnapshot) => OrderModel.fromSnapshot(documentSnapshot)).toList();
     } catch (e) {
       throw 'Something went wrong while fetching orders.Try again later.';
@@ -24,7 +24,8 @@ class OrderRepository extends GetxController {
 
   Future<void> placeOrder(OrderModel order,String userId) async {
     try {
-      await _db.collection('Users').doc(userId).collection('Order').add(order.toJson());
+      final placedOrder = await _db.collection('Users').doc(userId).collection('Orders').add(order.toJson());
+      await _db.collection('Orders').doc(placedOrder.id).set(order.toJson());
     } catch (e) {
       throw 'Something went wrong while placing order.Try again later.';
     }
