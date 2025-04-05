@@ -50,16 +50,15 @@ class CartController extends GetxController {
         cartItem.productId == selectedCartItem.productId &&
         cartItem.variationId == selectedCartItem.variationId);
 
-    if(index >= 0){
+    if (index >= 0) {
       cartItems[index].quantity = selectedCartItem.quantity;
-    }else{
+    } else {
       cartItems.add(selectedCartItem);
     }
 
     updateCart();
     Loaders.customToast(message: 'Product added to cart');
   }
-
 
   CartItemModel convertToCartItem(ProductModel product, int quantity) {
     if (product.productType == ProductType.single.toString()) {
@@ -98,7 +97,7 @@ class CartController extends GetxController {
     double calculatedTotalPrice = 0.0;
     int calculatedNoOfItems = 0;
 
-    for(var item in cartItems){
+    for (var item in cartItems) {
       calculatedTotalPrice += (item.price) * item.quantity.toDouble();
       calculatedNoOfItems += item.quantity;
     }
@@ -113,15 +112,27 @@ class CartController extends GetxController {
   }
 
   void loadCartItems() {
-    final cartItemStrings = TLocalStorage.instance().readData<List<dynamic>>('cartItems');
-    if(cartItemStrings != null){
-      cartItems.assignAll(cartItemStrings.map((item) => CartItemModel.fromJson(item as Map<String, dynamic>)));
+    final cartItemStrings =
+        TLocalStorage.instance().readData<List<dynamic>>('cartItems');
+    if (cartItemStrings != null) {
+      cartItems.assignAll(cartItemStrings
+          .map((item) => CartItemModel.fromJson(item as Map<String, dynamic>)));
       updateCartTotals();
     }
   }
-  
+
   int getProductsQuantityInCart(String productId) {
-    final foundItem = cartItems.where((item)=> item.productId == productId).fold(0, (previousValue, element)=> previousValue + element.quantity);
+    final foundItem = cartItems
+        .where((item) => item.productId == productId)
+        .fold(0, (previousValue, element) => previousValue + element.quantity);
     return foundItem;
+  }
+
+  int getVariationQuantityInCart(String productId, String variationId) {
+    final foundItem = cartItems.firstWhere(
+        (item) =>
+            item.productId == productId && item.variationId == variationId,
+        orElse: () => CartItemModel.empty());
+    return foundItem.quantity;
   }
 }
