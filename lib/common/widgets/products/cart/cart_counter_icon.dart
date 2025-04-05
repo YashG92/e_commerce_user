@@ -1,39 +1,49 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart%20%20';
 import 'package:iconsax/iconsax.dart';
 
+import '../../../../features/shop/controllers/product/cart_controller.dart';
 import '../../../../utils/constants/colors.dart';
+import '../../../../utils/helper/helper_functions.dart';
 
 class CartCounterIcon extends StatelessWidget {
-
-  final VoidCallback onPress;
-  final Color? iconColor;
+  final Color? iconColor, counterBgColor, counterTextColor;
 
   const CartCounterIcon({
-    super.key, required this.onPress, this.iconColor,
+    super.key,
+    this.iconColor,
+    this.counterBgColor,
+    this.counterTextColor,
   });
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(CartController());
+    final dark = HelperFunctions.isDarkMode(context);
     return Stack(children: [
-      Icon(Iconsax.shopping_cart,color: iconColor,),
+      Icon(
+        Iconsax.shopping_cart,
+        color: iconColor,
+      ),
       Positioned(
           right: 0,
-
           child: Container(
             height: 14,
             width: 14,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(14),
-                color: AColors.black.withOpacity(0.5)),
+                color:
+                    counterBgColor ?? (dark ? AColors.white : AColors.black)),
             child: Center(
-
-                child: Text(
-                  '2',
-                  style: Theme.of(context)
-                      .textTheme
-                      .labelLarge!
-                      .apply(color: AColors.white,fontSizeFactor: 0.8),
-                )),
+                child: Obx(
+              () => Text(
+                controller.noOfCartItems.value.toString(),
+                style: Theme.of(context).textTheme.labelLarge!.apply(
+                    color: counterTextColor ??
+                        (dark ? AColors.black : AColors.white),
+                    fontSizeFactor: 0.8),
+              ),
+            )),
           ))
     ]);
   }
