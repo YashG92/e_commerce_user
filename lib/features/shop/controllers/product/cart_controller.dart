@@ -4,6 +4,7 @@ import 'package:e_commerce_user/utils/constants/enums.dart';
 import 'package:e_commerce_user/utils/popups/loaders.dart';
 import 'package:get/get.dart';
 
+import '../../../../utils/local_storage/storage_utility.dart';
 import '../../models/cart_item_model.dart';
 
 class CartController extends GetxController {
@@ -40,7 +41,25 @@ class CartController extends GetxController {
         return;
       }
     }
+
+    final selectedCartItem =
+        convertToCartItem(product, productQuantityInCart.value);
+
+    //Check if product is already in cart
+    int index = cartItems.indexWhere((cartItem) =>
+        cartItem.productId == selectedCartItem.productId &&
+        cartItem.variationId == selectedCartItem.variationId);
+
+    if(index >= 0){
+      cartItems[index].quantity = selectedCartItem.quantity;
+    }else{
+      cartItems.add(selectedCartItem);
+    }
+
+    updateCart();
+    Loaders.customToast(message: 'Product added to cart');
   }
+
 
   CartItemModel convertToCartItem(ProductModel product, int quantity) {
     if (product.productType == ProductType.single.toString()) {
@@ -67,5 +86,29 @@ class CartController extends GetxController {
       brandName: product.brand != null ? product.brand!.name : '',
       selectedVariation: isVariation ? variation.attributeValues : null,
     );
+  }
+
+  void updateCart() {
+    updateCartTotals();
+    saveCartItems();
+    cartItems.refresh();
+  }
+
+  void updateCartTotals() {
+    double calculatedTotalPrice = 0.0;
+    int calculatedNoOfItems = 0;
+
+    for(var item in cartItems){
+      calculatedTotalPrice += (item.price) * item.quantity.toDouble();
+      calculatedNoOfItems += item.quantity;
+    }
+
+    totalCartPrice.value = calculatedTotalPrice;
+    noOfCartItems.value = calculatedNoOfItems;
+  }
+
+  void saveCartItems() {
+    final cartItemStrings = cartItems.map((item) => item.toJson()).toList();
+    TLocalStorage.instance().saveData('cartItems', cartItemStrings);
   }
 }
