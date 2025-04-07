@@ -79,6 +79,7 @@ class ProductController extends GetxController {
 
   ///Calculate Discount Percentage
   String? calculateSalePercentage(double originalPrice, double? salePrice) {
+
     if (salePrice == null || salePrice <= 0.0) {
       return null;
     }

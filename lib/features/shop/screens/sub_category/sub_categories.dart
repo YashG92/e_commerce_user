@@ -42,7 +42,7 @@ class SubCategoriesScreen extends StatelessWidget {
                 width: double.infinity,
                 applyImageRadius: true,
               ),
-              SizedBox(
+              const SizedBox(
                 height: TSizes.spaceBtwSections,
               ),
 

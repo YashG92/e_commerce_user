@@ -33,10 +33,10 @@ class VerticalImageText extends StatelessWidget {
           children: [
             CircularImage(
               fit: BoxFit.fitWidth,
-              padding: TSizes.sm * 1.4,
+              padding: TSizes.sm/20,
               isNetworkImage: isNetworkImage,
               backgroundColor: backgroundColor,
-              overlayColor: HelperFunctions.isDarkMode(context)? AColors.light : AColors.dark,
+              //overlayColor: HelperFunctions.isDarkMode(context)? AColors.light : AColors.dark,
               image: image,
             ),
             const SizedBox(

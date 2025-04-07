@@ -95,11 +95,8 @@ class LoginController extends GetxController{
       //Google authentication
       final userCredentials = await AuthenticationRepository.instance.googleSignIn();
       //save user record
-      print('=====================user save starting ==============================');
 
       await userController.saveUserData(userCredentials);
-      print(userCredentials);
-      print('=====================user done ==============================');
 
 
       FullScreenLoader.stopLoading();

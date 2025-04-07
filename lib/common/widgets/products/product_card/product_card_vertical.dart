@@ -31,6 +31,8 @@ class ProductCardVertical extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final productController = ProductController.instance;
+    print(product.price);
+    print(product.salePrice);
     final salePercentage = productController.calculateSalePercentage(
         product.price, product.salePrice);
     final dark = HelperFunctions.isDarkMode(context);

@@ -12,7 +12,7 @@ class OrderModel {
   final double totalAmount;
   final DateTime orderDate;
   final String paymentMethod;
-  final AddressModel? address;
+  final AddressModel? shippingAddress;
   final DateTime? deliveryDate;
   final List<CartItemModel> items;
 
@@ -24,7 +24,7 @@ class OrderModel {
     required this.totalAmount,
     required this.orderDate,
     this.paymentMethod = 'GPay',
-    this.address,
+    this.shippingAddress,
     this.deliveryDate,
   });
 
@@ -48,7 +48,7 @@ class OrderModel {
       'totalAmount': totalAmount,
       'orderDate': orderDate,
       'paymentMethod': paymentMethod,
-      'address': address?.toJson(),
+      'shippingAddress': shippingAddress?.toJson(),
       'deliveryDate': deliveryDate,
       'items': items.map((item) => item.toJson()).toList(),
     };
@@ -64,7 +64,7 @@ class OrderModel {
       totalAmount : data['totalAmount'] as double,
       orderDate : (data['orderDate'] as Timestamp).toDate(),
       paymentMethod : data['paymentMethod'] as String,
-      address : AddressModel.fromMap(data['address'] as Map<String, dynamic>),
+      shippingAddress : AddressModel.fromMap(data['shippingAddress'] as Map<String, dynamic>),
       deliveryDate : data['deliveryDate'] != null ? (data['deliveryDate'] as Timestamp).toDate() : null,
       items : (data['items'] as List<dynamic>).map((item) => CartItemModel.fromJson(item as Map<String, dynamic>)).toList(),
     );

@@ -7,10 +7,13 @@ import 'package:e_commerce_user/utils/constants/colors.dart';
 import 'package:e_commerce_user/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart%20%20';
+import 'package:readmore/readmore.dart';
 
 import '../../../../../common/widgets/chips/choice_chip.dart';
 import '../../../../../utils/helper/helper_functions.dart';
 import '../../../controllers/product/product_variations_controller.dart';
+
+// ... (previous imports remain the same)
 
 class ProductAttributes extends StatelessWidget {
   const ProductAttributes({super.key, required this.product});
@@ -21,6 +24,7 @@ class ProductAttributes extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(ProductVariationsController());
     final dark = HelperFunctions.isDarkMode(context);
+
     return Obx(
       () => Column(
         children: [
@@ -29,113 +33,118 @@ class ProductAttributes extends StatelessWidget {
               padding: const EdgeInsets.all(TSizes.md),
               backgroundColor: dark ? AColors.darkerGrey : AColors.grey,
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start, // Added
                 children: [
-                  ///Title, price stock status
-                  Column(
+                  /// Title, price and stock status
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start, // Added
                     children: [
-                      Row(
-                        children: [
-                          const SectionHeading(
-                            title: 'Variations',
-                            showActionButton: false,
-                          ),
-                          const SizedBox(
-                            width: TSizes.spaceBtwItems,
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  const ProductTitleText(
-                                    title: 'Price : ',
-                                    smallSize: true,
-                                  ),
-
-                                  const SizedBox(
-                                    width: TSizes.spaceBtwItems / 4,
-                                  ),
-
-                                  ///Actual Price
-                                  if (controller
-                                          .selectedVariation.value.salePrice >
-                                      0)
-                                    Text(
-                                      '${controller.selectedVariation.value.price}',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleSmall!
-                                          .apply(
-                                              decoration:
-                                                  TextDecoration.lineThrough),
+                      const SectionHeading(
+                        title: 'Variations',
+                        showActionButton: false,
+                      ),
+                      const SizedBox(width: TSizes.spaceBtwItems),
+                      Expanded(
+                        // This ensures the column takes remaining space
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            /// Price Row
+                            Row(
+                              children: [
+                                const ProductTitleText(
+                                  title: 'Price : ',
+                                  smallSize: true,
+                                ),
+                                const SizedBox(width: TSizes.spaceBtwItems / 4),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    if (controller
+                                            .selectedVariation.value.salePrice >
+                                        0)
+                                      Text(
+                                        '${controller.selectedVariation.value.price}',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleSmall!
+                                            .apply(
+                                                decoration:
+                                                    TextDecoration.lineThrough),
+                                      ),
+                                    ProductPriceText(
+                                      price: controller.getVariationPrice(),
                                     ),
-                                  const SizedBox(
-                                    width: TSizes.spaceBtwItems / 4,
-                                  ),
+                                  ],
+                                ),
+                              ],
+                            ),
 
-                                  ///Sale Price
-                                  ProductPriceText(
-                                    price: controller.getVariationPrice(),
-                                  ),
-                                ],
+                            /// Stock Row
+                            Row(
+                              children: [
+                                const ProductTitleText(
+                                  title: 'Stock : ',
+                                  smallSize: true,
+                                ),
+                                Text(
+                                  controller.variationStockStatus.value,
+                                  style:
+                                      Theme.of(context).textTheme.titleMedium,
+                                ),
+                              ],
+                            ),
+
+                            /// Description - Fixed with proper constraints
+                            Padding(
+                              padding: const EdgeInsets.only(top: TSizes.sm),
+                              child: SizedBox(
+                                width: double.infinity, // Takes full width
+                                child: ReadMoreText(
+                                  controller.selectedVariation.value
+                                          .description ??
+                                      '',
+                                  trimLines: 2,
+                                  trimMode: TrimMode.Line,
+                                  trimExpandedText: ' show less',
+                                  trimCollapsedText: ' show more',
+                                  moreStyle: const TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold,
+                                      color: AColors.primary),
+                                  lessStyle: const TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold,
+                                      color: AColors.primary),
+                                ),
                               ),
-
-                              ///Stock
-
-                              Row(
-                                children: [
-                                  const ProductTitleText(
-                                    title: 'Stock : ',
-                                    smallSize: true,
-                                  ),
-                                  Text(
-                                    controller.variationStockStatus.value,
-                                    style:
-                                        Theme.of(context).textTheme.titleMedium,
-                                  )
-                                ],
-                              ),
-
-                              ProductTitleText(
-                                title: controller
-                                        .selectedVariation.value.description ??
-                                    '',
-                                smallSize: true,
-                                maxLines: 4,
-                              ),
-                            ],
-                          ),
-                        ],
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
                 ],
               ),
             ),
-          const SizedBox(
-            height: TSizes.spaceBtwItems,
-          ),
+          const SizedBox(height: TSizes.spaceBtwItems),
 
-          ///Attributes
+          /// Attributes
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: product.productAttributes!
-                .map(
-                  (attribute) => Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SectionHeading(
-                        title: attribute.name ?? '',
-                        showActionButton: false,
-                      ),
-                      const SizedBox(
-                        height: TSizes.spaceBtwItems,
-                      ),
-                      Obx(
-                        () => Wrap(
-                          spacing: 8,
-                          children: attribute.values!.map(
-                            (attributeValue) {
+                .map((attribute) => Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SectionHeading(
+                          title: attribute.name ?? '',
+                          showActionButton: false,
+                        ),
+                        const SizedBox(height: TSizes.spaceBtwItems),
+                        Obx(
+                          () => Wrap(
+                            spacing: 8,
+                            children: attribute.values!.map((attributeValue) {
                               final isSelected = controller
                                       .selectedAttributes[attribute.name] ==
                                   attributeValue;
@@ -159,15 +168,13 @@ class ProductAttributes extends StatelessWidget {
                                       }
                                     : null,
                               );
-                            },
-                          ).toList(),
+                            }).toList(),
+                          ),
                         ),
-                      )
-                    ],
-                  ),
-                )
+                      ],
+                    ))
                 .toList(),
-          )
+          ),
         ],
       ),
     );

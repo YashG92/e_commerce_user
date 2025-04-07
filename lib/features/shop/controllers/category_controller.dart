@@ -27,7 +27,7 @@ class CategoryController extends GetxController {
       allCategories.assignAll(categories);
       featuredCategories.assignAll(allCategories
           .where((category) => category.isFeatured && category.parentId.isEmpty)
-          .take(8));
+          );
     } catch (e) {
       Loaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
       isLoading.value = false;

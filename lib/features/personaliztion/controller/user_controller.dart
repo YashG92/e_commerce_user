@@ -68,7 +68,6 @@ class UserController extends GetxController {
         // Save user data to Firestore
         await userRepository.saveUserData(user);
         this.user(user); // Update the observable user model
-        print('User data saved successfully.');
       }
     } catch (e) {
       Loaders.warningSnackBar(
