@@ -38,7 +38,9 @@ class SubCategoriesScreen extends StatelessWidget {
             children: [
               ///Banner
               RoundedImage(
-                imageUrl: ImageStrings.banner_1,
+                padding: EdgeInsets.all(TSizes.md),
+                isNetworkImage: true,
+                imageUrl: category.image,
                 width: double.infinity,
                 applyImageRadius: true,
               ),

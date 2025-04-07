@@ -27,9 +27,17 @@ class ProductCardHorizontal extends StatelessWidget {
         product.price, product.salePrice);
     final dark = HelperFunctions.isDarkMode(context);
     return GestureDetector(
-      onTap: () => Get.to(() => ProductDetailScreen(
-        product: product,
-      )),
+      onTap: () {
+        precacheImage(NetworkImage(product.thumbnail), Get.context!);
+
+        Get.to(
+          () => ProductDetailScreen(product: product),
+          transition: Transition.cupertino, // Smohest built-in transition
+          duration: const Duration(milliseconds: 500), // Optimal duration
+          curve: Curves.fastOutSlowIn, // Best curve for smoothness
+          popGesture: true, // Enable iOS-style swipe back
+        );
+      },
       child: Card(
         elevation: 2,
         child: Container(
@@ -52,10 +60,13 @@ class ProductCardHorizontal extends StatelessWidget {
                       height: 120,
                       width: 120,
                       child: Center(
-                        child: RoundedImage(
-                          isNetworkImage: true,
-                          imageUrl: product.thumbnail,
-                          applyImageRadius: true,
+                        child: Hero(
+                          tag: product.id,
+                          child: RoundedImage(
+                            isNetworkImage: true,
+                            imageUrl: product.thumbnail,
+                            applyImageRadius: true,
+                          ),
                         ),
                       ),
                     ),
@@ -95,7 +106,8 @@ class ProductCardHorizontal extends StatelessWidget {
               SizedBox(
                 width: 132,
                 child: Padding(
-                  padding: const EdgeInsets.only(top: TSizes.sm, left: TSizes.sm),
+                  padding:
+                      const EdgeInsets.only(top: TSizes.sm, left: TSizes.sm),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -109,7 +121,8 @@ class ProductCardHorizontal extends StatelessWidget {
                           const SizedBox(
                             height: TSizes.spaceBtwItems / 2,
                           ),
-                          BrandTitleWithVerifiedIcon(title: product.brand!.name),
+                          BrandTitleWithVerifiedIcon(
+                              title: product.brand!.name),
                         ],
                       ),
                       const Spacer(),
@@ -122,23 +135,27 @@ class ProductCardHorizontal extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 if (product.productType ==
-                                    ProductType.single.toString() &&
+                                        ProductType.single.toString() &&
                                     product.salePrice > 0)
                                   Padding(
-                                    padding: const EdgeInsets.only(left: TSizes.sm),
+                                    padding:
+                                        const EdgeInsets.only(left: TSizes.sm),
                                     child: Text(
                                       product.price.toString(),
                                       style: Theme.of(context)
                                           .textTheme
                                           .labelMedium
                                           ?.apply(
-                                          decoration: TextDecoration.lineThrough),
+                                              decoration:
+                                                  TextDecoration.lineThrough),
                                     ),
                                   ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: TSizes.sm),
+                                  padding:
+                                      const EdgeInsets.only(left: TSizes.sm),
                                   child: ProductPriceText(
-                                    price: productController.getProductPrice(product),
+                                    price: productController
+                                        .getProductPrice(product),
                                     isLarge: false,
                                   ),
                                 ),
@@ -149,8 +166,10 @@ class ProductCardHorizontal extends StatelessWidget {
                             decoration: BoxDecoration(
                                 color: dark ? Colors.blue : AColors.black,
                                 borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(TSizes.cardRadiusMd),
-                                    bottomRight: Radius.circular(TSizes.cardRadiusMd))),
+                                    topLeft:
+                                        Radius.circular(TSizes.cardRadiusMd),
+                                    bottomRight:
+                                        Radius.circular(TSizes.cardRadiusMd))),
                             child: SizedBox(
                                 height: TSizes.iconLg,
                                 width: TSizes.iconLg,

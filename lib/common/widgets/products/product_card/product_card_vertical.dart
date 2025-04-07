@@ -31,15 +31,19 @@ class ProductCardVertical extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final productController = ProductController.instance;
-    print(product.price);
-    print(product.salePrice);
     final salePercentage = productController.calculateSalePercentage(
         product.price, product.salePrice);
     final dark = HelperFunctions.isDarkMode(context);
     return GestureDetector(
-      onTap: () => Get.to(() => ProductDetailScreen(
-            product: product,
-          ),transition: Transition.fadeIn,duration: const Duration(milliseconds: 300),curve: Curves.easeInOut),
+      onTap: () {precacheImage(NetworkImage(product.thumbnail), Get.context!);
+
+      Get.to(
+            () => ProductDetailScreen(product: product),
+        //transition: Transition.cupertino, // Smohest built-in transition
+        duration: const Duration(milliseconds: 500), // Optimal duration
+        curve: Curves.fastOutSlowIn, // Best curve for smoothness
+        popGesture: true, // Enable iOS-style swipe back
+      );},
       child: Card(
         elevation: 5,
         shadowColor: dark ? AColors.darkerGrey : Colors.black,
