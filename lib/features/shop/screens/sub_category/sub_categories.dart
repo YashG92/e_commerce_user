@@ -38,7 +38,7 @@ class SubCategoriesScreen extends StatelessWidget {
             children: [
               ///Banner
               RoundedImage(
-                padding: EdgeInsets.all(TSizes.md),
+                padding: const EdgeInsets.all(TSizes.md),
                 isNetworkImage: true,
                 imageUrl: category.image,
                 width: double.infinity,
@@ -82,6 +82,7 @@ class SubCategoriesScreen extends StatelessWidget {
                                       title: subCategory.name,
                                       onPressed: () => Get.to(
                                         () => AllProducts(
+                                          subCategory: subCategory,
                                           title: subCategory.name,
                                           futureMethod:
                                               controller.getCategoryProducts(

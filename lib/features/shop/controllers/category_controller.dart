@@ -28,6 +28,7 @@ class CategoryController extends GetxController {
       featuredCategories.assignAll(allCategories
           .where((category) => category.isFeatured && category.parentId.isEmpty)
           );
+      featuredCategories.sort((a, b) => a.name.compareTo(b.name));
     } catch (e) {
       Loaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
       isLoading.value = false;
