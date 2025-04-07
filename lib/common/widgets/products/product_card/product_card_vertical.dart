@@ -39,7 +39,7 @@ class ProductCardVertical extends StatelessWidget {
     return GestureDetector(
       onTap: () => Get.to(() => ProductDetailScreen(
             product: product,
-          )),
+          ),transition: Transition.fadeIn,duration: const Duration(milliseconds: 300),curve: Curves.easeInOut),
       child: Card(
         elevation: 5,
         shadowColor: dark ? AColors.darkerGrey : Colors.black,
@@ -64,10 +64,13 @@ class ProductCardVertical extends StatelessWidget {
                   children: [
                     ///Thumbnail Image
                     Center(
-                      child: RoundedImage(
-                        imageUrl: product.thumbnail,
-                        applyImageRadius: true,
-                        isNetworkImage: true,
+                      child: Hero(
+                        tag: product.id,
+                        child: RoundedImage(
+                          imageUrl: product.thumbnail,
+                          applyImageRadius: true,
+                          isNetworkImage: true,
+                        ),
                       ),
                     ),
 
