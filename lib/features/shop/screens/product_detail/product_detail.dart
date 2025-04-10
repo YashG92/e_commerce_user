@@ -5,6 +5,7 @@ import 'package:e_commerce_user/common/widgets/texts/section_heading.dart';
 import 'package:e_commerce_user/features/shop/controllers/product/cart_controller.dart';
 import 'package:e_commerce_user/features/shop/screens/product_detail/widgets/bottom_add_to_cart.dart';
 import 'package:e_commerce_user/features/shop/screens/product_detail/widgets/product_attributes.dart';
+import 'package:e_commerce_user/features/shop/screens/product_detail/widgets/product_variation_attributes.dart';
 import 'package:e_commerce_user/features/shop/screens/product_detail/widgets/product_detail_image_slider.dart';
 import 'package:e_commerce_user/features/shop/screens/product_detail/widgets/product_meta_data.dart';
 import 'package:e_commerce_user/features/shop/screens/product_detail/widgets/rating_share_widget.dart';
@@ -73,9 +74,13 @@ class ProductDetailScreen extends StatelessWidget {
                   const SizedBox(
                     height: TSizes.spaceBtwItems,
                   ),
+                  if (product.productType == ProductType.single.toString())
+                    ProductAttributes(
+                      product: product,
+                    ),
 
                   if (product.productType == ProductType.variable.toString())
-                    ProductAttributes(
+                    ProductVariationAttributes(
                       product: product,
                     ),
 

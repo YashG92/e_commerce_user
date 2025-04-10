@@ -37,7 +37,7 @@ class ProductImageSlider extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               backgroundColor: dark ? AColors.darkerGrey : AColors.white,
               child: Padding(
-                padding: const EdgeInsets.all(TSizes.productImageRadius * 2),
+                padding: const EdgeInsets.all(TSizes.productImageRadius /2),
                 child: Center(
                   child: Obx(
                     () {
