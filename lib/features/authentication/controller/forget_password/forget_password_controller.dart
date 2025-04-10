@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:e_commerce_user/data/repositories/authentication/authentication_repository.dart';
 import 'package:e_commerce_user/features/authentication/screens/password_configuration/reset_password.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart%20%20';
+import 'package:get/get.dart';
 
 import '../../../../common/widgets/loaders/full_screen_loader.dart';
 import '../../../../utils/constants/image_strings.dart';

@@ -1,6 +1,6 @@
 import 'package:e_commerce_user/features/shop/models/product_model.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart%20%20';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../../features/shop/controllers/all_products_controller.dart';

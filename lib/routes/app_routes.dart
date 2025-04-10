@@ -10,7 +10,7 @@ import 'package:e_commerce_user/features/shop/screens/order/order.dart';
 import 'package:e_commerce_user/features/shop/screens/product_reviews/product_review.dart';
 import 'package:e_commerce_user/features/shop/screens/wishlist/wishlist.dart';
 import 'package:e_commerce_user/routes/routes.dart';
-import 'package:get/get.dart%20%20';
+import 'package:get/get.dart';
 
 import '../features/authentication/screens/signup/verify_email.dart';
 import '../features/personaliztion/screens/settings/settings.dart';

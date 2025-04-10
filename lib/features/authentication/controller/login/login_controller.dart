@@ -1,9 +1,7 @@
 import 'package:e_commerce_user/features/personaliztion/controller/user_controller.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart%20%20';
+import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-
 import '../../../../common/widgets/loaders/full_screen_loader.dart';
 import '../../../../data/repositories/authentication/authentication_repository.dart';
 import '../../../../utils/constants/image_strings.dart';

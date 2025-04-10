@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart%20%20';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../../../utils/constants/colors.dart';
@@ -58,7 +58,7 @@ class ProductCardAddToCartButton extends StatelessWidget {
                               .bodyLarge!
                               .apply(color: Colors.white),
                         )
-                      : Icon(
+                      : const Icon(
                           Iconsax.add,
                           color: AColors.white,
                         ),

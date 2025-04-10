@@ -3,7 +3,7 @@ import 'package:e_commerce_user/features/personaliztion/model/user_model.dart';
 import 'package:e_commerce_user/utils/constants/image_strings.dart';
 import 'package:e_commerce_user/utils/popups/loaders.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart%20%20';
+import 'package:get/get.dart';
 
 import '../../../../data/repositories/authentication/authentication_repository.dart';
 import '../../../../data/repositories/user/user_repository.dart';

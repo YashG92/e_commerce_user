@@ -4,7 +4,7 @@ import 'package:e_commerce_user/data/repositories/product/product_repository.dar
 import 'package:e_commerce_user/features/shop/models/product_model.dart';
 import 'package:e_commerce_user/utils/local_storage/storage_utility.dart';
 import 'package:e_commerce_user/utils/popups/loaders.dart';
-import 'package:get/get.dart%20%20';
+import 'package:get/get.dart';
 
 class FavoritesController extends GetxController {
   static FavoritesController get instance => Get.find();

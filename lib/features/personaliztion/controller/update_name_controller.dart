@@ -1,8 +1,7 @@
 import 'package:e_commerce_user/data/repositories/user/user_repository.dart';
 import 'package:e_commerce_user/features/personaliztion/controller/user_controller.dart';
-import 'package:e_commerce_user/features/personaliztion/screens/settings/widgets/user_profile.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart%20%20';
+import 'package:get/get.dart';
 
 import '../../../common/widgets/loaders/full_screen_loader.dart';
 import '../../../utils/constants/image_strings.dart';

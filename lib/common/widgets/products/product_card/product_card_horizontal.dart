@@ -1,7 +1,7 @@
 import 'package:e_commerce_user/common/widgets/products/favorite_icon/favorite_icon.dart';
 import 'package:e_commerce_user/features/shop/models/product_model.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart%20%20';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import '../../../../features/shop/controllers/product/product_controller.dart';
 import '../../../../features/shop/screens/product_detail/product_detail.dart';

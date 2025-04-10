@@ -1,6 +1,6 @@
 import 'package:e_commerce_user/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart%20%20';
+import 'package:get/get.dart';
 
 import '../../../../../utils/helper/helper_functions.dart';
 import '../../../controller/signup/signup_controller.dart';

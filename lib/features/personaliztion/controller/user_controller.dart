@@ -7,9 +7,8 @@ import 'package:e_commerce_user/features/personaliztion/screens/profile/widgets/
 import 'package:e_commerce_user/utils/constants/image_strings.dart';
 import 'package:e_commerce_user/utils/constants/sizes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart%20%20';
+import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -137,7 +136,7 @@ class UserController extends GetxController {
 
       //First re auth user
       final auth = AuthenticationRepository.instance;
-      final provider = auth.authUser!
+      final provider = auth.authUser
           .providerData
           .map((e) => e.providerId)
           .first;
