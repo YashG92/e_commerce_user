@@ -13,7 +13,7 @@ class App extends StatelessWidget {
     return GetMaterialApp(
       initialBinding: GeneralBindings(),
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'VY Store',
       themeMode: ThemeMode.system,
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
