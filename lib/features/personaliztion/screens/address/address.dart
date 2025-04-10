@@ -1,11 +1,10 @@
 import 'package:e_commerce_user/common/widgets/appbar/appbar.dart';
-import 'package:e_commerce_user/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:e_commerce_user/features/personaliztion/screens/address/widgets/single_address.dart';
 import 'package:e_commerce_user/utils/constants/colors.dart';
 import 'package:e_commerce_user/utils/constants/sizes.dart';
 import 'package:e_commerce_user/utils/helper/cloud_helper_functions.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart  ';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../controller/address_controller.dart';
