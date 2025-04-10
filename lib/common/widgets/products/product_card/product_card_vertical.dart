@@ -63,7 +63,7 @@ class ProductCardVertical extends StatelessWidget {
                 padding: const EdgeInsets.all(TSizes.sm),
                 backgroundColor: dark
                     ? Theme.of(context).scaffoldBackgroundColor
-                    : AColors.light,
+                    : AColors.white,
                 child: Stack(
                   children: [
                     ///Thumbnail Image

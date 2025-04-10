@@ -35,7 +35,7 @@ class ProductImageSlider extends StatelessWidget {
             RoundedContainer(
               height: MediaQuery.of(context).size.height * .5,
               width: MediaQuery.of(context).size.width,
-              backgroundColor: dark ? AColors.darkerGrey : AColors.light,
+              backgroundColor: dark ? AColors.darkerGrey : AColors.white,
               child: Padding(
                 padding: const EdgeInsets.all(TSizes.productImageRadius * 2),
                 child: Center(

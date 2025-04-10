@@ -39,20 +39,20 @@ class ProductCardHorizontal extends StatelessWidget {
         );
       },
       child: Card(
-        elevation: 2,
+        elevation: 5,
         child: Container(
           width: 270,
           padding: const EdgeInsets.all(1),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(TSizes.productImageRadius),
-              color: dark ? AColors.darkerGrey : AColors.lightContainer),
+              color: dark ? AColors.darkerGrey : AColors.white),
           child: Row(
             children: [
               /// Thumbnail
               RoundedContainer(
                 height: 120,
-                padding: const EdgeInsets.all(TSizes.sm),
-                backgroundColor: dark ? AColors.dark : AColors.light,
+                padding: const EdgeInsets.all(TSizes.sm/2),
+                backgroundColor: dark ? AColors.dark : AColors.white,
                 child: Stack(
                   children: [
                     /// Thumbnail Image

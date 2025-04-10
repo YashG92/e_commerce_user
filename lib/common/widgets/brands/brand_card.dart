@@ -42,7 +42,7 @@ class BrandCard extends StatelessWidget {
                 image: brand.image,
                 isNetworkImage: true,
                 backgroundColor: Colors.transparent,
-                overlayColor: dark ? Colors.white : Colors.black,
+                //overlayColor: dark ? Colors.white : Colors.black,
               ),
             ),
             const SizedBox(

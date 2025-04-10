@@ -64,7 +64,6 @@ class SubCategoriesScreen extends StatelessWidget {
                         physics: const NeverScrollableScrollPhysics(),
                         itemBuilder: (_, index) {
                           final subCategory = subCategories[index];
-
                           return FutureBuilder(
                               future: controller.getCategoryProducts(
                                   categoryId: subCategory.id),
