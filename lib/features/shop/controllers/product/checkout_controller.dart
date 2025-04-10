@@ -15,7 +15,7 @@ class CheckoutController extends GetxController {
   @override
   void onInit() {
     selectedPaymentMethod.value =
-        PaymentMethodModel(name: 'GPay', image: ImageStrings.googleLogo);
+        PaymentMethodModel(name: 'Razoy Pay', image: ImageStrings.razorPayLogo);
     super.onInit();
   }
 
@@ -38,10 +38,7 @@ class CheckoutController extends GetxController {
               ),
               PaymentTile(
                   paymentMethod: PaymentMethodModel(
-                      name: 'GPay', image: ImageStrings.googleLogo)),
-              PaymentTile(
-                  paymentMethod: PaymentMethodModel(
-                      name: 'Paypal', image: ImageStrings.acerlogo)),
+                      name: 'Razor Pay', image: ImageStrings.razorPayLogo)),
             ],
           ),
         ),

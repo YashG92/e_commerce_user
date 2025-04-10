@@ -61,7 +61,7 @@ class CartScreen extends StatelessWidget {
               child: SizedBox(
                 height: 50,
                 child: ElevatedButton(
-                    onPressed: () => Get.to(() => CheckoutScreen()),
+                    onPressed: () => Get.to(() => const CheckoutScreen()),
                     child: Obx(() =>
                         Text('Checkout ₹${controller.totalCartSalePrice.value}'))),
               ),

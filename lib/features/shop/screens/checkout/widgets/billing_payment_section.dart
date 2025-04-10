@@ -29,7 +29,7 @@ class BillingPaymentSection extends StatelessWidget {
                 padding: const EdgeInsets.all(TSizes.sm),
                 child:Image(image: AssetImage(controller.selectedPaymentMethod.value.image),fit: BoxFit.contain,),
               ),
-              SizedBox(width: TSizes.spaceBtwItems/6,),
+              const SizedBox(width: TSizes.spaceBtwItems/6,),
               Text(controller.selectedPaymentMethod.value.name,style: Theme.of(context).textTheme.bodyLarge,),
             ],
           ),
