@@ -220,6 +220,7 @@ class ProductRepository extends GetxController {
           } else {
             // First stop loading before throwing error
             FullScreenLoader.stopLoading();
+            Loaders.warningSnackBar(title: 'Not enough stock for ${product.title} (${variation.attributeValues['Sizes'] ?? 'selected variation'})');
             throw 'Not enough stock for ${product.title} (${variation.attributeValues['Sizes'] ?? 'selected variation'})';
           }
         } else {
