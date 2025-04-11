@@ -1,6 +1,8 @@
 import 'package:e_commerce_user/common/widgets/loaders/full_screen_loader.dart';
 import 'package:e_commerce_user/common/widgets/success_screen/success_screen.dart';
+import 'package:e_commerce_user/data/repositories/product/product_repository.dart';
 import 'package:e_commerce_user/features/shop/controllers/product/cart_controller.dart';
+import 'package:e_commerce_user/features/shop/controllers/product/product_controller.dart';
 import 'package:e_commerce_user/navigation_menu.dart';
 import 'package:e_commerce_user/utils/constants/enums.dart';
 import 'package:e_commerce_user/utils/constants/image_strings.dart';
@@ -20,6 +22,7 @@ class OrderController extends GetxController {
   final cartController = CartController.instance;
   final addressController = AddressController.instance;
   final checkoutController = CheckoutController.instance;
+  final productRepository = ProductRepository.instance;
   final orderRepository = Get.put(OrderRepository());
 
   Future<List<OrderModel>> fetchUserOrders() async {
@@ -50,14 +53,25 @@ class OrderController extends GetxController {
         deliveryDate: DateTime.now().add(const Duration(days: 5)),
         items: cartController.cartItems.toList());
 
+    for (var cartItem in cartController.cartItems) {
+      if (cartItem.variationId.isNotEmpty) {
+        await productRepository.updateProductVariationStock(cartItem);
+      }else{
+        await productRepository.updateProductStock(cartItem);
+      }
+    }
+
     await orderRepository.placeOrder(newOrder, userId);
 
     cartController.clearCart();
 
-    Get.off(() => SuccessScreen(
+    Get.off(
+      () => SuccessScreen(
         image: ImageStrings.successGif,
         title: 'Payment Success!',
-        subTitle: 'Your order will be placed soon!',onPressed: ()=>Get.offAll(()=> const NavigationMenu()),),
+        subTitle: 'Your order will be placed soon!',
+        onPressed: () => Get.offAll(() => const NavigationMenu()),
+      ),
     );
   }
 }

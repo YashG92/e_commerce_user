@@ -17,6 +17,7 @@ class ProductModel {
   String? categoryId;
   String productType;
   String? description;
+  int soldQuantity;
   List<String>? images;
   List<ProductAttributeModel>? productAttributes;
   List<ProductVariationModel>? productVariations;
@@ -39,6 +40,7 @@ class ProductModel {
     this.description,
     this.images,
     this.sku,
+    this.soldQuantity = 0,
     this.date,
     this.productAttributes,
     this.productVariations,
@@ -90,6 +92,7 @@ class ProductModel {
       price: double.parse((data['price'] ?? 0.0).toString()),
       sku: data['sku'],
       stock: data['stock'] ?? 0,
+      soldQuantity: data['soldQuantity'] ?? 0,
       date: data['date'].toDate() ?? DateTime.now(),
       isFeatured: data['isFeatured'] ?? false,
       salePrice: double.parse((data['salePrice'] ?? 0.0).toString()),
@@ -118,6 +121,7 @@ class ProductModel {
       price: double.parse((data['price'] ?? 0.0).toString()),
       sku: data['sku'],
       stock: data['stock'] ?? 0,
+      soldQuantity: data['soldQuantity'] ?? 0,
       isFeatured: data['isFeatured'] ?? false,
       salePrice: double.parse((data['salePrice'] ?? 0.0).toString()),
       thumbnail: data['thumbnail'] ?? '',
