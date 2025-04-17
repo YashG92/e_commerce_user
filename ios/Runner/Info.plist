@@ -16,8 +16,6 @@
 	<string>e_commerce_user</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
-	<key>MinimumOSVersion</key>
-    <string>13.0</string>
 	<key>CFBundleShortVersionString</key>
 	<string>$(FLUTTER_BUILD_NAME)</string>
 	<key>CFBundleSignature</key>
