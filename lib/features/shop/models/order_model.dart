@@ -12,6 +12,7 @@ class OrderModel {
   final double totalAmount;
   final DateTime orderDate;
   final String paymentMethod;
+  final double shippingCost;
   final AddressModel? shippingAddress;
   final DateTime? deliveryDate;
   final List<CartItemModel> items;
@@ -23,6 +24,7 @@ class OrderModel {
     required this.items,
     required this.totalAmount,
     required this.orderDate,
+    required this.shippingCost,
     this.paymentMethod = 'GPay',
     this.shippingAddress,
     this.deliveryDate,
@@ -48,6 +50,7 @@ class OrderModel {
       'totalAmount': totalAmount,
       'orderDate': orderDate,
       'paymentMethod': paymentMethod,
+      'shippingCost': shippingCost,
       'shippingAddress': shippingAddress?.toJson(),
       'deliveryDate': deliveryDate,
       'items': items.map((item) => item.toJson()).toList(),
@@ -62,6 +65,7 @@ class OrderModel {
       userId : data['userId'] as String,
       status : OrderStatus.values.firstWhere((status) => status.toString() == data['status']),
       totalAmount : data['totalAmount'] as double,
+      shippingCost : data['shippingCost'] as double,
       orderDate : (data['orderDate'] as Timestamp).toDate(),
       paymentMethod : data['paymentMethod'] as String,
       shippingAddress : AddressModel.fromMap(data['shippingAddress'] as Map<String, dynamic>),

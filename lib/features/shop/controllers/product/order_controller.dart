@@ -47,6 +47,7 @@ class OrderController extends GetxController {
         userId: userId,
         status: OrderStatus.pending,
         totalAmount: totalAmount,
+        shippingCost: 40,
         orderDate: DateTime.now(),
         paymentMethod: checkoutController.selectedPaymentMethod.value.name,
         shippingAddress: addressController.selectedAddress.value,

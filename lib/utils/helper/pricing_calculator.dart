@@ -27,9 +27,9 @@ class TPricingCalculator {
   }
 
   /// -- Calculate shipping cost
-  static String calculateShippingCost(double productPrice, String location) {
+  static double calculateShippingCost(double productPrice, String location) {
   double shippingCost = getShippingCost(location);
-  return shippingCost.toStringAsFixed(2);
+  return shippingCost;
   }
   /// -- Calculate tax
   static String calculateTax(double productPrice, String location) {

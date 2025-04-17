@@ -52,7 +52,7 @@ class BillingAmountSection extends StatelessWidget {
               'Delivery Charges',
               style: Theme.of(context).textTheme.bodyMedium,
             ),
-            ProductPriceText(price: TPricingCalculator.calculateShippingCost(subTotal, 'India')),
+            ProductPriceText(price: TPricingCalculator.calculateShippingCost(subTotal, 'India').toStringAsFixed(2)),
           ],
         ),
         const SizedBox(
