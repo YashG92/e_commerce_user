@@ -55,7 +55,7 @@ class HomeScreen extends StatelessWidget {
                         ///Heading
                         SectionHeading(
                           title: 'Popular Categories',
-                          showActionButton: true,
+                          showActionButton: false,
                           textColor: AColors.white,
                         ),
                         SizedBox(
