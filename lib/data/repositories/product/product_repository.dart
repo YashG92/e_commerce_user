@@ -15,6 +15,11 @@ class ProductRepository extends GetxController {
 
   final _db = FirebaseFirestore.instance;
 
+  Future<List<ProductModel>> getAllProducts() async {
+    final snapshot = await _db.collection('Products').get();
+    return snapshot.docs.map((doc) => ProductModel.fromSnapshot(doc)).toList();
+  }
+
   Future<List<ProductModel>> getFeaturedProducts() async {
     try {
       final snapshot = await _db

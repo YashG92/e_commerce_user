@@ -21,7 +21,7 @@ class HomeAppBar extends StatelessWidget {
           Text('Good day for shopping', style: Theme.of(context).textTheme.labelMedium!.apply(color: AColors.grey),),
           Obx(() {
             if(controller.profileLoading.value){
-              return ShimmerEffect(width: 100, height: 20);
+              return const ShimmerEffect(width: 100, height: 20);
             }else{
               return Text(controller.user.value.fullName,style: Theme.of(context).textTheme.headlineSmall!.apply(color: AColors.white),);
             }
