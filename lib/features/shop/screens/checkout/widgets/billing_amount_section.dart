@@ -4,6 +4,7 @@ import 'package:e_commerce_user/utils/helper/pricing_calculator.dart';
 import 'package:flutter/material.dart';
 
 import '../../../controllers/product/cart_controller.dart';
+import '../../../controllers/product/checkout_controller.dart';
 
 class BillingAmountSection extends StatelessWidget {
   const BillingAmountSection({super.key});
@@ -11,6 +12,7 @@ class BillingAmountSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cartController = CartController.instance;
+    final checkoutController = CheckoutController.instance;
     final subTotal = cartController.totalCartSalePrice.value;
     final total = cartController.totalCartPrice.value;
     return Column(
@@ -52,7 +54,7 @@ class BillingAmountSection extends StatelessWidget {
               'Delivery Charges',
               style: Theme.of(context).textTheme.bodyMedium,
             ),
-            ProductPriceText(price: TPricingCalculator.calculateShippingCost(subTotal, 'India').toStringAsFixed(2)),
+            ProductPriceText(price: checkoutController.settings.value.shippingCost.toString()),
           ],
         ),
         const SizedBox(

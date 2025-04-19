@@ -2,9 +2,7 @@ import 'package:e_commerce_user/common/widgets/shimmer/category_shimmer.dart';
 import 'package:e_commerce_user/features/shop/screens/sub_category/sub_categories.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../../../common/widgets/image_text_widgets/vertical_image_text.dart';
-import '../../../../../utils/constants/image_strings.dart';
 import '../../../controllers/category_controller.dart';
 
 class HomeCategories extends StatelessWidget {

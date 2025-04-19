@@ -1,4 +1,5 @@
 import 'package:e_commerce_user/common/widgets/texts/section_heading.dart';
+import 'package:e_commerce_user/data/repositories/user/user_repository.dart';
 import 'package:e_commerce_user/features/shop/models/payment_method_model.dart';
 import 'package:e_commerce_user/features/shop/screens/checkout/widgets/payment_tile.dart';
 import 'package:e_commerce_user/utils/constants/image_strings.dart';
@@ -6,17 +7,34 @@ import 'package:e_commerce_user/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../utils/popups/loaders.dart';
+import '../../../personaliztion/model/settings_model.dart';
+
 class CheckoutController extends GetxController {
   static CheckoutController get instance => Get.find();
 
   final Rx<PaymentMethodModel> selectedPaymentMethod =
       PaymentMethodModel.empty().obs;
 
+  final Rx<SettingsModel> settings = SettingsModel().obs;
+
   @override
   void onInit() {
+    super.onInit();
     selectedPaymentMethod.value =
         PaymentMethodModel(name: 'Razoy Pay', image: ImageStrings.razorPayLogo);
-    super.onInit();
+    fetchSettingDetails();
+  }
+
+  Future<void> fetchSettingDetails() async {
+    try {
+      settings.value = await UserRepository.instance.getGlobalSettings();
+    } catch (e) {
+      Future.delayed(Duration.zero, () {
+        Loaders.errorSnackBar(
+            title: 'Something went wrong', message: e.toString());
+      });
+    }
   }
 
   Future<dynamic> selectPaymentMethod(BuildContext context) async {

@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_commerce_user/data/repositories/authentication/authentication_repository.dart';
+import 'package:e_commerce_user/features/personaliztion/model/settings_model.dart';
+import 'package:e_commerce_user/utils/popups/loaders.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/services.dart';
@@ -20,6 +22,20 @@ class UserRepository extends GetxController {
   ///Variables
   final _db = FirebaseFirestore.instance;
 
+  Future<SettingsModel> getGlobalSettings()async{
+    try{
+      final documentSnapshot = await _db.collection('Settings').doc('GLOBAL_SETTINGS').get();
+      return SettingsModel.fromSnapshot(documentSnapshot);
+    }on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please try again : $e';
+    }
+  }
 
   ///Function to save data of user model
   Future<void> saveUserData(UserModel user)async{

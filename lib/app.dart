@@ -16,9 +16,9 @@ class App extends StatelessWidget {
       title: 'VY Store',
       themeMode: ThemeMode.system,
       theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
+      //darkTheme: AppTheme.darkTheme,
       getPages: AppRoutes.pages,
-      home: SplashScreen(),
+      home: const SplashScreen(),
     );
   }
 }
