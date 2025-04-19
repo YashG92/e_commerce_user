@@ -20,6 +20,19 @@ class ProductRepository extends GetxController {
     return snapshot.docs.map((doc) => ProductModel.fromSnapshot(doc)).toList();
   }
 
+  Future<ProductModel> fetchProductsById(String id) async {
+    try {
+      final product = await _db.collection('Products').doc(id).get();
+      return ProductModel.fromSnapshot(product);
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please try again later.';
+    }
+  }
+
   Future<List<ProductModel>> getFeaturedProducts() async {
     try {
       final snapshot = await _db

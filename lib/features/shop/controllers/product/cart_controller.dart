@@ -1,3 +1,4 @@
+import 'package:e_commerce_user/features/shop/controllers/product/product_controller.dart';
 import 'package:e_commerce_user/features/shop/controllers/product/product_variations_controller.dart';
 import 'package:e_commerce_user/features/shop/models/product_model.dart';
 import 'package:e_commerce_user/utils/constants/enums.dart';
@@ -5,7 +6,6 @@ import 'package:e_commerce_user/utils/popups/loaders.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../utils/helper/pricing_calculator.dart';
 import '../../../../utils/local_storage/storage_utility.dart';
 import '../../models/cart_item_model.dart';
 
@@ -18,11 +18,28 @@ class CartController extends GetxController {
   RxDouble totalCartSalePrice = 0.0.obs;
   RxInt productQuantityInCart = 0.obs;
   RxList<CartItemModel> cartItems = <CartItemModel>[].obs;
+  final RxMap<String, ProductModel> productCache = <String, ProductModel>{}.obs;
   final variationController = ProductVariationsController.instance;
+  final productController = ProductController.instance;
 
   CartController() {
     loadCartItems();
   }
+
+  // Load products for all cart items
+  Future<void> loadProductsForCart() async {
+    try {
+      for (var item in cartItems) {
+        if (!productCache.containsKey(item.productId)) {
+          final product = await productController.fetchProductById(item.productId);
+          productCache[item.productId] = product;
+        }
+      }
+    } catch (e) {
+      Loaders.errorSnackBar(title: 'Error loading products', message: e.toString());
+    }
+  }
+
 
   void addProductToCart(ProductModel product) {
     if (productQuantityInCart.value < 1) {
@@ -52,15 +69,19 @@ class CartController extends GetxController {
     final selectedCartItem =
         convertToCartItem(product, productQuantityInCart.value);
 
-    //Check if product is already in cart
-    int index = cartItems.indexWhere((cartItem) =>
-        cartItem.productId == selectedCartItem.productId &&
+// Check if product already exists in cart
+    final existingIndex = cartItems.indexWhere((cartItem) =>
+    cartItem.productId == selectedCartItem.productId &&
         cartItem.variationId == selectedCartItem.variationId);
 
-    if (index >= 0) {
-      cartItems[index].quantity = selectedCartItem.quantity;
+    if (existingIndex >= 0) {
+      cartItems[existingIndex].quantity = selectedCartItem.quantity;
     } else {
       cartItems.add(selectedCartItem);
+      // Add to cache if not already present
+      if (!productCache.containsKey(product.id)) {
+        productCache[product.id] = product;
+      }
     }
 
     updateCart();
@@ -133,6 +154,7 @@ class CartController extends GetxController {
     updateCartTotals();
     saveCartItems();
     cartItems.refresh();
+    loadProductsForCart();
   }
 
   void updateCartTotals() {
@@ -163,6 +185,7 @@ class CartController extends GetxController {
       cartItems.assignAll(cartItemStrings
           .map((item) => CartItemModel.fromJson(item as Map<String, dynamic>)));
       updateCartTotals();
+      loadProductsForCart();
     }
   }
 

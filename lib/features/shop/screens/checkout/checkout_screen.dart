@@ -23,100 +23,86 @@ class CheckoutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cartController = CartController.instance;
-    final subTotal = cartController.totalCartSalePrice.value;
-    final total = cartController.totalCartPrice.value;
     final checkoutController = CheckoutController.instance;
-    final shippingCost =
-        checkoutController.settings.value.freeShippingLimit! < subTotal
-            ? 0.0
-            : checkoutController.settings.value.shippingCost;
-    final totalAmount =
-        TPricingCalculator.calculateTotalPrice(subTotal, 'India', shippingCost);
     final dark = HelperFunctions.isDarkMode(context);
-    return Scaffold(
-      appBar: CustomAppbar(
-        showBackArrow: true,
-        title: Text(
-          'Order Summary',
-          style: Theme.of(context).textTheme.headlineMedium,
-        ),
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.all(TSizes.defaultSpace),
-          child: Column(
-            children: [
-              CartItems(showAddRemoveButton: false),
-              const SizedBox(
-                height: TSizes.spaceBtwSections,
-              ),
 
-              ///coupons
-              CouponCode(),
-              const SizedBox(
-                height: TSizes.spaceBtwSections,
-              ),
+    return Obx(() {
+      final subTotal = cartController.totalCartSalePrice.value;
+      final total = cartController.totalCartPrice.value;
+      final shippingCost = checkoutController.settings.value.freeShippingLimit != null &&
+          checkoutController.settings.value.freeShippingLimit! < subTotal
+          ? 0.0
+          : checkoutController.settings.value.shippingCost ?? 0.0;
+      final totalAmount = TPricingCalculator.calculateTotalPrice(
+          subTotal, 'India', shippingCost);
 
-              ///Billing Section
-              RoundedContainer(
-                padding: const EdgeInsets.all(TSizes.sm * 1.5),
-                showBorder: true,
-                backgroundColor: dark ? Colors.black : Colors.white,
-                child: Column(
-                  children: [
-                    ///pricing
-                    BillingAmountSection(
-                        total: total,
-                        subTotal: subTotal,
-                        shippingCost: shippingCost),
-                    const SizedBox(
-                      height: TSizes.spaceBtwItems,
-                    ),
-
-                    ///divider
-                    const Divider(),
-                    const SizedBox(
-                      height: TSizes.spaceBtwItems,
-                    ),
-
-                    ///payment methods
-                    const BillingPaymentSection(),
-                    const SizedBox(
-                      height: TSizes.spaceBtwItems / 2,
-                    ),
-
-                    ///address
-                    const BillingAddressSection(),
-                  ],
-                ),
-              ),
-            ],
+      return Scaffold(
+        appBar: CustomAppbar(
+          showBackArrow: true,
+          title: Text(
+            'Order Summary',
+            style: Theme.of(context).textTheme.headlineMedium,
           ),
         ),
-      ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(TSizes.defaultSpace / 2.5),
-        child: SizedBox(
-          height: 60,
-          child: ElevatedButton(
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.all(TSizes.defaultSpace),
+            child: Column(
+              children: [
+                CartItems(showAddRemoveButton: false),
+                const SizedBox(height: TSizes.spaceBtwSections),
+                CouponCode(),
+                const SizedBox(height: TSizes.spaceBtwSections),
+
+                /// Billing Section
+                RoundedContainer(
+                  padding: const EdgeInsets.all(TSizes.sm * 1.5),
+                  showBorder: true,
+                  backgroundColor: dark ? Colors.black : Colors.white,
+                  child: Column(
+                    children: [
+                      BillingAmountSection(
+                          total: total,
+                          subTotal: subTotal,
+                          shippingCost: shippingCost),
+                      const SizedBox(height: TSizes.spaceBtwItems),
+                      const Divider(),
+                      const SizedBox(height: TSizes.spaceBtwItems),
+                      const BillingPaymentSection(),
+                      const SizedBox(height: TSizes.spaceBtwItems / 2),
+                      const BillingAddressSection(),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        bottomNavigationBar: Padding(
+          padding: const EdgeInsets.all(TSizes.defaultSpace / 2.5),
+          child: SizedBox(
+            height: 60,
+            child: ElevatedButton(
               onPressed: subTotal > 0
                   ? () {
-                      //final orderController = Get.put(OrderController());
-                      final razorpayController =
-                          Get.put(RazorpayController(totalAmount: totalAmount));
-                      razorpayController.startPayment(
-                        name: "VY Store",
-                        description: "Test Payment",
-                        email: "customer@email.com",
-                        contact: "9999999999",
-                        amount: totalAmount,
-                      );
-                    }
+                final razorpayController =
+                Get.put(RazorpayController(totalAmount: totalAmount));
+                razorpayController.startPayment(
+                  name: "VY Store",
+                  description: "Test Payment",
+                  email: "customer@email.com",
+                  contact: "9999999999",
+                  amount: totalAmount,
+                );
+              }
                   : () => Loaders.warningSnackBar(
-                      title: 'Empty Cart', message: 'Your cart is empty'),
-              child: Text('Checkout ₹$totalAmount')),
+                  title: 'Empty Cart', message: 'Your cart is empty'),
+              child: Text('Checkout ₹$totalAmount'),
+            ),
+          ),
         ),
-      ),
-    );
+      );
+    });
   }
+
 }
