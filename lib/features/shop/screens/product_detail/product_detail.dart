@@ -24,9 +24,10 @@ import '../../../../utils/helper/helper_functions.dart';
 import '../../models/product_model.dart';
 
 class ProductDetailScreen extends StatelessWidget {
-  const ProductDetailScreen({super.key, required this.product});
+  const ProductDetailScreen({super.key, required this.product, this.selectedVariation});
 
   final ProductModel product;
+  final Map<String,String>? selectedVariation;
 
   @override
   Widget build(BuildContext context) {
@@ -82,6 +83,7 @@ class ProductDetailScreen extends StatelessWidget {
                   if (product.productType == ProductType.variable.toString())
                     ProductVariationAttributes(
                       product: product,
+                      preSelectedVariation: selectedVariation,
                     ),
 
                   ///Reviews

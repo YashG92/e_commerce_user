@@ -12,6 +12,29 @@ class ProductVariationsController extends GetxController {
   Rx<ProductVariationModel> selectedVariation =
       ProductVariationModel.empty().obs;
 
+  void applyPreselectedVariation(ProductModel product, Map<String, String> attributes) {
+    selectedAttributes.clear();
+    selectedAttributes.addAll(attributes);
+
+    final matchedVariation = product.productVariations!.firstWhere(
+          (variation) => _isSameAttributeValues(variation.attributeValues, attributes),
+      orElse: () => ProductVariationModel.empty(),
+    );
+
+    selectedVariation.value = matchedVariation;
+
+    if (matchedVariation.image.isNotEmpty) {
+      ImagesController.instance.selectedProductImage.value = matchedVariation.image;
+    }
+
+    if (matchedVariation.id.isNotEmpty) {
+      final cartController = CartController.instance;
+      cartController.productQuantityInCart.value =
+          cartController.getVariationQuantityInCart(product.id, matchedVariation.id);
+    }
+    getProductVariationStockStatus();
+  }
+
   void onAttributeSelected(
       ProductModel product, attributeName, attributeValue) {
     final selectedAttributes =

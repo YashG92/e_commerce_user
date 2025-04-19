@@ -1,5 +1,3 @@
-import 'package:get/get.dart';
-
 class ProductVariationModel {
   final String id;
   String sku;

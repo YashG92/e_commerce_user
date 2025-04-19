@@ -14,14 +14,21 @@ import '../../../../../utils/helper/helper_functions.dart';
 import '../../../controllers/product/product_variations_controller.dart';
 
 class ProductVariationAttributes extends StatelessWidget {
-  const ProductVariationAttributes({super.key, required this.product});
+  const ProductVariationAttributes({super.key, required this.product, this.preSelectedVariation});
 
   final ProductModel product;
+  final Map<String,String>? preSelectedVariation;
 
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(ProductVariationsController());
     final dark = HelperFunctions.isDarkMode(context);
+    // Initialize preselected variation only once
+    if (preSelectedVariation != null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        controller.applyPreselectedVariation(product, preSelectedVariation!);
+      });
+    }
 
     return Obx(
       () => Column(
@@ -31,11 +38,11 @@ class ProductVariationAttributes extends StatelessWidget {
               padding: const EdgeInsets.all(TSizes.md),
               backgroundColor: dark ? AColors.darkerGrey : AColors.grey,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start, // Added
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   /// Title, price and stock status
                   Row(
-                    crossAxisAlignment: CrossAxisAlignment.start, // Added
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const SectionHeading(
                         title: 'Variations',

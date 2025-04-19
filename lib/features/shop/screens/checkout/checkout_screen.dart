@@ -1,6 +1,5 @@
 import 'package:e_commerce_user/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:e_commerce_user/features/shop/controllers/product/cart_controller.dart';
-import 'package:e_commerce_user/features/shop/controllers/product/order_controller.dart';
 import 'package:e_commerce_user/features/shop/screens/cart/widgets/cart_items.dart';
 import 'package:e_commerce_user/features/shop/screens/checkout/widgets/billing_address_section.dart';
 import 'package:e_commerce_user/features/shop/screens/checkout/widgets/billing_amount_section.dart';
@@ -32,7 +31,7 @@ class CheckoutScreen extends StatelessWidget {
       final shippingCost = checkoutController.settings.value.freeShippingLimit != null &&
           checkoutController.settings.value.freeShippingLimit! < subTotal
           ? 0.0
-          : checkoutController.settings.value.shippingCost ?? 0.0;
+          : checkoutController.settings.value.shippingCost;
       final totalAmount = TPricingCalculator.calculateTotalPrice(
           subTotal, 'India', shippingCost);
 
@@ -46,12 +45,12 @@ class CheckoutScreen extends StatelessWidget {
         ),
         body: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.all(TSizes.defaultSpace),
+            padding: const EdgeInsets.all(TSizes.defaultSpace),
             child: Column(
               children: [
-                CartItems(showAddRemoveButton: false),
+                const CartItems(showAddRemoveButton: false),
                 const SizedBox(height: TSizes.spaceBtwSections),
-                CouponCode(),
+                const CouponCode(),
                 const SizedBox(height: TSizes.spaceBtwSections),
 
                 /// Billing Section

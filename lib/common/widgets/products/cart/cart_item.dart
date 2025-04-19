@@ -26,7 +26,7 @@ class CartItem extends StatelessWidget {
     final product = cartController.productCache[cartItem.productId] ?? ProductModel.empty();
     final dark = HelperFunctions.isDarkMode(context);
     return GestureDetector(
-      onTap: ()=> Get.to(()=>ProductDetailScreen(product: product)),
+      onTap: ()=> Get.to(()=>ProductDetailScreen(product: product,selectedVariation: cartItem.selectedVariation,)),
       child: Row(
         children: [
           ///Image
