@@ -3,18 +3,16 @@ import 'package:e_commerce_user/utils/constants/sizes.dart';
 import 'package:e_commerce_user/utils/helper/pricing_calculator.dart';
 import 'package:flutter/material.dart';
 
-import '../../../controllers/product/cart_controller.dart';
-import '../../../controllers/product/checkout_controller.dart';
 
 class BillingAmountSection extends StatelessWidget {
-  const BillingAmountSection({super.key});
+  const BillingAmountSection({super.key, required this.total, required this.subTotal, required this.shippingCost});
+
+  final double total;
+  final double subTotal;
+  final double shippingCost;
 
   @override
   Widget build(BuildContext context) {
-    final cartController = CartController.instance;
-    final checkoutController = CheckoutController.instance;
-    final subTotal = cartController.totalCartSalePrice.value;
-    final total = cartController.totalCartPrice.value;
     return Column(
       children: [
         ///subtotal
@@ -54,7 +52,7 @@ class BillingAmountSection extends StatelessWidget {
               'Delivery Charges',
               style: Theme.of(context).textTheme.bodyMedium,
             ),
-            ProductPriceText(price: checkoutController.settings.value.shippingCost.toString()),
+            ProductPriceText(price: shippingCost.toStringAsFixed(2) ),
           ],
         ),
         const SizedBox(
@@ -67,7 +65,7 @@ class BillingAmountSection extends StatelessWidget {
               'Order Total',
               style: Theme.of(context).textTheme.bodyMedium,
             ),
-            ProductPriceText(price: '${TPricingCalculator.calculateTotalPrice(subTotal, 'India')}'),
+            ProductPriceText(price: '${TPricingCalculator.calculateTotalPrice(subTotal, 'India',shippingCost)}'),
           ],
         ),
       ],

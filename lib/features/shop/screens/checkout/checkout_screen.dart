@@ -15,6 +15,7 @@ import 'package:get/get.dart';
 import '../../../../common/widgets/appbar/appbar.dart';
 import '../../../../common/widgets/products/cart/coupon_code.dart';
 import '../../../payments/controllers/razorpay_controller.dart';
+import '../../controllers/product/checkout_controller.dart';
 
 class CheckoutScreen extends StatelessWidget {
   const CheckoutScreen({super.key});
@@ -24,8 +25,13 @@ class CheckoutScreen extends StatelessWidget {
     final cartController = CartController.instance;
     final subTotal = cartController.totalCartSalePrice.value;
     final total = cartController.totalCartPrice.value;
+    final checkoutController = CheckoutController.instance;
+    final shippingCost =
+        checkoutController.settings.value.freeShippingLimit! < subTotal
+            ? 0.0
+            : checkoutController.settings.value.shippingCost;
     final totalAmount =
-        TPricingCalculator.calculateTotalPrice(subTotal, 'India');
+        TPricingCalculator.calculateTotalPrice(subTotal, 'India', shippingCost);
     final dark = HelperFunctions.isDarkMode(context);
     return Scaffold(
       appBar: CustomAppbar(
@@ -56,28 +62,31 @@ class CheckoutScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(TSizes.sm * 1.5),
                 showBorder: true,
                 backgroundColor: dark ? Colors.black : Colors.white,
-                child: const Column(
+                child: Column(
                   children: [
                     ///pricing
-                    BillingAmountSection(),
-                    SizedBox(
+                    BillingAmountSection(
+                        total: total,
+                        subTotal: subTotal,
+                        shippingCost: shippingCost),
+                    const SizedBox(
                       height: TSizes.spaceBtwItems,
                     ),
 
                     ///divider
-                    Divider(),
-                    SizedBox(
+                    const Divider(),
+                    const SizedBox(
                       height: TSizes.spaceBtwItems,
                     ),
 
                     ///payment methods
-                    BillingPaymentSection(),
-                    SizedBox(
+                    const BillingPaymentSection(),
+                    const SizedBox(
                       height: TSizes.spaceBtwItems / 2,
                     ),
 
                     ///address
-                    BillingAddressSection(),
+                    const BillingAddressSection(),
                   ],
                 ),
               ),
@@ -92,17 +101,17 @@ class CheckoutScreen extends StatelessWidget {
           child: ElevatedButton(
               onPressed: subTotal > 0
                   ? () {
-                final orderController = Get.put(OrderController());
-                final razorpayController = Get.put(RazorpayController(totalAmount: totalAmount));
-                razorpayController.startPayment(
-                  name: "VY Store",
-                  description: "Test Payment",
-                  email: "customer@email.com",
-                  contact: "9999999999",
-                amount: totalAmount,
-                );
-
-              }
+                      //final orderController = Get.put(OrderController());
+                      final razorpayController =
+                          Get.put(RazorpayController(totalAmount: totalAmount));
+                      razorpayController.startPayment(
+                        name: "VY Store",
+                        description: "Test Payment",
+                        email: "customer@email.com",
+                        contact: "9999999999",
+                        amount: totalAmount,
+                      );
+                    }
                   : () => Loaders.warningSnackBar(
                       title: 'Empty Cart', message: 'Your cart is empty'),
               child: Text('Checkout ₹$totalAmount')),

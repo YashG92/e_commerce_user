@@ -17,6 +17,7 @@ class RazorpayController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    final orderController = Get.put(OrderController());
     _razorpayService = RazorpayService(
       onPaymentSuccess: _handlePaymentSuccess,
       onPaymentError: _handlePaymentError,
