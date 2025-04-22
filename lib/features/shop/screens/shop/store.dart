@@ -15,6 +15,7 @@ import 'package:get/get.dart';
 
 import '../../../../common/widgets/appbar/tabbar.dart';
 import '../../../../common/widgets/brands/brand_card.dart';
+import '../global_search_screen.dart';
 
 class StoreScreen extends StatelessWidget {
   const StoreScreen({super.key});
@@ -53,11 +54,18 @@ class StoreScreen extends StatelessWidget {
                       const SizedBox(
                         height: TSizes.spaceBtwItems / 2,
                       ),
-                      SearchContainer(
-                        text: 'Search',
-                        showBorder: true,
-                        showBackground: false,
-                        padding: EdgeInsets.zero,
+                      Hero(
+                        tag: 'search-bar',
+                        child: Material(
+                          color: Colors.transparent,
+                          child: SearchContainer(
+                            text: 'Search',
+                            showBorder: true,
+                            showBackground: false,
+                            padding: EdgeInsets.zero,
+                            onTap: () => Get.to(() => const GlobalSearchScreen()),
+                          ),
+                        ),
                       ),
                       const SizedBox(
                         height: TSizes.spaceBtwSections,

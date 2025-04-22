@@ -38,7 +38,7 @@ class CartScreen extends StatelessWidget {
             animation: ImageStrings.loadingAnimation,
             showAction: true,
             actionText: 'Let\'s fill it',
-            onActionPressed: () => Get.to(() => const SearchScreen()),
+            onActionPressed: () => Get.to(() => const GlobalSearchScreen()),
           );
 
           return controller.cartItems.isEmpty

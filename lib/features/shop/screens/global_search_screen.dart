@@ -6,8 +6,8 @@ import '../../../common/widgets/products/product_card/product_card_vertical.dart
 import '../../../common/widgets/shimmer/vertical_product_shimmer.dart';
 import '../../../utils/constants/sizes.dart';
 
-class SearchScreen extends StatelessWidget {
-  const SearchScreen({super.key});
+class GlobalSearchScreen extends StatelessWidget {
+  const GlobalSearchScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,13 +15,24 @@ class SearchScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: TextField(
-          autofocus: true,
-          onChanged: controller.onSearch,
-          decoration: const InputDecoration(
-            hintText: 'Search products, brands, attributes...',
-            border: InputBorder.none,
+        automaticallyImplyLeading: false,
+        title: Hero(
+          tag: 'search-bar',
+          child: Material(
+            color: Colors.transparent,
+            child: TextField(
+              autofocus: true,
+              onChanged: controller.onSearch,
+              decoration: const InputDecoration(
+                hintText: 'Search products, brands, attributes...',
+                border: InputBorder.none,
+              ),
+            ),
           ),
+        ),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => Get.back(),
         ),
       ),
       body: Obx(() {
