@@ -1,6 +1,7 @@
 import 'package:e_commerce_user/features/shop/models/order_model.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../common/widgets/appbar/appbar.dart';
 import '../../../../common/widgets/images/rounded_image.dart';
 import '../../../../common/widgets/texts/brand_title_with_verified_icon.dart';
 import '../../../../common/widgets/texts/product_title_text.dart';
@@ -22,9 +23,12 @@ class OrderDetailScreen extends StatelessWidget {
     final currencyFormat = NumberFormat.currency(locale: 'en_IN', symbol: '₹');
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Order #${order.id}', style: textTheme.headlineSmall),
-        centerTitle: true,
+      appBar:  CustomAppbar(
+        title: Text(
+           'Order ${order.id}',
+          style: Theme.of(context).textTheme.headlineMedium,
+        ),
+        showBackArrow: true,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(TSizes.defaultSpace),

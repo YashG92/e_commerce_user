@@ -16,7 +16,9 @@ class OrderRepository extends GetxController {
         throw 'User not found';
       }
       final result = await _db.collection('Users').doc(userId).collection('Orders').get();
-      return result.docs.map((documentSnapshot) => OrderModel.fromSnapshot(documentSnapshot)).toList();
+      final orders = result.docs.map((documentSnapshot) => OrderModel.fromSnapshot(documentSnapshot)).toList();
+      orders.sort((a, b) => b.orderDate.compareTo(a.orderDate));
+      return orders;
     } catch (e) {
       throw 'Something went wrong while fetching orders.Try again later.';
     }
