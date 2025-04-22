@@ -50,6 +50,7 @@ class HelpCenterController extends GetxController {
       HelpCenterModel.empty();
       Loaders.errorSnackBar(title: 'Oh Bad!', message: e.toString());
     } finally {
+      FullScreenLoader.stopLoading();
       userHelpFormLoading.value = false;
     }
   }
