@@ -1,3 +1,4 @@
+import 'package:e_commerce_user/features/shop/screens/order/order_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
@@ -86,7 +87,7 @@ class OrderListItems extends StatelessWidget {
 
                         ///Icon 2
                         IconButton(
-                            onPressed: () {},
+                            onPressed: ()=> Get.to(()=> OrderDetailScreen(order: order)),
                             icon: const Icon(
                               Iconsax.arrow_right_34,
                               size: TSizes.iconSm,

@@ -1,2 +1,0 @@
-D:/SEM8/e_commerce_user/android/app/.cxx/RelWithDebInfo/x25pn3q6/x86_64/CMakeFiles/edit_cache.dir
-D:/SEM8/e_commerce_user/android/app/.cxx/RelWithDebInfo/x25pn3q6/x86_64/CMakeFiles/rebuild_cache.dir

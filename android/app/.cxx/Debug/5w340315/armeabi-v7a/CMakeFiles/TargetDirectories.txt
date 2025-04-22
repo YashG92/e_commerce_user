@@ -1,2 +1,0 @@
-D:/SEM8/e_commerce_user/android/app/.cxx/Debug/5w340315/armeabi-v7a/CMakeFiles/edit_cache.dir
-D:/SEM8/e_commerce_user/android/app/.cxx/Debug/5w340315/armeabi-v7a/CMakeFiles/rebuild_cache.dir
