@@ -96,7 +96,7 @@ class SettingsScreen extends StatelessWidget {
                   title: 'Help Center',
                   icon: Iconsax.message_question,
                   showDivider: false,
-                  onTap: ()=> Get.to(()=> HelpCenterScreen()),
+                  onTap: ()=> Get.to(()=> const HelpCenterScreen()),
                 ),
                 Divider(
                   thickness: 10,
