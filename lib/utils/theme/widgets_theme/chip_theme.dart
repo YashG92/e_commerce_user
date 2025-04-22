@@ -5,6 +5,7 @@ class AChipTheme {
   AChipTheme._();
 
   static ChipThemeData lightChipTheme = ChipThemeData(
+    backgroundColor: AColors.white,
     disabledColor: AColors.grey.withOpacity(0.4),
     labelStyle: const TextStyle(color: AColors.black),
     selectedColor: AColors.primary,
