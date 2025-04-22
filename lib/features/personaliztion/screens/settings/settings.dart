@@ -1,9 +1,9 @@
 import 'package:e_commerce_user/common/widgets/appbar/appbar.dart';
-import 'package:e_commerce_user/common/widgets/custom_shapes/containers/primary_header_container.dart';
-import 'package:e_commerce_user/common/widgets/images/circular_image.dart';
 import 'package:e_commerce_user/common/widgets/texts/section_heading.dart';
 import 'package:e_commerce_user/data/repositories/authentication/authentication_repository.dart';
 import 'package:e_commerce_user/features/personaliztion/screens/address/address.dart';
+import 'package:e_commerce_user/features/personaliztion/screens/settings/widgets/faqs_screen.dart';
+import 'package:e_commerce_user/features/personaliztion/screens/settings/widgets/help_center.dart';
 import 'package:e_commerce_user/features/personaliztion/screens/settings/widgets/setting_menu_tile.dart';
 import 'package:e_commerce_user/features/personaliztion/screens/settings/widgets/user_profile.dart';
 import 'package:e_commerce_user/features/shop/screens/order/order.dart';
@@ -89,12 +89,14 @@ class SettingsScreen extends StatelessWidget {
                 ),
                 SettingMenuTile(
                   title: 'FAQs',
-                  icon: Iconsax.discount_shape,
+                  icon: Iconsax.info_circle,
+                  onTap: ()=> Get.to(()=> const FAQsScreen()),
                 ),
                 SettingMenuTile(
                   title: 'Help Center',
-                  icon: Iconsax.discount_shape,
+                  icon: Iconsax.message_question,
                   showDivider: false,
+                  onTap: ()=> Get.to(()=> HelpCenterScreen()),
                 ),
                 Divider(
                   thickness: 10,

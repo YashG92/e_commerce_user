@@ -67,14 +67,14 @@ class ProfileScreen extends StatelessWidget {
                 SizedBox(
                   height: TSizes.spaceBtwItems,
                 ),
-                Profile_Menu(
+                ProfileMenu(
                   title: 'Name',
                   value: controller.user.value.fullName,
                   onPressed: () {
                     Get.to(() => ChangeName());
                   },
                 ),
-                Profile_Menu(
+                ProfileMenu(
                   title: 'UserName',
                   value: controller.user.value.fullName,
                   onPressed: () {},
@@ -93,27 +93,27 @@ class ProfileScreen extends StatelessWidget {
                 SizedBox(
                   height: TSizes.spaceBtwItems,
                 ),
-                Profile_Menu(
+                ProfileMenu(
                     title: 'User ID',
                     value: controller.user.value.id,
                     icon: Iconsax.copy,
                     onPressed: () {}),
-                Profile_Menu(
+                ProfileMenu(
                   title: 'E-mail',
                   value: controller.user.value.email,
                   onPressed: () {},
                 ),
-                Profile_Menu(
+                ProfileMenu(
                   title: 'Phone Number',
                   value: controller.user.value.phoneNumber,
                   onPressed: () {},
                 ),
-                Profile_Menu(
+                ProfileMenu(
                   title: 'Gender',
                   value: 'Male',
                   onPressed: () {},
                 ),
-                Profile_Menu(
+                ProfileMenu(
                   title: 'Date of Birth',
                   value: '09-12-2002',
                   onPressed: () {},

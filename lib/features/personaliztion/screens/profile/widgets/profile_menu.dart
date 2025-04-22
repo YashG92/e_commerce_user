@@ -2,8 +2,8 @@ import 'package:e_commerce_user/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
-class Profile_Menu extends StatelessWidget {
-  const Profile_Menu({
+class ProfileMenu extends StatelessWidget {
+  const ProfileMenu({
     super.key,
     required this.title,
     required this.value,
