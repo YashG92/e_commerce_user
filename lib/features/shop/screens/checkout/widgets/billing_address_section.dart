@@ -16,38 +16,36 @@ class BillingAddressSection extends StatelessWidget {
         SectionHeading(
           title: 'Shipping Address',
           buttonTitle: 'Change',
-          onPressed: () =>controller.selectNewAddressPopup(context),
+          onPressed: () => controller.selectNewAddressPopup(context),
         ),
-        Obx(
-          ()=> controller.selectedAddress.value.id.isNotEmpty? Column(
+        Obx(() {
+          final address = controller.selectedAddress.value;
+          return address.id.isNotEmpty
+              ? Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                controller.selectedAddress.value.name,
+                address.name,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: Theme.of(context).textTheme.titleLarge,
               ),
-              const SizedBox(
-                height: TSizes.sm / 2,
-              ),
+              const SizedBox(height: TSizes.sm / 2),
               Text(
-                controller.selectedAddress.value.phoneNumber,
+                address.phoneNumber,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
-              const SizedBox(
-                height: TSizes.sm / 2,
-              ),
+              const SizedBox(height: TSizes.sm / 2),
               Text(
-                controller.selectedAddress.toString(),
+                address.toString(),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
-              //  style: Theme.of(context).textTheme.titleLarge,
               ),
             ],
-          ) : const Text('Select Address'),
-        ),
+          )
+              : const Text('Select Address');
+        }),
       ],
     );
   }

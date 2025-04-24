@@ -16,6 +16,7 @@ import '../screens/address/widgets/single_address.dart';
 class AddressController extends GetxController {
   static AddressController get instance => Get.find();
 
+  // Form controllers
   final name = TextEditingController();
   final phoneNumber = TextEditingController();
   final street = TextEditingController();
@@ -23,75 +24,100 @@ class AddressController extends GetxController {
   final city = TextEditingController();
   final state = TextEditingController();
   final country = TextEditingController();
-  GlobalKey<FormState> addressFormKey = GlobalKey<FormState>();
+  final addressFormKey = GlobalKey<FormState>();
 
-  RxBool refreshData = true.obs;
-
-  final Rx<AddressModel> selectedAddress = AddressModel.empty().obs;
-
+  // Reactive variables
+  final refreshData = true.obs;
+  final selectedAddress = AddressModel.empty().obs;
   final addressRepository = Get.put(AddressRepository());
+
+  @override
+  void onInit() {
+    super.onInit();
+    // Load initial selected address
+    loadSelectedAddress();
+  }
+
+  Future<void> loadSelectedAddress() async {
+    try {
+      final addresses = await getAllUserAddresses();
+      final selected = addresses.firstWhere(
+            (element) => element.selectedAddress,
+        orElse: () => AddressModel.empty(),
+      );
+      selectedAddress.value = selected;
+    } catch (e) {
+      Loaders.errorSnackBar(title: 'Address Error', message: e.toString());
+    }
+  }
 
   Future<List<AddressModel>> getAllUserAddresses() async {
     try {
-      final addresses = await addressRepository.fetchUserAddresses();
-      selectedAddress.value = addresses.firstWhere(
-          (element) => element.selectedAddress,
-          orElse: () => AddressModel.empty());
-      return addresses;
+      return await addressRepository.fetchUserAddresses();
     } catch (e) {
       Loaders.errorSnackBar(title: 'Address not found', message: e.toString());
       return [];
     }
   }
 
-  Future selectAddress(AddressModel newSelectedAddress) async {
+  Future<void> selectAddress(AddressModel newSelectedAddress) async {
     try {
-      Get.defaultDialog(
-        title: '',
-        onWillPop: () async {
-          return false;
-        },
+      // Show loading
+      Get.dialog(
+        const Center(child: CircularProgressIndicator()),
         barrierDismissible: false,
-        backgroundColor: Colors.transparent,
-        content: const CircularProgressIndicator(),
       );
 
+      // Unselect current address if one is selected
       if (selectedAddress.value.id.isNotEmpty) {
         await addressRepository.updateSelectedField(
-            selectedAddress.value.id, false);
+          selectedAddress.value.id,
+          false,
+        );
       }
 
+      // Select new address
+      await addressRepository.updateSelectedField(
+        newSelectedAddress.id,
+        true,
+      );
+
+      // Update local state
       newSelectedAddress.selectedAddress = true;
       selectedAddress.value = newSelectedAddress;
+      selectedAddress.refresh(); // Force UI update
 
-      await addressRepository.updateSelectedField(
-          selectedAddress.value.id, true);
-      Get.back();
+      Get.back(); // Close loading dialog
     } catch (e) {
+      Get.back(); // Close loading dialog
       Loaders.errorSnackBar(
-          title: 'Error in Selecting Address', message: e.toString());
-      return [];
+        title: 'Error in Selecting Address',
+        message: e.toString(),
+      );
     }
   }
 
-  Future addNewAddress() async {
+  Future<void> addNewAddress() async {
     try {
       FullScreenLoader.openLoadingDialog(
-          'Saving Address...', ImageStrings.loadingAnimation);
+        'Saving Address...',
+        ImageStrings.loadingAnimation,
+      );
 
-      //Check Internet Connectivity
+      // Check Internet Connectivity
       final isConnected = await NetworkManager.instance.isConnected();
       if (!isConnected) {
         FullScreenLoader.stopLoading();
         return;
       }
 
-      //Validate Form
+      // Validate Form
       if (!addressFormKey.currentState!.validate()) {
         FullScreenLoader.stopLoading();
         return;
       }
 
+      // Create new address
       final newAddress = AddressModel(
         id: '',
         name: name.text.trim(),
@@ -101,18 +127,29 @@ class AddressController extends GetxController {
         city: city.text.trim(),
         state: state.text.trim(),
         country: country.text.trim(),
-        selectedAddress: true,
+        selectedAddress: true, // New address is selected by default
       );
 
+      // Add to repository
       final id = await addressRepository.addAddress(newAddress);
       newAddress.id = id;
+
+      // Select the new address
       await selectAddress(newAddress);
-      FullScreenLoader.stopLoading();
-      Loaders.successSnackBar(
-          title: 'Success', message: 'Address added successfully');
+
+      // Update UI
       refreshData.toggle();
       resetFormFields();
-      Navigator.of(Get.context!).pop();
+
+      FullScreenLoader.stopLoading();
+      Loaders.successSnackBar(
+        title: 'Success',
+        message: 'Address added successfully',
+      );
+
+      if (Get.context != null && Navigator.canPop(Get.context!)) {
+        Navigator.of(Get.context!).pop();
+      }
     } catch (e) {
       FullScreenLoader.stopLoading();
       Loaders.errorSnackBar(title: 'Error', message: e.toString());
@@ -122,29 +159,30 @@ class AddressController extends GetxController {
   Future<dynamic> selectNewAddressPopup(BuildContext context) async {
     return showModalBottomSheet(
       context: context,
+      isScrollControlled: true,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      builder: (_) => SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.all(TSizes.lg),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SectionHeading(
-                title: 'Select Address',
-                showActionButton: false,
-              ),
-              const SizedBox(
-                height: TSizes.spaceBtwSections,
-              ),
-              FutureBuilder(
+      builder: (_) => Padding(
+        padding: EdgeInsets.only(
+          bottom: MediaQuery.of(context).viewInsets.bottom,
+        ),
+        child: SingleChildScrollView(
+          child: Container(
+            padding: const EdgeInsets.all(TSizes.lg),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SectionHeading(
+                  title: 'Select Address',
+                  showActionButton: false,
+                ),
+                const SizedBox(height: TSizes.spaceBtwSections),
+                FutureBuilder(
                   future: getAllUserAddresses(),
                   builder: (_, snapshot) {
-                    final response =
-                        TCloudHelperFunctions.checkMultiRecordState(
-                            snapshot: snapshot);
-                    if (response != null) {
-                      return response;
-                    }
+                    final response = TCloudHelperFunctions.checkMultiRecordState(
+                      snapshot: snapshot,
+                    );
+                    if (response != null) return response;
 
                     return ListView.builder(
                       shrinkWrap: true,
@@ -154,17 +192,24 @@ class AddressController extends GetxController {
                         address: snapshot.data![index],
                         onTap: () async {
                           await selectAddress(snapshot.data![index]);
-                          Get.back();
+                          if (Get.context != null && Navigator.canPop(Get.context!)) {
+                            Navigator.of(Get.context!).pop();
+                          }
                         },
                       ),
                     );
-                  }),
-              const SizedBox(height: TSizes.defaultSpace*2,),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(onPressed: ()=>Get.to(()=> const AddNewAddressScreen()), child: const Text('Add new address')),
-              )
-            ],
+                  },
+                ),
+                const SizedBox(height: TSizes.defaultSpace * 2),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () => Get.to(() => const AddNewAddressScreen()),
+                    child: const Text('Add new address'),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
