@@ -2,12 +2,12 @@
 class TPricingCalculator {
 
   /// -- Calculate Price based on tax and shipping
-  static double calculateTotalPrice(double productPrice, String location,double shippingCost) {
+  static double calculateTotalPrice(double productPrice, String location,double shippingCost, {double? discount}) {
   double taxRate = getTaxRateForLocation(location);
   double taxAmount = productPrice * taxRate;
 
 
-  double totalPrice =  productPrice + shippingCost;
+  double totalPrice =  productPrice + shippingCost-(discount ?? 0);
   return totalPrice;
   }
   /// Calculate discount percentage between original price and sale price
@@ -19,10 +19,10 @@ class TPricingCalculator {
   }
 
   /// Calculate absolute discount value
-  static double? calculateDiscountAmount(double originalPrice, double salePrice) {
+  static double? calculateDiscountAmount(double originalPrice, double salePrice,{double couponDiscount=0}) {
     if (originalPrice <= 0 || salePrice <= 0 || salePrice >= originalPrice) return 0;
 
-    return double.parse((originalPrice - salePrice).toStringAsFixed(2));
+    return double.parse((originalPrice - salePrice + couponDiscount).toStringAsFixed(2));
   }
 
   /// -- Calculate shipping cost

@@ -5,11 +5,12 @@ import 'package:flutter/material.dart';
 
 
 class BillingAmountSection extends StatelessWidget {
-  const BillingAmountSection({super.key, required this.total, required this.subTotal, required this.shippingCost});
+  const BillingAmountSection({super.key, required this.total, required this.subTotal, required this.shippingCost, this.discount});
 
   final double total;
   final double subTotal;
   final double shippingCost;
+  final double? discount;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +38,7 @@ class BillingAmountSection extends StatelessWidget {
               style: Theme.of(context).textTheme.bodyMedium,
             ),
             ProductPriceText(
-              price: '${TPricingCalculator.calculateDiscountAmount(total, subTotal)}',
+              price: '${TPricingCalculator.calculateDiscountAmount(total, subTotal, couponDiscount: discount ?? 0)}',
               isDiscount: true,
             ),
           ],

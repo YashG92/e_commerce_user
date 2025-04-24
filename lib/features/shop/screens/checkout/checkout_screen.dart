@@ -1,4 +1,5 @@
 import 'package:e_commerce_user/common/widgets/custom_shapes/containers/rounded_container.dart';
+import 'package:e_commerce_user/features/shop/controllers/coupon_controller.dart';
 import 'package:e_commerce_user/features/shop/controllers/product/cart_controller.dart';
 import 'package:e_commerce_user/features/shop/screens/cart/widgets/cart_items.dart';
 import 'package:e_commerce_user/features/shop/screens/checkout/widgets/billing_address_section.dart';
@@ -23,15 +24,19 @@ class CheckoutScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final cartController = CartController.instance;
     final checkoutController = CheckoutController.instance;
+    final couponController = Get.put(CouponController());
     final dark = HelperFunctions.isDarkMode(context);
 
     return Obx(() {
-      final subTotal = cartController.totalCartSalePrice.value;
+      final subTotal = cartController.totalCartSalePrice.value - couponController.calculateDiscount(cartController.totalCartSalePrice.value);
+      final discount = couponController.calculateDiscount(subTotal);
       final total = cartController.totalCartPrice.value;
-      final shippingCost = checkoutController.settings.value.freeShippingLimit != null &&
-          checkoutController.settings.value.freeShippingLimit! < subTotal
-          ? 0.0
-          : checkoutController.settings.value.shippingCost;
+      final shippingCost =
+          checkoutController.settings.value.freeShippingLimit != null &&
+                  checkoutController.settings.value.freeShippingLimit! <
+                      subTotal
+              ? 0.0
+              : checkoutController.settings.value.shippingCost;
       final totalAmount = TPricingCalculator.calculateTotalPrice(
           subTotal, 'India', shippingCost);
 
@@ -61,9 +66,11 @@ class CheckoutScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       BillingAmountSection(
-                          total: total,
-                          subTotal: subTotal,
-                          shippingCost: shippingCost),
+                        total: total,
+                        subTotal: subTotal,
+                        shippingCost: shippingCost,
+                        discount: discount,
+                      ),
                       const SizedBox(height: TSizes.spaceBtwItems),
                       const Divider(),
                       const SizedBox(height: TSizes.spaceBtwItems),
@@ -84,18 +91,18 @@ class CheckoutScreen extends StatelessWidget {
             child: ElevatedButton(
               onPressed: subTotal > 0
                   ? () {
-                final razorpayController =
-                Get.put(RazorpayController(totalAmount: totalAmount));
-                razorpayController.startPayment(
-                  name: "VY Store",
-                  description: "Test Payment",
-                  email: "customer@email.com",
-                  contact: "9999999999",
-                  amount: totalAmount,
-                );
-              }
+                      final razorpayController =
+                          Get.put(RazorpayController(totalAmount: totalAmount));
+                      razorpayController.startPayment(
+                        name: "VY Store",
+                        description: "Test Payment",
+                        email: "customer@email.com",
+                        contact: "9999999999",
+                        amount: totalAmount,
+                      );
+                    }
                   : () => Loaders.warningSnackBar(
-                  title: 'Empty Cart', message: 'Your cart is empty'),
+                      title: 'Empty Cart', message: 'Your cart is empty'),
               child: Text('Checkout ₹$totalAmount'),
             ),
           ),
@@ -103,5 +110,4 @@ class CheckoutScreen extends StatelessWidget {
       );
     });
   }
-
 }

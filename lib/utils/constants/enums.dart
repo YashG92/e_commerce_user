@@ -16,3 +16,6 @@ enum ImageType { asset, network, memory, file, lottie }
 enum OrderStatus { pending, processing, shipped, delivered, cancelled }
 
 enum PaymentMethods { paypal, googlePay, applePay, visa, masterCard, creditCard, paystack, razorPay, paytm }
+
+enum DiscountType { percentage, amount }
+
