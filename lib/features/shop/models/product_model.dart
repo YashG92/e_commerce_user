@@ -23,9 +23,6 @@ class ProductModel {
   List<ProductVariationModel>? productVariations;
   String? productVisibility;
 
-
-
-
   ProductModel({
     required this.id,
     required this.title,
@@ -46,7 +43,6 @@ class ProductModel {
     this.productVariations,
     this.productVisibility,
   });
-
 
   static ProductModel empty() => ProductModel(
         id: '',
@@ -78,13 +74,12 @@ class ProductModel {
           ? productVariations!.map((e) => e.toJson()).toList()
           : [],
       'productVisibility': productVisibility ?? 'published',
-
     };
   }
 
   factory ProductModel.fromSnapshot(
       DocumentSnapshot<Map<String, dynamic>> document) {
-    if(document.data() == null) return ProductModel.empty();
+    if (document.data() == null) return ProductModel.empty();
     final data = document.data()!;
     return ProductModel(
       id: document.id,

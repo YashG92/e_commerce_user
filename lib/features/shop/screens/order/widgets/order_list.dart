@@ -87,7 +87,8 @@ class OrderListItems extends StatelessWidget {
 
                         ///Icon 2
                         IconButton(
-                            onPressed: ()=> Get.to(()=> OrderDetailScreen(order: order)),
+                            onPressed: () =>
+                                Get.to(() => OrderDetailScreen(order: order)),
                             icon: const Icon(
                               Iconsax.arrow_right_34,
                               size: TSizes.iconSm,

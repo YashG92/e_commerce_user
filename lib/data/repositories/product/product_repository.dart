@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 
 import '../../../common/widgets/loaders/full_screen_loader.dart';
 import '../../../features/shop/models/product_model.dart';
-import '../../../utils/constants/enums.dart';
 import '../../../utils/exceptions/firebase_exceptions.dart';
 import '../../../utils/exceptions/platform_exceptions.dart';
 

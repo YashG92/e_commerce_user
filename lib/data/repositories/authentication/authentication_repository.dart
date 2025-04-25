@@ -199,7 +199,7 @@ class AuthenticationRepository extends GetxController {
      //added
      await GoogleSignIn().signOut();
      await _auth.signOut();
-     Get.offAll(()=> LoginScreen());
+     Get.offAll(()=> const LoginScreen());
    }on FirebaseAuthException catch(e){
      throw TFirebaseAuthException(e.code).message;
    }on FirebaseException catch(e){

@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:e_commerce_user/data/repositories/authentication/authentication_repository.dart';
 import 'package:e_commerce_user/features/authentication/screens/password_configuration/reset_password.dart';
 import 'package:flutter/cupertino.dart';
@@ -20,7 +18,6 @@ class ForgetPasswordController extends GetxController{
 
  final isResendButtonOn = true.obs;
  final countdown=0.obs;
- Timer? _timer;
 
   //send reset password
 void sendPasswordResetEmail()async {
@@ -74,12 +71,4 @@ void sendPasswordResetEmail()async {
     isResendButtonOn.value = false;
     countdown.value = 30; // 30 seconds
 
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
-      if (countdown.value > 0) {
-        countdown.value--;
-      } else {
-        timer.cancel();
-        isResendButtonOn.value = true;
-      }
-    });
 }}

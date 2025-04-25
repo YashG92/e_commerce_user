@@ -10,7 +10,6 @@ class RatingAndShare extends StatelessWidget {
     super.key,
   });
 
-
   @override
   Widget build(BuildContext context) {
     final dark = HelperFunctions.isDarkMode(context);
@@ -20,19 +19,38 @@ class RatingAndShare extends StatelessWidget {
       children: [
         Row(
           children: [
-            Icon(Iconsax.star5,color: Colors.amber,size: 24,),
-            SizedBox(width: TSizes.spaceBtwItems/2.5,),
-            Text.rich(TextSpan(
-                children: [
-                  TextSpan(text: '4.0',style: Theme.of(context).textTheme.bodyLarge!.apply(decoration: TextDecoration.underline,fontWeightDelta: 3)),
-                  TextSpan(text: '/5.0',style: Theme.of(context).textTheme.bodyLarge!.apply(decoration: TextDecoration.underline,fontWeightDelta: 3)),
-                  TextSpan(text: ' (45 reviews)',style: Theme.of(context).textTheme.bodyLarge),
-                ]
-            )),
+            const Icon(
+              Iconsax.star5,
+              color: Colors.amber,
+              size: 24,
+            ),
+            const SizedBox(
+              width: TSizes.spaceBtwItems / 2.5,
+            ),
+            Text.rich(TextSpan(children: [
+              TextSpan(
+                  text: '4.0',
+                  style: Theme.of(context).textTheme.bodyLarge!.apply(
+                      decoration: TextDecoration.underline,
+                      fontWeightDelta: 3)),
+              TextSpan(
+                  text: '/5.0',
+                  style: Theme.of(context).textTheme.bodyLarge!.apply(
+                      decoration: TextDecoration.underline,
+                      fontWeightDelta: 3)),
+              TextSpan(
+                  text: ' (45 reviews)',
+                  style: Theme.of(context).textTheme.bodyLarge),
+            ])),
           ],
         ),
-
-        IconButton(onPressed: (){}, icon: Icon(Icons.share,size: TSizes.iconMd,color: dark ? AColors.white:AColors.black,)),
+        IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.share,
+              size: TSizes.iconMd,
+              color: dark ? AColors.white : AColors.black,
+            )),
       ],
     );
   }

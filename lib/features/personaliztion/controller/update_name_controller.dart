@@ -67,7 +67,7 @@ Future<void> initializeName() async{
       Loaders.successSnackBar(title: 'Congratulations!',message: 'Your name has been updated.');
 
       //Move to Screen
-    Get.off(()=>ProfileScreen());
+    Get.off(()=>const ProfileScreen());
 
     } catch (e) {
       FullScreenLoader.stopLoading();

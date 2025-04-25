@@ -12,15 +12,14 @@ class CategoryModel {
     required this.image,
     required this.id,
     this.parentId = '',
-    required this.isFeatured ,
+    required this.isFeatured,
   });
 
-
-
-  static CategoryModel empty()=> CategoryModel(id: '', name: '', image: '',isFeatured: false);
+  static CategoryModel empty() =>
+      CategoryModel(id: '', name: '', image: '', isFeatured: false);
 
   ///Convert CategoryModel to json to send to firebase
- Map<String, dynamic> toJson() {
+  Map<String, dynamic> toJson() {
     return {
       'name': name,
       'image': image,
@@ -31,8 +30,9 @@ class CategoryModel {
 
   ///Map json oriented document snapshot data to CategoryModel
 
-  factory CategoryModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> document) {
-    if(document.data() != null){
+  factory CategoryModel.fromSnapshot(
+      DocumentSnapshot<Map<String, dynamic>> document) {
+    if (document.data() != null) {
       final data = document.data()!;
 
       return CategoryModel(
@@ -42,7 +42,7 @@ class CategoryModel {
         parentId: data['parentId'] ?? '',
         isFeatured: data['isFeatured'] ?? false,
       );
-    }else{
+    } else {
       return CategoryModel.empty();
     }
   }

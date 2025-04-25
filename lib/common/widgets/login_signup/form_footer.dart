@@ -1,6 +1,4 @@
-import 'package:e_commerce_user/features/authentication/screens/signup/signup.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 class FormFooter extends StatelessWidget {
   final String footerText, buttonText;
   final VoidCallback onTap;

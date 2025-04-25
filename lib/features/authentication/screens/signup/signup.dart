@@ -15,10 +15,10 @@ class SignupScreen extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          Expanded(
+          const Expanded(
             child: SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.only(
+                padding: EdgeInsets.only(
                   top: kToolbarHeight,
                   left: 16,
                   right: 16,
@@ -30,7 +30,7 @@ class SignupScreen extends StatelessWidget {
                       title: 'Create an account',
                       subTitle: 'Let’s create your account.',
                     ),
-                    const SizedBox(
+                    SizedBox(
                       height: 32,
                     ),
                     SignUpForm(),
@@ -38,7 +38,6 @@ class SignupScreen extends StatelessWidget {
                     SocialButton(
                       buttonTitle: 'Sign Up with Google',
                     ),
-
                   ],
                 ),
               ),
@@ -48,13 +47,12 @@ class SignupScreen extends StatelessWidget {
             padding: const EdgeInsets.all(16.0),
             child: FormFooter(
               footerText: 'Already have an account?',
-              onTap: () => Get.to(() => LoginScreen()),
+              onTap: () => Get.to(() => const LoginScreen()),
               buttonText: 'Log In',
             ),
           ),
         ],
       ),
-
     );
   }
 }

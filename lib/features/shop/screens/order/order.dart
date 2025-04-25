@@ -3,6 +3,7 @@ import 'package:e_commerce_user/features/shop/screens/order/widgets/order_list.d
 import 'package:flutter/material.dart';
 
 import '../../../../utils/constants/sizes.dart';
+
 class OrderListScreen extends StatelessWidget {
   const OrderListScreen({super.key});
 
@@ -16,7 +17,7 @@ class OrderListScreen extends StatelessWidget {
         ),
         showBackArrow: true,
       ),
-      body: Padding(
+      body: const Padding(
         padding: EdgeInsets.all(TSizes.defaultSpace),
 
         ///Orders

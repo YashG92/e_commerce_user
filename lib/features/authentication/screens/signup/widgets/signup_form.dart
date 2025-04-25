@@ -1,6 +1,4 @@
-import 'package:e_commerce_user/features/authentication/screens/signup/verify_email.dart';
 import 'package:e_commerce_user/features/authentication/screens/signup/widgets/terms_and_conditions.dart';
-import 'package:e_commerce_user/utils/helper/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:iconsax/iconsax.dart';
@@ -14,9 +12,6 @@ class SignUpForm extends StatelessWidget {
   const SignUpForm({
     super.key,
   });
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -38,13 +33,14 @@ class SignUpForm extends StatelessWidget {
               // Add spacing manually
               TextFormField(
                 controller: controller.fullName,
-                validator: (value) =>Validator.validateEmptyText('Full Name',value),
+                validator: (value) =>
+                    Validator.validateEmptyText('Full Name', value),
                 decoration: InputDecoration(
                   hintText: 'Enter your full name',
                   labelStyle: const TextStyle()
                       .copyWith(fontSize: 24, color: AColors.black),
                   border: OutlineInputBorder(
-                    borderSide: BorderSide(color: AColors.grey),
+                    borderSide: const BorderSide(color: AColors.grey),
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
@@ -66,7 +62,7 @@ class SignUpForm extends StatelessWidget {
                   labelStyle: const TextStyle()
                       .copyWith(fontSize: 24, color: AColors.black),
                   border: OutlineInputBorder(
-                    borderSide: BorderSide(color: AColors.grey),
+                    borderSide: const BorderSide(color: AColors.grey),
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
@@ -90,7 +86,7 @@ class SignUpForm extends StatelessWidget {
                   labelStyle: const TextStyle()
                       .copyWith(fontSize: 24, color: AColors.black),
                   border: OutlineInputBorder(
-                    borderSide: BorderSide(color: AColors.grey),
+                    borderSide: const BorderSide(color: AColors.grey),
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
@@ -109,17 +105,22 @@ class SignUpForm extends StatelessWidget {
               ),
               const SizedBox(height: 6), // Add spacing manually
               Obx(
-                ()=> TextFormField(
+                () => TextFormField(
                   controller: controller.password,
                   validator: (value) => Validator.validatePassword(value),
                   obscureText: controller.hidePassword.value,
                   decoration: InputDecoration(
-                    suffixIcon: IconButton(onPressed: ()=> controller.hidePassword.value = !controller.hidePassword.value, icon: controller.hidePassword.value ? Icon(Iconsax.eye_slash): Icon(Iconsax.eye)),
+                    suffixIcon: IconButton(
+                        onPressed: () => controller.hidePassword.value =
+                            !controller.hidePassword.value,
+                        icon: controller.hidePassword.value
+                            ? const Icon(Iconsax.eye_slash)
+                            : const Icon(Iconsax.eye)),
                     hintText: 'Enter your password',
                     labelStyle: const TextStyle()
                         .copyWith(fontSize: 24, color: AColors.black),
                     border: OutlineInputBorder(
-                      borderSide: BorderSide(color: AColors.grey),
+                      borderSide: const BorderSide(color: AColors.grey),
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
@@ -128,7 +129,7 @@ class SignUpForm extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 12),
-          TermsAndCondition(),
+          const TermsAndCondition(),
 
           const SizedBox(
             height: 32 / 1.5,
@@ -139,9 +140,8 @@ class SignUpForm extends StatelessWidget {
               height: 60,
               width: double.infinity,
               child: ElevatedButton(
-
-                  onPressed: () =>controller.signup(),
-                  child: Text(
+                  onPressed: () => controller.signup(),
+                  child: const Text(
                     'Create an Account',
                   ))),
         ],
@@ -149,4 +149,3 @@ class SignUpForm extends StatelessWidget {
     );
   }
 }
-

@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 
 import '../../../features/shop/models/category_model.dart';
 import '../../../utils/exceptions/firebase_exceptions.dart';
-import '../../../utils/exceptions/format_exceptions.dart';
 import '../../../utils/exceptions/platform_exceptions.dart';
 
 class CategoryRepository extends GetxController {

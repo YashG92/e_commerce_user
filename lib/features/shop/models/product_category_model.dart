@@ -7,18 +7,16 @@ class ProductCategoryModel {
   ProductCategoryModel({
     required this.productId,
     required this.categoryId,
-});
+  });
 
-
-   Map<String, dynamic> toJson() {
+  Map<String, dynamic> toJson() {
     return {
       'productId': productId,
       'categoryId': categoryId,
     };
   }
 
-  factory  ProductCategoryModel.fromSnapshot(DocumentSnapshot doc) {
-
+  factory ProductCategoryModel.fromSnapshot(DocumentSnapshot doc) {
     final data = doc.data() as Map<String, dynamic>;
     return ProductCategoryModel(
       productId: data['productId'] as String,

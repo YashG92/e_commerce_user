@@ -35,17 +35,17 @@ class AddNewAddressScreen extends StatelessWidget {
                 controller: controller.name,
                 validator: (value)=> Validator.validateEmptyText('Name', value),
                 decoration: InputDecoration(
-                  prefixIcon: Icon(Iconsax.user),
+                  prefixIcon: const Icon(Iconsax.user),
                   labelText: 'Name',
                   labelStyle: const TextStyle()
                       .copyWith(fontSize: 18, color: AColors.black),
                   border: OutlineInputBorder(
-                    borderSide: BorderSide(color: AColors.grey),
+                    borderSide: const BorderSide(color: AColors.grey),
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: TSizes.spaceBtwInputFields,
               ),
               TextFormField(
@@ -54,17 +54,17 @@ class AddNewAddressScreen extends StatelessWidget {
                 keyboardType: TextInputType.number,
                 inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 decoration: InputDecoration(
-                  prefixIcon: Icon(Iconsax.mobile),
+                  prefixIcon: const Icon(Iconsax.mobile),
                   labelText: 'Phone Number',
                   labelStyle: const TextStyle()
                       .copyWith(fontSize: 18, color: AColors.black),
                   border: OutlineInputBorder(
-                    borderSide: BorderSide(color: AColors.grey),
+                    borderSide: const BorderSide(color: AColors.grey),
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: TSizes.spaceBtwInputFields,
               ),
               Row(
@@ -74,17 +74,17 @@ class AddNewAddressScreen extends StatelessWidget {
                         validator: (value)=> Validator.validateEmptyText('Street', value),
                         controller: controller.street,
                     decoration: InputDecoration(
-                      prefixIcon: Icon(Iconsax.building_31),
+                      prefixIcon: const Icon(Iconsax.building_31),
                       labelText: 'Street',
                       labelStyle: const TextStyle()
                           .copyWith(fontSize: 18, color: AColors.black),
                       border: OutlineInputBorder(
-                        borderSide: BorderSide(color: AColors.grey),
+                        borderSide: const BorderSide(color: AColors.grey),
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
                   )),
-                  SizedBox(
+                  const SizedBox(
                     width: TSizes.spaceBtwInputFields,
                   ),
                   Expanded(
@@ -94,19 +94,19 @@ class AddNewAddressScreen extends StatelessWidget {
                     keyboardType: TextInputType.number,
                     inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                     decoration: InputDecoration(
-                      prefixIcon: Icon(Iconsax.code),
+                      prefixIcon: const Icon(Iconsax.code),
                       labelText: 'Pincode',
                       labelStyle: const TextStyle()
                           .copyWith(fontSize: 18, color: AColors.black),
                       border: OutlineInputBorder(
-                        borderSide: BorderSide(color: AColors.grey),
+                        borderSide: const BorderSide(color: AColors.grey),
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
                   )),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: TSizes.spaceBtwInputFields,
               ),
               Row(
@@ -116,17 +116,17 @@ class AddNewAddressScreen extends StatelessWidget {
                         controller: controller.city,
                     validator: (value)=> Validator.validateEmptyText('City', value),
                     decoration: InputDecoration(
-                      prefixIcon: Icon(Iconsax.building),
+                      prefixIcon: const Icon(Iconsax.building),
                       labelText: 'City',
                       labelStyle: const TextStyle()
                           .copyWith(fontSize: 18, color: AColors.black),
                       border: OutlineInputBorder(
-                        borderSide: BorderSide(color: AColors.grey),
+                        borderSide: const BorderSide(color: AColors.grey),
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
                   )),
-                  SizedBox(
+                  const SizedBox(
                     width: TSizes.spaceBtwInputFields,
                   ),
                   Expanded(
@@ -134,12 +134,12 @@ class AddNewAddressScreen extends StatelessWidget {
                       controller: controller.state,
                       validator: (value)=> Validator.validateEmptyText('State', value),
                       decoration: InputDecoration(
-                        prefixIcon: Icon(Iconsax.activity),
+                        prefixIcon: const Icon(Iconsax.activity),
                         labelText: 'State',
                         labelStyle: const TextStyle()
                             .copyWith(fontSize: 18, color: AColors.black),
                         border: OutlineInputBorder(
-                          borderSide: BorderSide(color: AColors.grey),
+                          borderSide: const BorderSide(color: AColors.grey),
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
@@ -147,24 +147,24 @@ class AddNewAddressScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: TSizes.spaceBtwInputFields,
               ),
               TextFormField(
                 controller: controller.country,
                 validator: (value)=> Validator.validateEmptyText('Country', value),
                 decoration: InputDecoration(
-                  prefixIcon: Icon(Iconsax.global),
+                  prefixIcon: const Icon(Iconsax.global),
                   labelText: 'Country',
                   labelStyle: const TextStyle()
                       .copyWith(fontSize: 18, color: AColors.black),
                   border: OutlineInputBorder(
-                    borderSide: BorderSide(color: AColors.grey),
+                    borderSide: const BorderSide(color: AColors.grey),
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: TSizes.defaultSpace,
               ),
               SizedBox(
@@ -176,11 +176,11 @@ class AddNewAddressScreen extends StatelessWidget {
                       backgroundColor: dark ? Colors.white : Colors.black,
                       foregroundColor: dark ? AColors.dark : Colors.white,
                       textStyle:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                      const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10))),
                   onPressed: () => controller.addNewAddress(),
-                  child: Text('Save'),
+                  child: const Text('Save'),
                 ),
               )
             ],

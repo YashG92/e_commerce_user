@@ -1,12 +1,14 @@
-
 import 'package:flutter/material.dart';
 
 import '../../../../../utils/constants/colors.dart';
 
 class RatingProgressIndicator extends StatelessWidget {
   const RatingProgressIndicator({
-    super.key, required this.text, required this.value,
+    super.key,
+    required this.text,
+    required this.value,
   });
+
   final String text;
   final double value;
 
@@ -15,11 +17,11 @@ class RatingProgressIndicator extends StatelessWidget {
     return Row(
       children: [
         Expanded(
+          flex: 1,
           child: Text(
             text,
             style: Theme.of(context).textTheme.bodyMedium,
           ),
-          flex: 1,
         ),
         Expanded(
           flex: 11,
@@ -29,8 +31,7 @@ class RatingProgressIndicator extends StatelessWidget {
               value: value,
               minHeight: 13,
               backgroundColor: AColors.grey,
-              valueColor:
-              AlwaysStoppedAnimation(AColors.primary),
+              valueColor: const AlwaysStoppedAnimation(AColors.primary),
               borderRadius: BorderRadius.circular(10),
             ),
           ),

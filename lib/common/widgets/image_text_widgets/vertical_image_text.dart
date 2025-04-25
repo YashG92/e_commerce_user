@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/sizes.dart';
-import '../../../utils/helper/helper_functions.dart';
 
 class VerticalImageText extends StatelessWidget {
   final String image, title;
@@ -24,7 +23,6 @@ class VerticalImageText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dark = HelperFunctions.isDarkMode(context);
     return GestureDetector(
       onTap: onTapItem,
       child: Padding(

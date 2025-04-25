@@ -34,11 +34,11 @@ class SettingMenuTile extends StatelessWidget {
                   .textTheme
                   .titleMedium!
                   .apply(color: showColor ? Colors.red : null)),
-          trailing: showNextArrow ?  Icon(Iconsax.arrow_right_3) : null,
+          trailing: showNextArrow ?  const Icon(Iconsax.arrow_right_3) : null,
           onTap: onTap,
         ),
         if (showDivider)
-          Divider(
+          const Divider(
             indent: 60,
             endIndent: 25,
           ),

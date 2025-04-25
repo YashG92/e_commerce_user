@@ -1,15 +1,11 @@
-import 'package:e_commerce_user/common/widgets/texts/brand_title_text.dart';
 import 'package:e_commerce_user/features/shop/models/brand_model.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../utils/constants/colors.dart';
-import '../../../utils/constants/image_strings.dart';
 import '../../../utils/constants/sizes.dart';
-import '../../../utils/helper/helper_functions.dart';
 import '../custom_shapes/containers/rounded_container.dart';
 import '../images/circular_image.dart';
-import '../texts/brand_title_with_verified_icon.dart';
 
 class BrandCard extends StatelessWidget {
   const BrandCard({
@@ -25,7 +21,6 @@ class BrandCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dark = HelperFunctions.isDarkMode(context);
 
     return GestureDetector(
       onTap: onTap,

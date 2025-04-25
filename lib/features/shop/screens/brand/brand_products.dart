@@ -41,21 +41,21 @@ class BrandProducts extends StatelessWidget {
                 height: TSizes.spaceBtwSections,
               ),
               FutureBuilder(
-                future: controller.getBrandProducts(brandId:  brand.id),
-                builder: (context, snapshot) {
-                  const loader = VerticalProductShimmer();
-                  final widget = TCloudHelperFunctions.checkMultiRecordState(snapshot: snapshot,loader: loader);
-                  if(widget != null){
-                    return widget;
-                  }
+                  future: controller.getBrandProducts(brandId: brand.id),
+                  builder: (context, snapshot) {
+                    const loader = VerticalProductShimmer();
+                    final widget = TCloudHelperFunctions.checkMultiRecordState(
+                        snapshot: snapshot, loader: loader);
+                    if (widget != null) {
+                      return widget;
+                    }
 
-                  final brandProducts = snapshot.data!;
+                    final brandProducts = snapshot.data!;
 
-                  return SortableProducts(
-                    products: brandProducts,
-                  );
-                }
-              ),
+                    return SortableProducts(
+                      products: brandProducts,
+                    );
+                  }),
             ],
           ),
         ),

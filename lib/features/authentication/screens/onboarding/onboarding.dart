@@ -23,19 +23,19 @@ class OnBoardingScreen extends StatelessWidget {
             onPageChanged: controller.updatePageIndex,
             children: [
               //Scroll page
-              OnBoardingPage(
+              const OnBoardingPage(
                 title: TextStrings.onBoardingTitle1,
                 subTitle:
                     TextStrings.onBoardingSubTitle1,
                 image: ImageStrings.onBoardingImage1,
               ),
-              OnBoardingPage(
+              const OnBoardingPage(
                 title: TextStrings.onBoardingTitle2,
                 subTitle:
                 TextStrings.onBoardingSubTitle2,
                 image: ImageStrings.onBoardingImage2,
               ),
-              OnBoardingPage(
+              const OnBoardingPage(
                 title: TextStrings.onBoardingTitle3,
                 subTitle:
                 TextStrings.onBoardingSubTitle3,
@@ -48,13 +48,13 @@ class OnBoardingScreen extends StatelessWidget {
           ),
           //Skip button
 
-          OnBoardingSkip(),
+          const OnBoardingSkip(),
 
 
           //Next button
-          OnBoardingNextButton(),
+          const OnBoardingNextButton(),
           //navigation indicator
-          OnBoardingDotNavigation()
+          const OnBoardingDotNavigation()
         ],
       ),
     );

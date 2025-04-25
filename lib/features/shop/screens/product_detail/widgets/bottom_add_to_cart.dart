@@ -69,7 +69,7 @@ class BottomAddToCart extends StatelessWidget {
             ),
           ),
           Obx(
-                () => ElevatedButton(
+            () => ElevatedButton(
               onPressed: controller.productQuantityInCart.value < 1
                   ? null
                   : () => controller.addProductToCart(product),
@@ -79,7 +79,6 @@ class BottomAddToCart extends StatelessWidget {
               child: const Text('Add to Cart'),
             ),
           )
-
         ],
       ),
     );

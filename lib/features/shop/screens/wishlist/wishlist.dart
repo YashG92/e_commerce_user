@@ -2,7 +2,6 @@ import 'package:e_commerce_user/common/widgets/appbar/appbar.dart';
 import 'package:e_commerce_user/common/widgets/loaders/animation_loader.dart';
 import 'package:e_commerce_user/common/widgets/shimmer/vertical_product_shimmer.dart';
 import 'package:e_commerce_user/features/personaliztion/controller/favorites_controller.dart';
-import 'package:e_commerce_user/features/shop/screens/home/home.dart';
 import 'package:e_commerce_user/navigation_menu.dart';
 import 'package:e_commerce_user/utils/constants/image_strings.dart';
 import 'package:e_commerce_user/utils/helper/cloud_helper_functions.dart';
@@ -32,28 +31,29 @@ class WishlistScreen extends StatelessWidget {
           child: Column(
             children: [
               Obx(
-                ()=> FutureBuilder(
+                () => FutureBuilder(
                     future: controller.favoriteProducts(),
                     builder: (context, snapshot) {
                       final emptyWidget = AnimationLoaderWidget(
-                        text: 'Oops!, Wishlist is Empty',
-                        animation: ImageStrings.successGif,
-                        showAction: true,
-                        actionText: 'Let\'s add some',
-                        onActionPressed: () {
-                          final navController = Get.find<NavigationController>();
-                          navController.selectedIndex.value = 0;
-                          Get.offAll(() => const NavigationMenu());
-                        }
-                      );
+                          text: 'Oops!, Wishlist is Empty',
+                          animation: ImageStrings.successGif,
+                          showAction: true,
+                          actionText: 'Let\'s add some',
+                          onActionPressed: () {
+                            final navController =
+                                Get.find<NavigationController>();
+                            navController.selectedIndex.value = 0;
+                            Get.offAll(() => const NavigationMenu());
+                          });
 
                       const loader = VerticalProductShimmer(
                         itemCount: 6,
                       );
-                      final widget = TCloudHelperFunctions.checkMultiRecordState(
-                          snapshot: snapshot,
-                          loader: loader,
-                          nothingFound: emptyWidget);
+                      final widget =
+                          TCloudHelperFunctions.checkMultiRecordState(
+                              snapshot: snapshot,
+                              loader: loader,
+                              nothingFound: emptyWidget);
                       if (widget != null) return widget;
 
                       final products = snapshot.data!;

@@ -78,22 +78,22 @@ class UserController extends GetxController {
   ///Delete warning popup
   void deleteAccountWarningPopup() {
     Get.defaultDialog(
-        contentPadding: EdgeInsets.all(TSizes.md),
+        contentPadding: const EdgeInsets.all(TSizes.md),
         title: 'Delete Account',
         middleText:
         'Are you sure you want to delete your account permanently? This action is not reversible and all of your data will be removed permanently.',
         confirm: ElevatedButton(
             style: ElevatedButton.styleFrom(backgroundColor: Colors.red,
-                side: BorderSide(color: Colors.red)),
+                side: const BorderSide(color: Colors.red)),
             onPressed: () async => deleteUserAccount(),
-            child: Padding(
+            child: const Padding(
               padding: EdgeInsets.symmetric(horizontal: TSizes.lg),
               child: Text('Delete'),
             )
         ),
         cancel: OutlinedButton(
           onPressed: () => Navigator.of(Get.overlayContext!).pop(),
-          child: Text('Cancel'),)
+          child: const Text('Cancel'),)
     );
   }
 
@@ -147,10 +147,10 @@ class UserController extends GetxController {
           await GoogleSignIn().signOut();
           await auth.deleteAccount();
           FullScreenLoader.stopLoading();
-          Get.offAll(() => LoginScreen());
+          Get.offAll(() => const LoginScreen());
         } else if (provider == 'password') {
           FullScreenLoader.stopLoading();
-          Get.to(() => ReAuthenticateUserLoginForm());
+          Get.to(() => const ReAuthenticateUserLoginForm());
         }
       }
     } catch (e) {

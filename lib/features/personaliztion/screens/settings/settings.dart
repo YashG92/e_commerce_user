@@ -29,28 +29,28 @@ class SettingsScreen extends StatelessWidget {
           style: Theme.of(context).textTheme.headlineMedium,
         ),
         actions: [
-          IconButton(onPressed: () {}, icon: Icon(Iconsax.notification))
+          IconButton(onPressed: () {}, icon: const Icon(Iconsax.notification))
         ],
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
             ///header
-            UserProfile(),
+            const UserProfile(),
 
             //SizedBox(height: TSizes.spaceBtwSections/2,),
             ///body Listview
             Column(
               children: [
                 ///Account Settings
-                Padding(
-                  padding: const EdgeInsets.all(TSizes.defaultSpace),
+                const Padding(
+                  padding:  EdgeInsets.all(TSizes.defaultSpace),
                   child: SectionHeading(
                     title: 'Account Settings',
                     showActionButton: false,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: TSizes.spaceBtwItems / 2,
                 ),
 
@@ -58,7 +58,7 @@ class SettingsScreen extends StatelessWidget {
                   title: 'My Orders',
                   icon: Iconsax.box,
                   showDivider: false,
-                  onTap: ()=> Get.to(()=> OrderListScreen()),
+                  onTap: ()=> Get.to(()=> const OrderListScreen()),
                 ),
                 Divider(
                   thickness: 10,
@@ -68,17 +68,17 @@ class SettingsScreen extends StatelessWidget {
                 SettingMenuTile(
                   title: 'Address Book',
                   icon: Iconsax.home,
-                  onTap: () => Get.to(() => UserAddressScreen()),
+                  onTap: () => Get.to(() => const UserAddressScreen()),
                 ),
-                SettingMenuTile(
+                const SettingMenuTile(
                   title: 'Payment Methods',
                   icon: Iconsax.card,
                 ),
-                SettingMenuTile(
+                const SettingMenuTile(
                   title: 'Account',
                   icon: Iconsax.user,
                 ),
-                SettingMenuTile(
+                const SettingMenuTile(
                   title: 'My Coupons',
                   icon: Iconsax.discount_shape,
                   showDivider: false,

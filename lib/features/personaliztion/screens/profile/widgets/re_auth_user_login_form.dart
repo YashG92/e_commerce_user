@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:iconsax/iconsax.dart';
@@ -53,13 +52,13 @@ class ReAuthenticateUserLoginForm extends StatelessWidget {
                     labelStyle: const TextStyle()
                         .copyWith(fontSize: 18, color: AColors.black),
                     border: OutlineInputBorder(
-                      borderSide: BorderSide(color: AColors.grey),
+                      borderSide: const BorderSide(color: AColors.grey),
                       borderRadius: BorderRadius.circular(10),)
                   ),
                 ),
               ),
               const SizedBox(height: TSizes.spaceBtwSections,),
-      Spacer(),
+              const Spacer(),
               ///Login Button
               SizedBox(
                 height: 60,

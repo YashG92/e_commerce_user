@@ -3,7 +3,6 @@ import 'package:e_commerce_user/common/widgets/shimmer/vertical_product_shimmer.
 import 'package:e_commerce_user/common/widgets/texts/section_heading.dart';
 import 'package:e_commerce_user/features/shop/controllers/category_controller.dart';
 import 'package:e_commerce_user/features/shop/models/category_model.dart';
-import 'package:e_commerce_user/features/shop/models/product_model.dart';
 import 'package:e_commerce_user/features/shop/screens/all_products/all_products.dart';
 import 'package:e_commerce_user/features/shop/screens/shop/widgets/category_brands.dart';
 import 'package:flutter/material.dart';

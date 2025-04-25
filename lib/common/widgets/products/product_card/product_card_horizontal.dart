@@ -32,7 +32,7 @@ class ProductCardHorizontal extends StatelessWidget {
 
         Get.to(
           () => ProductDetailScreen(product: product),
-          transition: Transition.cupertino, // Smohest built-in transition
+          transition: Transition.cupertino, // Smoothest built-in transition
           duration: const Duration(milliseconds: 500), // Optimal duration
           curve: Curves.fastOutSlowIn, // Best curve for smoothness
           popGesture: true, // Enable iOS-style swipe back
@@ -165,12 +165,12 @@ class ProductCardHorizontal extends StatelessWidget {
                           Container(
                             decoration: BoxDecoration(
                                 color: dark ? Colors.blue : AColors.black,
-                                borderRadius: BorderRadius.only(
+                                borderRadius: const BorderRadius.only(
                                     topLeft:
                                         Radius.circular(TSizes.cardRadiusMd),
                                     bottomRight:
                                         Radius.circular(TSizes.cardRadiusMd))),
-                            child: SizedBox(
+                            child: const SizedBox(
                                 height: TSizes.iconLg,
                                 width: TSizes.iconLg,
                                 child: Icon(

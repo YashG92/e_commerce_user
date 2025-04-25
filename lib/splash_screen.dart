@@ -12,15 +12,15 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-
 class _SplashScreenState extends State<SplashScreen> {
-
   @override
   Widget build(BuildContext context) {
     final dark = HelperFunctions.isDarkMode(context);
     return Scaffold(
       body: Center(
-        child: dark ? Lottie.asset(ImageStrings.appLogoLight) : Lottie.asset(ImageStrings.appLogoDark),
+        child: dark
+            ? Lottie.asset(ImageStrings.appLogoLight)
+            : Lottie.asset(ImageStrings.appLogoDark),
       ),
     );
   }
@@ -28,6 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(const Duration(seconds: 3), () =>AuthenticationRepository.instance.screenRedirect());
+    Timer(const Duration(seconds: 3),
+        () => AuthenticationRepository.instance.screenRedirect());
   }
 }

@@ -3,19 +3,15 @@ import 'package:e_commerce_user/common/widgets/products/favorite_icon/favorite_i
 import 'package:e_commerce_user/features/shop/controllers/product/product_controller.dart';
 import 'package:e_commerce_user/features/shop/models/product_model.dart';
 import 'package:e_commerce_user/features/shop/screens/product_detail/product_detail.dart';
-import 'package:e_commerce_user/features/shop/screens/product_reviews/product_review.dart';
 import 'package:e_commerce_user/utils/constants/colors.dart';
 import 'package:e_commerce_user/utils/constants/enums.dart';
-import 'package:e_commerce_user/utils/constants/image_strings.dart';
 import 'package:e_commerce_user/utils/helper/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
 
 import '../../../../features/shop/screens/product_detail/widgets/product_add_to_cart_button.dart';
 import '../../../../utils/constants/sizes.dart';
 import '../../custom_shapes/containers/rounded_container.dart';
-import '../../icons/circular_icon.dart';
 import '../../texts/brand_title_with_verified_icon.dart';
 import '../../texts/product_price_text.dart';
 import '../../texts/product_title_text.dart';
@@ -39,7 +35,7 @@ class ProductCardVertical extends StatelessWidget {
 
       Get.to(
             () => ProductDetailScreen(product: product),
-        //transition: Transition.cupertino, // Smohest built-in transition
+        //transition: Transition.cupertino, // Smoothest built-in transition
         duration: const Duration(milliseconds: 500), // Optimal duration
         curve: Curves.fastOutSlowIn, // Best curve for smoothness
         popGesture: true, // Enable iOS-style swipe back
@@ -133,7 +129,7 @@ class ProductCardVertical extends StatelessWidget {
                   ],
                 ),
               ),
-              Spacer(),
+              const Spacer(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

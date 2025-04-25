@@ -1,8 +1,5 @@
 import 'package:e_commerce_user/common/widgets/appbar/appbar.dart';
-import 'package:e_commerce_user/common/widgets/custom_shapes/curved_edges/curved_edges_widget.dart';
-import 'package:e_commerce_user/common/widgets/images/rounded_image.dart';
 import 'package:e_commerce_user/common/widgets/texts/section_heading.dart';
-import 'package:e_commerce_user/features/shop/controllers/product/cart_controller.dart';
 import 'package:e_commerce_user/features/shop/screens/product_detail/widgets/bottom_add_to_cart.dart';
 import 'package:e_commerce_user/features/shop/screens/product_detail/widgets/product_attributes.dart';
 import 'package:e_commerce_user/features/shop/screens/product_detail/widgets/product_variation_attributes.dart';
@@ -10,17 +7,12 @@ import 'package:e_commerce_user/features/shop/screens/product_detail/widgets/pro
 import 'package:e_commerce_user/features/shop/screens/product_detail/widgets/product_meta_data.dart';
 import 'package:e_commerce_user/features/shop/screens/product_detail/widgets/rating_share_widget.dart';
 import 'package:e_commerce_user/features/shop/screens/product_reviews/product_review.dart';
-import 'package:e_commerce_user/utils/constants/colors.dart';
 import 'package:e_commerce_user/utils/constants/enums.dart';
-import 'package:e_commerce_user/utils/constants/image_strings.dart';
 import 'package:e_commerce_user/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
-import '../../../../common/widgets/custom_shapes/containers/rounded_container.dart';
-import '../../../../common/widgets/icons/circular_icon.dart';
-import '../../../../utils/helper/helper_functions.dart';
 import '../../models/product_model.dart';
 
 class ProductDetailScreen extends StatelessWidget {
@@ -31,8 +23,6 @@ class ProductDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cartController = CartController.instance;
-    final dark = HelperFunctions.isDarkMode(context);
     return Scaffold(
       appBar: CustomAppbar(
         showBackArrow: true,
@@ -62,7 +52,7 @@ class ProductDetailScreen extends StatelessWidget {
                 children: [
                   ///Rating & Share
 
-                  RatingAndShare(),
+                  const RatingAndShare(),
 
                   ///Price Title Stock & Description
 
@@ -100,11 +90,11 @@ class ProductDetailScreen extends StatelessWidget {
                         showActionButton: false,
                       ),
                       IconButton(
-                          onPressed: () => Get.to(ProductReviewScreen()),
-                          icon: Icon(Iconsax.arrow_right_3)),
+                          onPressed: () => Get.to(const ProductReviewScreen()),
+                          icon: const Icon(Iconsax.arrow_right_3)),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: TSizes.spaceBtwItems,
                   ),
                 ],

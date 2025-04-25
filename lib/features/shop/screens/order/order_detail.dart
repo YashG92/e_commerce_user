@@ -23,9 +23,9 @@ class OrderDetailScreen extends StatelessWidget {
     final currencyFormat = NumberFormat.currency(locale: 'en_IN', symbol: '₹');
 
     return Scaffold(
-      appBar:  CustomAppbar(
+      appBar: CustomAppbar(
         title: Text(
-           'Order ${order.id}',
+          'Order ${order.id}',
           style: Theme.of(context).textTheme.headlineMedium,
         ),
         showBackArrow: true,
@@ -55,7 +55,8 @@ class OrderDetailScreen extends StatelessWidget {
                               color: Colors.white,
                             ),
                           ),
-                          backgroundColor: HelperFunctions.getOrderStatusColor(order.status),
+                          backgroundColor:
+                              HelperFunctions.getOrderStatusColor(order.status),
                         ),
                       ],
                     ),
@@ -82,85 +83,93 @@ class OrderDetailScreen extends StatelessWidget {
             Text('Order Items', style: textTheme.headlineSmall),
             const SizedBox(height: TSizes.spaceBtwItems),
             ...order.items.map((item) => Card(
-              color: dark ? AColors.darkerGrey : AColors.light,
-              elevation: 0,
-              margin: const EdgeInsets.only(bottom: TSizes.spaceBtwItems),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(TSizes.borderRadiusMd),
-                side: BorderSide(
-                  color: dark ? AColors.darkerGrey : AColors.grey,
-                  width: 1,
-                ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(TSizes.sm),
-                child: Row(
-                  children: [
-                    /// Product Image
-                    RoundedImage(
-                      imageUrl: item.image ?? '',
-                      isNetworkImage: true,
-                      height: 80,
-                      width: 80,
-                      backgroundColor: dark ? AColors.darkGrey : AColors.light,
-                      padding: const EdgeInsets.all(TSizes.sm),
+                  color: dark ? AColors.darkerGrey : AColors.light,
+                  elevation: 0,
+                  margin: const EdgeInsets.only(bottom: TSizes.spaceBtwItems),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(TSizes.borderRadiusMd),
+                    side: BorderSide(
+                      color: dark ? AColors.darkerGrey : AColors.grey,
+                      width: 1,
                     ),
-                    const SizedBox(width: TSizes.spaceBtwItems),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(TSizes.sm),
+                    child: Row(
+                      children: [
+                        /// Product Image
+                        RoundedImage(
+                          imageUrl: item.image ?? '',
+                          isNetworkImage: true,
+                          height: 80,
+                          width: 80,
+                          backgroundColor:
+                              dark ? AColors.darkGrey : AColors.light,
+                          padding: const EdgeInsets.all(TSizes.sm),
+                        ),
+                        const SizedBox(width: TSizes.spaceBtwItems),
 
-                    /// Product Details
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        /// Product Details
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Flexible(
-                                child: ProductTitleText(
-                                  title: item.title,
-                                  maxLines: 2,
-                                ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Flexible(
+                                    child: ProductTitleText(
+                                      title: item.title,
+                                      maxLines: 2,
+                                    ),
+                                  ),
+                                  Text(
+                                    currencyFormat.format(item.price),
+                                    style: textTheme.bodyLarge?.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
                               ),
-                              Text(
-                                currencyFormat.format(item.price),
-                                style: textTheme.bodyLarge?.copyWith(
-                                  fontWeight: FontWeight.bold,
+                              const SizedBox(height: TSizes.spaceBtwItems / 2),
+                              BrandTitleWithVerifiedIcon(
+                                  title: item.brandName ?? ''),
+                              const SizedBox(height: TSizes.spaceBtwItems / 2),
+
+                              /// Product Variations
+                              if (item.selectedVariation != null &&
+                                  item.selectedVariation!.isNotEmpty)
+                                Wrap(
+                                  spacing: TSizes.spaceBtwItems / 2,
+                                  runSpacing: TSizes.spaceBtwItems / 4,
+                                  children: item.selectedVariation!.entries
+                                      .map(
+                                        (entry) => Chip(
+                                          label: Text(
+                                            '${entry.key}: ${entry.value}',
+                                            style: textTheme.labelSmall,
+                                          ),
+                                          backgroundColor: dark
+                                              ? AColors.darkGrey
+                                              : AColors.light,
+                                          side: BorderSide.none,
+                                        ),
+                                      )
+                                      .toList(),
                                 ),
+                              const SizedBox(height: TSizes.spaceBtwItems / 2),
+                              Text(
+                                'Qty: ${item.quantity}',
+                                style: textTheme.bodySmall,
                               ),
                             ],
                           ),
-                          const SizedBox(height: TSizes.spaceBtwItems / 2),
-                          BrandTitleWithVerifiedIcon(title: item.brandName ?? ''),
-                          const SizedBox(height: TSizes.spaceBtwItems / 2),
-
-                          /// Product Variations
-                          if (item.selectedVariation != null && item.selectedVariation!.isNotEmpty)
-                            Wrap(
-                              spacing: TSizes.spaceBtwItems / 2,
-                              runSpacing: TSizes.spaceBtwItems / 4,
-                              children: item.selectedVariation!.entries.map((entry) =>
-                                  Chip(
-                                    label: Text(
-                                      '${entry.key}: ${entry.value}',
-                                      style: textTheme.labelSmall,
-                                    ),
-                                    backgroundColor: dark ? AColors.darkGrey : AColors.light,
-                                    side: BorderSide.none,
-                                  ),
-                              ).toList(),
-                            ),
-                          const SizedBox(height: TSizes.spaceBtwItems / 2),
-                          Text(
-                            'Qty: ${item.quantity}',
-                            style: textTheme.bodySmall,
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ),
-            )),
+                  ),
+                )),
             const SizedBox(height: TSizes.spaceBtwSections),
 
             /// Order Summary
@@ -200,7 +209,8 @@ class OrderDetailScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildDetailRow(BuildContext context, {
+  Widget _buildDetailRow(
+    BuildContext context, {
     required IconData icon,
     required String label,
     required String value,
@@ -218,7 +228,8 @@ class OrderDetailScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildSummaryRow(BuildContext context, {
+  Widget _buildSummaryRow(
+    BuildContext context, {
     required String label,
     required String value,
     bool isTotal = false,
@@ -238,8 +249,8 @@ class OrderDetailScreen extends StatelessWidget {
             value,
             style: isTotal
                 ? Theme.of(context).textTheme.titleLarge?.copyWith(
-              fontWeight: FontWeight.bold,
-            )
+                      fontWeight: FontWeight.bold,
+                    )
                 : Theme.of(context).textTheme.bodyLarge,
           ),
         ],

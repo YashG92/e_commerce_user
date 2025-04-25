@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../utils/constants/colors.dart';
-import '../../../utils/constants/image_strings.dart';
 import '../../../utils/constants/sizes.dart';
 import '../../../utils/helper/helper_functions.dart';
 
@@ -26,9 +25,9 @@ class SuccessScreen extends StatelessWidget {
             Lottie.asset(image),
             ///Title & SubTitle
             Text(title, style: Theme.of(context).textTheme.headlineMedium,textAlign: TextAlign.center,),
-            SizedBox(height: TSizes.spaceBtwItems,),
+            const SizedBox(height: TSizes.spaceBtwItems,),
             Text(subTitle,style: Theme.of(context).textTheme.labelLarge,textAlign: TextAlign.center,),
-            SizedBox(height: TSizes.spaceBtwSections,),
+            const SizedBox(height: TSizes.spaceBtwSections,),
             ///Buttons
 
             SizedBox(
@@ -41,11 +40,11 @@ class SuccessScreen extends StatelessWidget {
                       dark ? Colors.white : Colors.black,
                       foregroundColor:
                       dark ? AColors.dark : Colors.white,
-                      textStyle: TextStyle(
+                      textStyle: const TextStyle(
                           fontSize: 18, fontWeight: FontWeight.w600),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10))),
-                  onPressed: onPressed, child: Text('Continue')),),
+                  onPressed: onPressed, child: const Text('Continue')),),
 
           ],
         ),

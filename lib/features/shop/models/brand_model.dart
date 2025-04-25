@@ -1,8 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'category_model.dart';
-
-
 class BrandModel {
   String id;
   String name;
@@ -21,7 +18,6 @@ class BrandModel {
   });
 
   static BrandModel empty() => BrandModel(id: '', image: '', name: '');
-
 
   toJson() {
     return {
@@ -45,14 +41,14 @@ class BrandModel {
         productsCount: data['productsCount'] ?? 0,
         isFeatured: data['isFeatured'] ?? false,
       );
-    }else{
+    } else {
       return BrandModel.empty();
     }
   }
 
   factory BrandModel.fromJson(Map<String, dynamic> json) {
     final data = json;
-    if(data.isEmpty) return BrandModel.empty();
+    if (data.isEmpty) return BrandModel.empty();
     return BrandModel(
       id: data['id'] ?? '',
       name: data['name'] ?? '',

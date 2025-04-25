@@ -30,14 +30,11 @@ class NavigationMenu extends StatelessWidget {
             selectedIndex: controller.selectedIndex.value,
             onDestinationSelected: (index) =>
                 controller.selectedIndex.value = index,
-            destinations: [
+            destinations: const [
               NavigationDestination(icon: Icon(Iconsax.home), label: 'Home'),
-              NavigationDestination(
-                  icon: Icon(Iconsax.shop), label: 'Store'),
+              NavigationDestination(icon: Icon(Iconsax.shop), label: 'Store'),
               NavigationDestination(icon: Icon(Iconsax.heart), label: 'Saved'),
-              NavigationDestination(
-                  icon: CartCounterIcon(),
-                  label: 'Cart'),
+              NavigationDestination(icon: CartCounterIcon(), label: 'Cart'),
               NavigationDestination(icon: Icon(Iconsax.user), label: 'Account'),
             ]),
       ),
@@ -46,11 +43,10 @@ class NavigationMenu extends StatelessWidget {
   }
 }
 
-
 class NavigationController extends GetxController {
   final Rx<int> selectedIndex = 0.obs;
 
-  final screens = [
+  final screens = const [
     HomeScreen(),
     StoreScreen(),
     WishlistScreen(),

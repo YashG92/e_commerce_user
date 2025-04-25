@@ -40,8 +40,8 @@ class SortableProducts extends StatelessWidget {
               'Popularity'
             ]
                 .map((option) => DropdownMenuItem(
-                      child: Text(option),
                       value: option,
+                      child: Text(option),
                     ))
                 .toList(),
             value: controller.selectedSortOption.value,

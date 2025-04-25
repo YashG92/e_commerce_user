@@ -18,23 +18,22 @@ import '../features/shop/screens/cart/cart.dart';
 import '../features/shop/screens/shop/store.dart';
 
 class AppRoutes {
-  static final pages =[
-    GetPage(name: Routes.home, page: ()=> HomeScreen()),
-    GetPage(name: Routes.store, page: ()=> StoreScreen()),
-    GetPage(name: Routes.favourites, page: ()=> WishlistScreen()),
-    GetPage(name: Routes.settings, page: ()=> SettingsScreen()),
-    GetPage(name: Routes.productReviews, page: ()=> ProductReviewScreen()),
-    GetPage(name: Routes.order, page: ()=> OrderListScreen()),
-    GetPage(name: Routes.checkout, page: ()=> CheckoutScreen()),
-    GetPage(name: Routes.cart, page: ()=> CartScreen()),
-    GetPage(name: Routes.userProfile, page: ()=> ProfileScreen()),
-    GetPage(name: Routes.userAddress, page: ()=> UserAddressScreen()),
-    GetPage(name: Routes.signUp, page: ()=> SignupScreen()),
-    GetPage(name: Routes.verifyEmail, page: ()=> VerifyEmailScreen()),
-    GetPage(name: Routes.signIn, page: ()=> LoginScreen()),
-    GetPage(name: Routes.forgetPassword, page: ()=> ForgetPassword()),
-    GetPage(name: Routes.onBoarding, page: ()=> OnBoardingScreen()),
-
-
+  static final pages = [
+    GetPage(name: Routes.home, page: () => const HomeScreen()),
+    GetPage(name: Routes.store, page: () => const StoreScreen()),
+    GetPage(name: Routes.favourites, page: () => const WishlistScreen()),
+    GetPage(name: Routes.settings, page: () => const SettingsScreen()),
+    GetPage(
+        name: Routes.productReviews, page: () => const ProductReviewScreen()),
+    GetPage(name: Routes.order, page: () => const OrderListScreen()),
+    GetPage(name: Routes.checkout, page: () => const CheckoutScreen()),
+    GetPage(name: Routes.cart, page: () => const CartScreen()),
+    GetPage(name: Routes.userProfile, page: () => const ProfileScreen()),
+    GetPage(name: Routes.userAddress, page: () => const UserAddressScreen()),
+    GetPage(name: Routes.signUp, page: () => const SignupScreen()),
+    GetPage(name: Routes.verifyEmail, page: () => const VerifyEmailScreen()),
+    GetPage(name: Routes.signIn, page: () => const LoginScreen()),
+    GetPage(name: Routes.forgetPassword, page: () => const ForgetPassword()),
+    GetPage(name: Routes.onBoarding, page: () => const OnBoardingScreen()),
   ];
 }

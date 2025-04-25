@@ -51,9 +51,8 @@ class OrderModel {
     }
   }
 
-
   Map<String, dynamic> toJson() {
-    return{
+    return {
       'id': id,
       'userId': userId,
       'status': status.toString(),
@@ -71,17 +70,22 @@ class OrderModel {
     final data = snapshot.data() as Map<String, dynamic>;
 
     return OrderModel(
-      id : data['id'] as String,
-      userId : data['userId'] as String,
-      status : OrderStatus.values.firstWhere((status) => status.toString() == data['status']),
-      totalAmount : data['totalAmount'] as double,
-      shippingCost : data['shippingCost'] as double,
-      orderDate : (data['orderDate'] as Timestamp).toDate(),
-      paymentMethod : data['paymentMethod'] as String,
-      shippingAddress : AddressModel.fromMap(data['shippingAddress'] as Map<String, dynamic>),
-      deliveryDate : data['deliveryDate'] != null ? (data['deliveryDate'] as Timestamp).toDate() : null,
-      items : (data['items'] as List<dynamic>).map((item) => CartItemModel.fromJson(item as Map<String, dynamic>)).toList(),
+      id: data['id'] as String,
+      userId: data['userId'] as String,
+      status: OrderStatus.values
+          .firstWhere((status) => status.toString() == data['status']),
+      totalAmount: data['totalAmount'] as double,
+      shippingCost: data['shippingCost'] as double,
+      orderDate: (data['orderDate'] as Timestamp).toDate(),
+      paymentMethod: data['paymentMethod'] as String,
+      shippingAddress:
+          AddressModel.fromMap(data['shippingAddress'] as Map<String, dynamic>),
+      deliveryDate: data['deliveryDate'] != null
+          ? (data['deliveryDate'] as Timestamp).toDate()
+          : null,
+      items: (data['items'] as List<dynamic>)
+          .map((item) => CartItemModel.fromJson(item as Map<String, dynamic>))
+          .toList(),
     );
-
   }
 }

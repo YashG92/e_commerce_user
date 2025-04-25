@@ -19,10 +19,10 @@ class CartItemModel {
     this.title = '',
     this.brandName,
     this.selectedVariation,
-});
+  });
 
   ///Empty Cart
-  static CartItemModel empty() => CartItemModel(productId: '',quantity: 0);
+  static CartItemModel empty() => CartItemModel(productId: '', quantity: 0);
 
   ///Calculate Total Amount
   String get totalAmount => (price * quantity).toStringAsFixed(1);
@@ -53,7 +53,9 @@ class CartItemModel {
       quantity: json['quantity'],
       variationId: json['variationId'],
       brandName: json['brandName'],
-      selectedVariation: json['selectedVariation'] != null ? Map<String, String>.from(json['selectedVariation']) : null,
+      selectedVariation: json['selectedVariation'] != null
+          ? Map<String, String>.from(json['selectedVariation'])
+          : null,
     );
   }
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../utils/constants/sizes.dart';
-import '../products/product_card/product_card_vertical.dart';
 
 class AGridLayout extends StatelessWidget {
   const AGridLayout({
@@ -20,7 +19,7 @@ class AGridLayout extends StatelessWidget {
     return GridView.builder(
       itemCount: itemCount,
       shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         mainAxisSpacing: TSizes.spaceBtwItems,

@@ -21,11 +21,11 @@ class UserReviewCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                CircleAvatar(
+                const CircleAvatar(
                     backgroundImage: AssetImage(
                   ImageStrings.user,
                 )),
-                SizedBox(
+                const SizedBox(
                   width: TSizes.spaceBtwItems,
                 ),
                 Text(
@@ -34,18 +34,18 @@ class UserReviewCard extends StatelessWidget {
                 ),
               ],
             ),
-            IconButton(onPressed: () {}, icon: Icon(Icons.more_vert))
+            IconButton(onPressed: () {}, icon: const Icon(Icons.more_vert))
           ],
         ),
-        SizedBox(
+        const SizedBox(
           height: TSizes.spaceBtwItems,
         ),
 
         ///Reviews
         Row(
           children: [
-            ARatingBarIndicator(rating: 4),
-            SizedBox(
+            const ARatingBarIndicator(rating: 4),
+            const SizedBox(
               width: TSizes.spaceBtwItems,
             ),
             Text(
@@ -54,10 +54,10 @@ class UserReviewCard extends StatelessWidget {
             ),
           ],
         ),
-        SizedBox(
+        const SizedBox(
           height: TSizes.spaceBtwItems,
         ),
-        ReadMoreText(
+        const ReadMoreText(
           'hsgfsuiheu iu uwi hfuih efh jjs s huuhu hkjgfhs  hkghjsk  hksghjkshkg khskhguh sk ',
           trimLines: 2,
           trimMode: TrimMode.Line,
@@ -72,53 +72,55 @@ class UserReviewCard extends StatelessWidget {
               fontWeight: FontWeight.bold,
               color: AColors.primary),
         ),
-        SizedBox(
+        const SizedBox(
           height: TSizes.spaceBtwItems,
         ),
 
         ///Company Review
         RoundedContainer(
-            backgroundColor: dark ? AColors.darkerGrey : AColors.grey,
-            child: Padding(
-              padding: EdgeInsets.all(TSizes.md),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Microsoft",
-                        style: Theme.of(context).textTheme.titleMedium,
-                      ),
-                      Text(
-                        "02 Aug 2024",
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: TSizes.spaceBtwItems,
-                  ),
-                  ReadMoreText(
-                    'hsgfsuiheu iu uwi hfuih efh jjs s huuhu hkjgfhs  hkghjsk  hksghjkshkg khskhguh sk djfkhgkjhdfjgkh dfjshgjhdkjsfgh jkhfsdjkvbhfjkd jfehgjkhjkehg  kjfhjghjks ',
-                    trimLines: 2,
-                    trimMode: TrimMode.Line,
-                    trimExpandedText: ' show less',
-                    trimCollapsedText: ' show more',
-                    moreStyle: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        color: AColors.primary),
-                    lessStyle: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        color: AColors.primary),
-                  ),
-                ],
-              ),
-            ),),
-        SizedBox(height: TSizes.spaceBtwSections,),
-
+          backgroundColor: dark ? AColors.darkerGrey : AColors.grey,
+          child: Padding(
+            padding: const EdgeInsets.all(TSizes.md),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Microsoft",
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                    Text(
+                      "02 Aug 2024",
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: TSizes.spaceBtwItems,
+                ),
+                const ReadMoreText(
+                  'hsgfsuiheu iu uwi hfuih efh jjs s huuhu hkjgfhs  hkghjsk  hksghjkshkg khskhguh sk djfkhgkjhdfjgkh dfjshgjhdkjsfgh jkhfsdjkvbhfjkd jfehgjkhjkehg  kjfhjghjks ',
+                  trimLines: 2,
+                  trimMode: TrimMode.Line,
+                  trimExpandedText: ' show less',
+                  trimCollapsedText: ' show more',
+                  moreStyle: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: AColors.primary),
+                  lessStyle: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: AColors.primary),
+                ),
+              ],
+            ),
+          ),
+        ),
+        const SizedBox(
+          height: TSizes.spaceBtwSections,
+        ),
       ],
     );
   }

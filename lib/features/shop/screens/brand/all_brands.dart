@@ -8,7 +8,6 @@ import '../../../../common/widgets/layouts/grid_layout.dart';
 import '../../../../common/widgets/shimmer/brands_shimmer.dart';
 import '../../../../common/widgets/texts/section_heading.dart';
 import '../../../../utils/constants/sizes.dart';
-import '../../models/brand_model.dart';
 import 'brand_products.dart';
 
 class AllBrandsScreen extends StatelessWidget {
@@ -60,7 +59,9 @@ class AllBrandsScreen extends StatelessWidget {
                         return BrandCard(
                           brand: brand,
                           showBorder: true,
-                          onTap: () => Get.to(() => BrandProducts(brand: brand,)),
+                          onTap: () => Get.to(() => BrandProducts(
+                                brand: brand,
+                              )),
                         );
                       });
                 },

@@ -1,5 +1,4 @@
 import 'package:e_commerce_user/common/widgets/images/circular_image.dart';
-import 'package:e_commerce_user/common/widgets/texts/brand_title_text.dart';
 import 'package:e_commerce_user/common/widgets/texts/product_price_text.dart';
 import 'package:e_commerce_user/common/widgets/texts/product_title_text.dart';
 import 'package:e_commerce_user/common/widgets/texts/section_heading.dart';
@@ -41,7 +40,9 @@ class ProductMetaData extends StatelessWidget {
               image: product.brand != null ? product.brand!.image : '',
               isNetworkImage: true,
             ),
-            const SizedBox(width: TSizes.spaceBtwItems,),
+            const SizedBox(
+              width: TSizes.spaceBtwItems,
+            ),
             BrandTitleWithVerifiedIcon(
               title: product.brand != null ? product.brand!.name : '',
               isLarge: true,

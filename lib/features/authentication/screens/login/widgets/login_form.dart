@@ -1,13 +1,11 @@
 import 'package:e_commerce_user/features/authentication/controller/login/login_controller.dart';
 import 'package:e_commerce_user/features/authentication/screens/password_configuration/forget_password.dart';
-import 'package:e_commerce_user/navigation_menu.dart';
 import 'package:e_commerce_user/utils/validator/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../../../utils/constants/colors.dart';
-import '../../../../../utils/helper/helper_functions.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({
@@ -18,7 +16,6 @@ class LoginForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
   final controller = Get.put(LoginController());
-    final dark = HelperFunctions.isDarkMode(context);
 
     return Form(
       key: controller.formKey,
@@ -42,7 +39,7 @@ class LoginForm extends StatelessWidget {
                   labelStyle: const TextStyle()
                       .copyWith(fontSize: 24, color: AColors.black),
                   border: OutlineInputBorder(
-                    borderSide: BorderSide(color: AColors.grey),
+                    borderSide: const BorderSide(color: AColors.grey),
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
@@ -66,12 +63,12 @@ class LoginForm extends StatelessWidget {
                   validator: (value)=>Validator.validatePassword(value),
                   obscureText: controller.hidePassword.value,
                   decoration: InputDecoration(
-                    suffixIcon: IconButton(onPressed: ()=>controller.hidePassword.value = !controller.hidePassword.value, icon: controller.hidePassword.value? Icon(Iconsax.eye_slash) :Icon(Iconsax.eye)),
+                    suffixIcon: IconButton(onPressed: ()=>controller.hidePassword.value = !controller.hidePassword.value, icon: controller.hidePassword.value? const Icon(Iconsax.eye_slash) :const Icon(Iconsax.eye)),
                     hintText: 'Enter your password',
                     labelStyle: const TextStyle()
                         .copyWith(fontSize: 24, color: AColors.black),
                     border: OutlineInputBorder(
-                      borderSide: BorderSide(color: AColors.grey),
+                      borderSide: const BorderSide(color: AColors.grey),
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
@@ -100,7 +97,7 @@ class LoginForm extends StatelessWidget {
                 ],
               ),
               TextButton(
-                onPressed: () =>Get.to(()=> ForgetPassword()),
+                onPressed: () =>Get.to(()=> const ForgetPassword()),
                 child: const Text('Forgot Password?'),
               ),
             ],
@@ -116,7 +113,7 @@ class LoginForm extends StatelessWidget {
               child: ElevatedButton(
 
                   onPressed: ()=>controller.signInWithEmailPassword(),
-                  child: Text(
+                  child: const Text(
                     'Login',
                   )))
         ],

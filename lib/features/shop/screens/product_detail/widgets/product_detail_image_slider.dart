@@ -39,32 +39,34 @@ class ProductImageSlider extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(TSizes.productImageRadius / 2),
                 child: Center(
-                  child: Obx(
-                        () {
-                      // Connect PageView to the controller's selected image
-                      return PageView.builder(
-                        controller: pageController,
-                        itemCount: images.length,
-                        onPageChanged: (index) {
-                          imagesController.selectedProductImage.value = images[index];
-                        },
-                        itemBuilder: (_, index) {
-                          final image = images[index];
-                          return GestureDetector(
-                            onTap: () => imagesController.showEnlargedImage(image),
-                            child: Hero(
-                              tag: product.id,
-                              child: CachedNetworkImage(
-                                imageUrl: image,
-                                progressIndicatorBuilder: (_, __, downloadProgress) =>
-                                    CircularProgressIndicator(
-                                      value: downloadProgress.progress,
-                                      color: AColors.primary,
-                                    ),
+                  child: PageView.builder(
+                    controller: pageController,
+                    itemCount: images.length,
+                    onPageChanged: (index) {
+                      imagesController.selectedProductImage.value =
+                          images[index];
+                    },
+                    itemBuilder: (_, index) {
+                      final image = images[index];
+                      return GestureDetector(
+                        onTap: () => imagesController.showEnlargedImage(image),
+                        child: Hero(
+                          tag: product.id,
+                          child: CachedNetworkImage(
+                            imageUrl: image,
+                            progressIndicatorBuilder: (_, __, downloadProgress) => Center(
+                              child: SizedBox(
+                                width: 20, // Adjust size as needed
+                                height: 20, // Adjust size as needed
+                                child: CircularProgressIndicator(
+                                  value: downloadProgress.progress,
+                                  color: AColors.primary,
+                                  strokeWidth: 2, // Make the line thinner
+                                ),
                               ),
                             ),
-                          );
-                        },
+                          ),
+                        ),
                       );
                     },
                   ),
@@ -86,12 +88,14 @@ class ProductImageSlider extends StatelessWidget {
           child: ListView.separated(
             shrinkWrap: true,
             scrollDirection: Axis.horizontal,
-            separatorBuilder: (_, __) => const SizedBox(width: TSizes.spaceBtwItems),
+            separatorBuilder: (_, __) =>
+                const SizedBox(width: TSizes.spaceBtwItems),
             itemCount: images.length,
             itemBuilder: (_, index) => Obx(
-                  () {
+              () {
                 final imageSelected =
-                    imagesController.selectedProductImage.value == images[index];
+                    imagesController.selectedProductImage.value ==
+                        images[index];
                 return GestureDetector(
                   onTap: () {
                     imagesController.selectedProductImage.value = images[index];
@@ -110,7 +114,8 @@ class ProductImageSlider extends StatelessWidget {
                     imageUrl: images[index],
                     isNetworkImage: true,
                     border: Border.all(
-                      color: imageSelected ? AColors.primary : Colors.transparent,
+                      color:
+                          imageSelected ? AColors.primary : Colors.transparent,
                     ),
                   ),
                 );

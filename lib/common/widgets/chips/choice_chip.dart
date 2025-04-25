@@ -16,12 +16,12 @@ class AChoiceChip extends StatelessWidget {
   Widget build(BuildContext context) {
     final isColor = HelperFunctions.getColor(text) != null;
     return ChoiceChip(
-      label:  isColor ? SizedBox() : Text(text),
+      label:  isColor ? const SizedBox() : Text(text),
       avatar: isColor ? ACircularContainer(height: 50,width: 50,backgroundColor:HelperFunctions.getColor(text)!,) : null,
-      shape: isColor? CircleBorder() : null,
+      shape: isColor? const CircleBorder() : null,
       backgroundColor: isColor? HelperFunctions.getColor(text)! :null,
-      labelPadding: isColor ? EdgeInsets.all(0) : null,
-      padding:  isColor ? EdgeInsets.all(0) : null,
+      labelPadding: isColor ?const EdgeInsets.all(0) : null,
+      padding:  isColor ?const EdgeInsets.all(0) : null,
       selectedColor:  Colors.green,
       selected: selected,
       onSelected: onSelected,

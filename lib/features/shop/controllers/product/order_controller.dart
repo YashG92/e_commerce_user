@@ -2,7 +2,6 @@ import 'package:e_commerce_user/common/widgets/loaders/full_screen_loader.dart';
 import 'package:e_commerce_user/common/widgets/success_screen/success_screen.dart';
 import 'package:e_commerce_user/data/repositories/product/product_repository.dart';
 import 'package:e_commerce_user/features/shop/controllers/product/cart_controller.dart';
-import 'package:e_commerce_user/features/shop/controllers/product/product_controller.dart';
 import 'package:e_commerce_user/navigation_menu.dart';
 import 'package:e_commerce_user/utils/constants/enums.dart';
 import 'package:e_commerce_user/utils/constants/image_strings.dart';

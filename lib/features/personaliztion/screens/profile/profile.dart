@@ -7,7 +7,6 @@ import 'package:e_commerce_user/features/personaliztion/screens/profile/widgets/
 import 'package:e_commerce_user/features/personaliztion/screens/profile_edit/change_name.dart';
 import 'package:e_commerce_user/utils/constants/image_strings.dart';
 import 'package:e_commerce_user/utils/constants/sizes.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
@@ -28,7 +27,7 @@ class ProfileScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(TSizes.defaultSpace),
+          padding: const EdgeInsets.all(TSizes.defaultSpace),
           child: SizedBox(
             width: double.infinity,
             child: Column(
@@ -40,7 +39,7 @@ class ProfileScreen extends StatelessWidget {
                 Obx(() {
                   final networkImage = controller.user.value.profilePicture;
                   final image =networkImage.isNotEmpty ? networkImage : ImageStrings.user;
-                  return controller.imageUploading.value ? ShimmerEffect(width: 80, height: 80,radius: 80,): CircularImage(
+                  return controller.imageUploading.value ? const ShimmerEffect(width: 80, height: 80,radius: 80,): CircularImage(
                     image: image,
                     width: 80,
                     height: 80,
@@ -49,29 +48,29 @@ class ProfileScreen extends StatelessWidget {
                 }),
                 TextButton(
                     onPressed: () => controller.uploadUserProfilePicture(),
-                    child: Text('Change Profile Picture')),
-                SizedBox(
+                    child: const Text('Change Profile Picture')),
+                const SizedBox(
                   height: TSizes.spaceBtwItems / 2,
                 ),
-                Divider(),
+                const Divider(),
 
                 ///Profile Information
 
-                SizedBox(
+                const SizedBox(
                   height: TSizes.spaceBtwItems,
                 ),
-                SectionHeading(
+                const SectionHeading(
                   title: 'Profile Information',
                   showActionButton: false,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: TSizes.spaceBtwItems,
                 ),
                 ProfileMenu(
                   title: 'Name',
                   value: controller.user.value.fullName,
                   onPressed: () {
-                    Get.to(() => ChangeName());
+                    Get.to(() => const ChangeName());
                   },
                 ),
                 ProfileMenu(
@@ -79,18 +78,18 @@ class ProfileScreen extends StatelessWidget {
                   value: controller.user.value.fullName,
                   onPressed: () {},
                 ),
-                Divider(),
+                const Divider(),
 
                 ///Personal Information Section
 
-                SizedBox(
+                const SizedBox(
                   height: TSizes.spaceBtwItems,
                 ),
-                SectionHeading(
+                const SectionHeading(
                   title: 'Personal Information',
                   showActionButton: false,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: TSizes.spaceBtwItems,
                 ),
                 ProfileMenu(
@@ -118,12 +117,12 @@ class ProfileScreen extends StatelessWidget {
                   value: '09-12-2002',
                   onPressed: () {},
                 ),
-                Divider(),
+                const Divider(),
 
                 ///Delete Account
                 TextButton(
                     onPressed: () => controller.deleteAccountWarningPopup(),
-                    child: Text(
+                    child: const Text(
                       'Delete Account',
                       style: TextStyle(color: Colors.red),
                     ))

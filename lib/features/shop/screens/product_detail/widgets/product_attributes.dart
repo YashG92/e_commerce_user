@@ -25,8 +25,8 @@ class ProductAttributes extends StatelessWidget {
                 child: Text(
                   attribute.name ?? '',
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.w600,
-                  ),
+                        fontWeight: FontWeight.w600,
+                      ),
                 ),
               ),
               const SizedBox(width: TSizes.spaceBtwItems),
@@ -37,13 +37,13 @@ class ProductAttributes extends StatelessWidget {
                   children: attribute.values!
                       .map(
                         (value) => Text(
-                      value,
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyMedium
-                          ?.copyWith(color: Colors.black),
-                    ),
-                  )
+                          value,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium
+                              ?.copyWith(color: Colors.black),
+                        ),
+                      )
                       .toList(),
                 ),
               ),

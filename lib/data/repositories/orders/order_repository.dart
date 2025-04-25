@@ -11,7 +11,7 @@ class OrderRepository extends GetxController {
 
   Future<List<OrderModel>> fetchUserOrders() async {
     try {
-      final userId = AuthenticationRepository.instance.authUser!.uid;
+      final userId = AuthenticationRepository.instance.authUser.uid;
       if(userId.isEmpty){
         throw 'User not found';
       }

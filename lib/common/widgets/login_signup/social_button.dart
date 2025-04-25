@@ -24,8 +24,8 @@ class SocialButton extends StatelessWidget {
             style: OutlinedButton.styleFrom(
                 elevation: 0,
                 foregroundColor: dark ? Colors.white : Colors.black,
-                side: BorderSide(color: AColors.grey),
-                textStyle: TextStyle(
+                side: const BorderSide(color: AColors.grey),
+                textStyle: const TextStyle(
                     fontSize: 18, fontWeight: FontWeight.w600),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10))),
@@ -36,7 +36,7 @@ class SocialButton extends StatelessWidget {
                 spacing: 8,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image(
+                  const Image(
                       height: 32 * 1.5,
                       width: 32 * 1.5,
                       image: AssetImage(ImageStrings.googleLogo)),

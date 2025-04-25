@@ -14,10 +14,11 @@ import '../../../../../utils/helper/helper_functions.dart';
 import '../../../controllers/product/product_variations_controller.dart';
 
 class ProductVariationAttributes extends StatelessWidget {
-  const ProductVariationAttributes({super.key, required this.product, this.preSelectedVariation});
+  const ProductVariationAttributes(
+      {super.key, required this.product, this.preSelectedVariation});
 
   final ProductModel product;
-  final Map<String,String>? preSelectedVariation;
+  final Map<String, String>? preSelectedVariation;
 
   @override
   Widget build(BuildContext context) {

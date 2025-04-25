@@ -22,11 +22,11 @@ class UserProfile extends StatelessWidget {
     final dark = HelperFunctions.isDarkMode(context);
     return Row(
       children: [
-        SizedBox(width: TSizes.spaceBtwItems,),
+        const SizedBox(width: TSizes.spaceBtwItems,),
         Obx(() {
           final networkImage = controller.user.value.profilePicture;
           final image =networkImage.isNotEmpty ? networkImage : ImageStrings.user;
-          return controller.imageUploading.value ? ShimmerEffect(width: 80, height: 80,radius: 80,): CircularImage(
+          return controller.imageUploading.value ? const ShimmerEffect(width: 80, height: 80,radius: 80,): CircularImage(
             image: image,
             width: 80,
             height: 80,

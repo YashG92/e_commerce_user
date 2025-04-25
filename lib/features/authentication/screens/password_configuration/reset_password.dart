@@ -1,4 +1,3 @@
-import 'package:e_commerce_user/common/widgets/success_screen/success_screen.dart';
 import 'package:e_commerce_user/features/authentication/controller/forget_password/forget_password_controller.dart';
 import 'package:e_commerce_user/features/authentication/screens/login/login.dart';
 import 'package:e_commerce_user/utils/constants/image_strings.dart';
@@ -25,7 +24,7 @@ class ResetPassword extends StatelessWidget {
           appBar: AppBar(
             backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             automaticallyImplyLeading: false,
-            actions: [IconButton(onPressed: ()=> Get.back(), icon: Icon(CupertinoIcons.clear))],
+            actions: [IconButton(onPressed: ()=> Get.back(), icon: const Icon(CupertinoIcons.clear))],
           ),
           body: SingleChildScrollView(
             child:  Padding(
@@ -37,9 +36,9 @@ class ResetPassword extends StatelessWidget {
                   Lottie.asset(ImageStrings.verifyEmailGif),
                   ///Title & SubTitle
                   Text(email, style: Theme.of(context).textTheme.headlineMedium,textAlign: TextAlign.center,),
-                  SizedBox(height: TSizes.spaceBtwItems,),
+                  const SizedBox(height: TSizes.spaceBtwItems,),
                   Text('Password Reset Email Sent',style: Theme.of(context).textTheme.labelLarge,textAlign: TextAlign.center,),
-                  SizedBox(height: TSizes.spaceBtwSections,),
+                  const SizedBox(height: TSizes.spaceBtwSections,),
                   ///Buttons
 
                   SizedBox(
@@ -52,13 +51,13 @@ class ResetPassword extends StatelessWidget {
                             dark ? Colors.white : Colors.black,
                             foregroundColor:
                             dark ? AColors.dark : Colors.white,
-                            textStyle: TextStyle(
+                            textStyle: const TextStyle(
                                 fontSize: 18, fontWeight: FontWeight.w600),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10))),
-                        onPressed: ()=>Get.offAll(()=> LoginScreen()), child: Text('Done')),),
-                  SizedBox(height: TSizes.spaceBtwItems,),
-                  Obx(()=> SizedBox(width: double.infinity,child: TextButton(onPressed: ()=> controller.isResendButtonOn.value ? controller.resendPasswordResetEmail() : null, child:controller.isResendButtonOn.value? Text('Resend Email') : Text('Wait for ${controller.countdown.value} s')),))
+                        onPressed: ()=>Get.offAll(()=> const LoginScreen()), child: const Text('Done')),),
+                  const SizedBox(height: TSizes.spaceBtwItems,),
+                  Obx(()=> SizedBox(width: double.infinity,child: TextButton(onPressed: ()=> controller.isResendButtonOn.value ? controller.resendPasswordResetEmail() : null, child:controller.isResendButtonOn.value? const Text('Resend Email') : Text('Wait for ${controller.countdown.value} s')),))
 
                 ],
               ),

@@ -58,8 +58,14 @@ class CartItems extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          ProductPriceText(price: (item.price * item.quantity).toStringAsFixed(1),lineThrough: true,),
-                          ProductPriceText(price: (item.salePrice * item.quantity).toStringAsFixed(1)),
+                          ProductPriceText(
+                            price:
+                                (item.price * item.quantity).toStringAsFixed(1),
+                            lineThrough: true,
+                          ),
+                          ProductPriceText(
+                              price: (item.salePrice * item.quantity)
+                                  .toStringAsFixed(1)),
                         ],
                       ),
                     ],
@@ -68,7 +74,7 @@ class CartItems extends StatelessWidget {
             );
           },
         ),
-        separatorBuilder: (_, __) => SizedBox(
+        separatorBuilder: (_, __) => const SizedBox(
           height: TSizes.spaceBtwSections,
         ),
       ),
