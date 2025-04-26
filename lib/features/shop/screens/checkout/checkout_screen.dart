@@ -1,4 +1,5 @@
 import 'package:e_commerce_user/common/widgets/custom_shapes/containers/rounded_container.dart';
+import 'package:e_commerce_user/features/personaliztion/controller/user_controller.dart';
 import 'package:e_commerce_user/features/shop/controllers/coupon_controller.dart';
 import 'package:e_commerce_user/features/shop/controllers/product/cart_controller.dart';
 import 'package:e_commerce_user/features/shop/screens/cart/widgets/cart_items.dart';
@@ -96,8 +97,8 @@ class CheckoutScreen extends StatelessWidget {
                       razorpayController.startPayment(
                         name: "VY Store",
                         description: "Test Payment",
-                        email: "customer@email.com",
-                        contact: "9999999999",
+                        email: UserController.instance.user.value.email,
+                        contact: UserController.instance.user.value.phoneNumber,
                         amount: totalAmount,
                       );
                     }
